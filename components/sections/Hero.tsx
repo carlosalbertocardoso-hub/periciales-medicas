@@ -1,4 +1,5 @@
-import { Phone, ArrowRight, ShieldCheck, Star } from "lucide-react";
+import { ArrowRight, ShieldCheck, Star } from "lucide-react";
+import { OpenChatbotLink } from "@/components/ui/OpenChatbotLink";
 
 export function Hero() {
   return (
@@ -89,7 +90,7 @@ export function Hero() {
               {[
                 "Especialista en mala praxis médica",
                 "Ratificación judicial",
-                "Consulta inicial gratuita",
+                "Respuesta en menos de 24h",
               ].map((item) => (
                 <span key={item} className="flex items-center gap-2 text-sm text-white/75">
                   <span className="w-4 h-px bg-[#C8993A] shrink-0" />
@@ -99,21 +100,15 @@ export function Hero() {
             </div>
 
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row items-center gap-4">
               <a
                 href="#contacto"
                 className="inline-flex items-center justify-center gap-2.5 bg-[#1A9E6B] hover:bg-[#158A5C] text-white font-bold px-8 py-4 rounded-xl text-base shadow-lg hover:shadow-xl active:scale-[0.98] transition-all duration-200"
               >
-                Solicitar valoración gratuita
+                Enviar mi caso
                 <ArrowRight size={17} />
               </a>
-              <a
-                href="tel:[PENDIENTE]"
-                className="inline-flex items-center justify-center gap-2.5 bg-white/8 hover:bg-white/15 text-white/90 font-semibold px-6 py-4 rounded-xl text-base border border-white/20 hover:border-white/40 transition-all duration-200"
-              >
-                <Phone size={16} />
-                Llamar ahora
-              </a>
+              <OpenChatbotLink />
             </div>
 
             {/* Social proof strip */}
@@ -193,10 +188,10 @@ export function Hero() {
                     href="#contacto"
                     className="inline-flex items-center gap-2 text-[#1A9E6B] hover:text-white text-sm font-semibold transition-colors duration-200 group"
                   >
-                    Analiza tu caso gratuitamente
+                    Envía tu documentación
                     <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-200" />
                   </a>
-                  <p className="text-white/35 text-xs mt-2">Sin compromiso. Respuesta en menos de 24h</p>
+                  <p className="text-white/35 text-xs mt-2">Respuesta en menos de 24h</p>
                 </div>
               </div>
             </div>
