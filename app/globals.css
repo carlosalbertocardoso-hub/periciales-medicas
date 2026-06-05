@@ -1,26 +1,178 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* ── Azul marino principal (autoridad médica) ── */
+  --primary:       #1B3A6B;
+  --primary-light: #2D5AA0;
+  --primary-dark:  #0F2347;
+
+  /* ── Verde acento (CTAs, validaciones, checkmarks) ── */
+  --accent:        #1A9E6B;
+  --accent-hover:  #158A5C;
+  --accent-light:  #E8F7F1;
+
+  /* ── Dorado (solo para logo / marca) ── */
+  --gold:          #C8993A;
+
+  /* ── Fondos ── */
+  --background:    #FFFFFF;
+  --bg-alt:        #F7F8FA;
+  --bg-subtle:     #EEF2F8;
+  --surface:       #F8FAFC;
+
+  /* ── Texto ── */
+  --foreground:    #1A1A2E;
+  --muted:         #6B7280;
+  --muted-light:   #94A3B8;
+
+  /* ── Bordes ── */
+  --border:        #E5E7EB;
+  --border-subtle: #F0F4F8;
+
+  /* ── Estado ── */
+  --success:       #16A34A;
+  --error:         #EF4444;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-primary:       var(--primary);
+  --color-primary-light: var(--primary-light);
+  --color-primary-dark:  var(--primary-dark);
+  --color-accent:        var(--accent);
+  --color-accent-hover:  var(--accent-hover);
+  --color-accent-light:  var(--accent-light);
+  --color-gold:          var(--gold);
+  --color-background:    var(--background);
+  --color-bg-alt:        var(--bg-alt);
+  --color-bg-subtle:     var(--bg-subtle);
+  --color-surface:       var(--surface);
+  --color-foreground:    var(--foreground);
+  --color-muted:         var(--muted);
+  --color-muted-light:   var(--muted-light);
+  --color-border:        var(--border);
+  --color-success:       var(--success);
+  --color-error:         var(--error);
+  --font-sans:           var(--font-body), system-ui, -apple-system, sans-serif;
+  --font-heading:        var(--font-heading), Georgia, serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), system-ui, -apple-system, sans-serif;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading), Georgia, serif;
+  line-height: 1.25;
+}
+
+/* ── Refinamiento tipográfico ── */
+/* Garamond con ligaduras y espaciado óptico */
+h1, h2, h3 {
+  font-optical-sizing: auto;
+  font-variant-ligatures: common-ligatures;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  letter-spacing: -0.025em;
+}
+
+/* Línea decorativa dorada — usada en headings de sección */
+.section-rule {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.section-rule::before {
+  content: '';
+  display: block;
+  width: 2rem;
+  height: 1.5px;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+/* Numeración ordinal estilizada */
+.ordinal-num {
+  font-family: var(--font-heading), Georgia, serif;
+  font-size: 3.5rem;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--gold);
+  letter-spacing: -0.04em;
+  opacity: 0.9;
+}
+
+/* Separador ornamental */
+.ornament {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--gold);
+  opacity: 0.6;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+}
+.ornament::before,
+.ornament::after {
+  content: '';
+  display: block;
+  width: 2.5rem;
+  height: 1px;
+  background: currentColor;
+}
+
+/* Animaciones scroll-triggered */
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.55s ease-out, transform 0.55s ease-out;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-in {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+.fade-in.visible {
+  opacity: 1;
+}
+
+/* Stagger delays para grids */
+.stagger-1 { transition-delay: 0.05s; }
+.stagger-2 { transition-delay: 0.12s; }
+.stagger-3 { transition-delay: 0.19s; }
+.stagger-4 { transition-delay: 0.26s; }
+.stagger-5 { transition-delay: 0.33s; }
+.stagger-6 { transition-delay: 0.40s; }
+
+/* Focus accesible */
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Offset para nav sticky */
+[id] {
+  scroll-margin-top: 80px;
+}
+
+/* Respeta prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

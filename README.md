@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Perito Médico Pablo — Landing page
 
-## Getting Started
+Landing page de captación de leads para Pablo, perito médico independiente con cobertura en toda España.
 
-First, run the development server:
+## Stack
+
+- **Next.js 16.2.7** — App Router, TypeScript, Turbopack
+- **Tailwind CSS v4**
+- **react-hook-form + zod** — validación del formulario de contacto
+- **lucide-react** — iconos
+- **Resend** — envío de emails de leads (pendiente)
+- **Supabase** — almacenamiento de leads (pendiente)
+- **Cloudflare Turnstile** — protección anti-spam del formulario
+- **Google Tag Manager / GA4** — analítica con Consent Mode v2
+
+## Arrancar en local
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Copia `.env.example` a `.env.local` y rellena las variables necesarias antes de probar el formulario o la analítica.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Variables de entorno
 
-## Learn More
+| Variable | Descripción |
+| --- | --- |
+| `NEXT_PUBLIC_GTM_ID` | ID de Google Tag Manager |
+| `NEXT_PUBLIC_GA4_ID` | ID de GA4 (solo si no usas GTM) |
+| `NEXT_PUBLIC_TURNSTILE_SITE_KEY` | Clave pública Cloudflare Turnstile |
+| `TURNSTILE_SECRET_KEY` | Clave privada Cloudflare Turnstile |
+| `RESEND_API_KEY` | API key de Resend |
+| `CONTACT_EMAIL` | Email donde llegan los leads |
+| `SUPABASE_URL` | URL del proyecto Supabase |
+| `SUPABASE_SERVICE_ROLE_KEY` | Service role key de Supabase |
 
-To learn more about Next.js, take a look at the following resources:
+## Estructura del proyecto
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```text
+app/
+  page.tsx                        # Landing principal
+  layout.tsx                      # Layout global (fuentes, analytics, cookie banner)
+  globals.css                     # Variables CSS, tipografía, animaciones
+  gracias/page.tsx                # Página de conversión (noindex)
+  peritaje-accidentes-trafico/    # Página de especialidad
+  negligencias-medicas/           # Página de especialidad
+  accidentes-laborales/           # Página de especialidad
+  valoracion-secuelas/            # Página de especialidad
+  valoracion-dano-corporal/       # Página de especialidad
+  informes-periciales/            # Página de especialidad
+  aviso-legal/                    # Legal
+  politica-privacidad/            # Legal
+  politica-cookies/               # Legal
+  api/contacto/route.ts           # Endpoint del formulario de contacto
+  sitemap.ts                      # Sitemap automático
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+components/
+  layout/         # Header, Footer
+  sections/       # Hero, Servicios, TrustSignals, Proceso, SobrePablo, FAQ...
+  templates/      # ServicePage, ServiceFAQ (páginas de especialidad)
+  analytics/      # Analytics (GTM/GA4), CookieBanner
+  seo/            # JsonLd schemas
+  ui/             # WhatsAppButton, componentes reutilizables
 
-## Deploy on Vercel
+hooks/
+  useScrollReveal.ts   # Animaciones scroll-triggered con IntersectionObserver
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+lib/
+  consent.ts     # Utilidades Consent Mode v2
+  utils.ts       # cn() y helpers
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Pendientes
+
+- [ ] Sustituir todos los `[PENDIENTE]` con datos reales de Pablo
+- [ ] Foto profesional de Pablo
+- [ ] Integrar Resend (envío de emails)
+- [ ] Integrar Supabase (almacenamiento de leads)
+- [ ] Dominio definitivo (reemplazar `[PENDIENTE DOMINIO]` en metadata y schemas)
+- [ ] Fase 4: páginas locales (`/perito-medico-madrid`, `/perito-medico-barcelona`...)
+- [ ] Fase 5: estructura de blog
+
+## Deploy
+
+Recomendado en [Vercel](https://vercel.com). Conectar el repositorio y añadir las variables de entorno en el panel del proyecto.
