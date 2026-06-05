@@ -5,7 +5,7 @@ import { ServicePage, type ServicePageData } from "@/components/templates/Servic
 export const metadata: Metadata = {
   title: "Perito Médico Accidentes Laborales | Valoración Independiente del Daño",
   description:
-    "Perito médico independiente para accidentes de trabajo en España. Valoración de lesiones, incapacidad y secuelas. Reclamación frente a mutuas y aseguradoras. Consulta gratuita.",
+    "Perito médico independiente para accidentes de trabajo en España. Valoración de lesiones, incapacidad y secuelas. Reclamación frente a mutuas y aseguradoras. Contacto por email o formulario.",
   alternates: { canonical: "https://[PENDIENTE DOMINIO]/accidentes-laborales" },
   openGraph: {
     title: "Perito Médico Accidentes Laborales | Valoración Independiente",
@@ -18,7 +18,7 @@ const data: ServicePageData = {
   slug: "accidentes-laborales",
   title: "Perito Médico para Accidentes Laborales",
   metaTitle: "Perito Médico Accidentes Laborales | Valoración Independiente del Daño",
-  metaDesc: "Perito médico independiente para accidentes de trabajo en España. Valoración de lesiones, incapacidad y secuelas. Consulta gratuita.",
+  metaDesc: "Perito médico independiente para accidentes de trabajo en España. Valoración de lesiones, incapacidad y secuelas. Contacto por email o formulario.",
   badge: "Accidentes laborales",
   icon: HardHat,
   heroSubtitle:

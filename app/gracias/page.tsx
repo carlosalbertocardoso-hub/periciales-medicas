@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { CheckCircle2, Phone, ArrowRight, Clock } from "lucide-react";
+import { CheckCircle2, Mail, ArrowRight, Clock } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Solicitud recibida | Perito Médico",
@@ -26,12 +26,11 @@ export default function Gracias() {
           </div>
 
           <h1 className="text-2xl sm:text-3xl font-bold text-[#1A1A2E] mb-3">
-            ¡Consulta recibida!
+            Caso recibido correctamente
           </h1>
           <p className="text-[#6B7280] text-lg mb-8 leading-relaxed">
-            Gracias por ponerte en contacto. Te responderé personalmente en{" "}
-            <strong className="text-[#1A1A2E]">menos de 24 horas</strong> al
-            teléfono que has indicado.
+            Gracias por enviar tu caso. Revisaré la información y la documentación aportada y te responderé por email en{" "}
+            <strong className="text-[#1A1A2E]">menos de 24 horas</strong>.
           </p>
 
           {/* Pasos siguientes */}
@@ -43,18 +42,18 @@ export default function Gracias() {
               {[
                 {
                   icon: Clock,
-                  title: "Revisaré tu caso",
-                  text: "Analizaré la información que has compartido para preparar la orientación inicial.",
+                  title: "Revisaré tu documentación",
+                  text: "Analizaré la información y los documentos que has aportado para valorar tu caso.",
                 },
                 {
-                  icon: Phone,
-                  title: "Me pondré en contacto contigo",
-                  text: "Te llamaré en menos de 24 horas para comentar tu situación sin compromiso.",
+                  icon: Mail,
+                  title: "Te respondo por email",
+                  text: "En menos de 24 horas recibirás mi respuesta con los pasos a seguir.",
                 },
                 {
                   icon: CheckCircle2,
-                  title: "Consulta inicial gratuita",
-                  text: "Te daré una primera orientación sobre si tiene sentido un informe pericial en tu caso.",
+                  title: "Valoración inicial del caso",
+                  text: "Te indicaré si tiene sentido un informe pericial y qué documentación adicional necesitaríamos.",
                 },
               ].map((step, i) => {
                 const Icon = step.icon;
@@ -81,13 +80,6 @@ export default function Gracias() {
             >
               Volver al inicio
               <ArrowRight size={15} />
-            </a>
-            <a
-              href="tel:[PENDIENTE]"
-              className="inline-flex items-center justify-center gap-2 border border-[#1B3A6B] text-[#1B3A6B] font-semibold px-6 py-3 rounded-xl text-sm hover:bg-[#EEF2F8] transition-colors"
-            >
-              <Phone size={15} />
-              Llamar ahora
             </a>
           </div>
         </div>

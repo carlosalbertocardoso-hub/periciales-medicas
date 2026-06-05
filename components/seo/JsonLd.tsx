@@ -83,7 +83,7 @@ export function JsonLd() {
         name: "¿Cuál es el coste del informe pericial?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "El presupuesto depende del tipo de caso y complejidad. Ofrecemos una consulta inicial gratuita para valorar tu caso antes de comprometerte con ningún servicio.",
+          text: "El presupuesto depende del tipo de caso y complejidad. Puedes enviar tu documentación a través del formulario de contacto para recibir una valoración inicial.",
         },
       },
     ],

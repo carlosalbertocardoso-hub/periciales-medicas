@@ -4,17 +4,17 @@ import { z } from "zod";
 const schema = z.object({
   nombre: z.string().min(2).max(80),
   apellidos: z.string().min(2).max(100),
-  telefono: z.string().regex(/^[+]?[(]?[0-9]{1,4}[)]?[-\s./0-9]{8,14}$/),
+  email: z.string().email(),
   tipo_caso: z.string().min(1),
   provincia: z.string().min(2),
-  mensaje: z.string().max(500).optional(),
-  rgpd: z.literal(true),
+  descripcion: z.string().min(20).max(1000),
+  rgpd: z.union([z.literal("true"), z.literal(true)]),
   turnstileToken: z.string().optional(),
 });
 
 async function verifyTurnstile(token: string, ip: string): Promise<boolean> {
   const secret = process.env.TURNSTILE_SECRET_KEY;
-  if (!secret) return true; // sin clave configurada, se omite la verificación
+  if (!secret) return true;
 
   const res = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
     method: "POST",
@@ -27,10 +27,15 @@ async function verifyTurnstile(token: string, ip: string): Promise<boolean> {
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
-    const data = schema.parse(body);
+    const formData = await req.formData();
 
-    // Verificar Turnstile si está configurado
+    const raw = Object.fromEntries(
+      [...formData.entries()].filter(([, v]) => typeof v === "string")
+    );
+    const data = schema.parse(raw);
+
+    const docs = formData.getAll("docs") as File[];
+
     if (process.env.TURNSTILE_SECRET_KEY) {
       const ip = req.headers.get("cf-connecting-ip") ?? req.headers.get("x-forwarded-for") ?? "";
       const valid = await verifyTurnstile(data.turnstileToken ?? "", ip);
@@ -39,28 +44,34 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // ─── Integración de email (Resend) ────────────────────────────────────────
+    // ─── Integración de email (Resend) ─────────────────────────────────────────
     // Para activar: npm install resend
     // Añadir RESEND_API_KEY y CONTACT_EMAIL a las variables de entorno de Vercel
     //
     // import { Resend } from "resend";
     // const resend = new Resend(process.env.RESEND_API_KEY);
+    // const attachments = await Promise.all(docs.map(async (f) => ({
+    //   filename: f.name,
+    //   content: Buffer.from(await f.arrayBuffer()),
+    // })));
     // await resend.emails.send({
     //   from: "noreply@[DOMINIO]",
     //   to: process.env.CONTACT_EMAIL!,
-    //   subject: `Nuevo lead: ${data.tipo_caso} – ${data.nombre} ${data.apellidos}`,
+    //   subject: `Nuevo caso: ${data.tipo_caso} – ${data.nombre} ${data.apellidos}`,
     //   html: `
-    //     <h2>Nuevo lead de la web</h2>
+    //     <h2>Nuevo caso recibido</h2>
     //     <p><strong>Nombre:</strong> ${data.nombre} ${data.apellidos}</p>
-    //     <p><strong>Teléfono:</strong> ${data.telefono}</p>
+    //     <p><strong>Email:</strong> ${data.email}</p>
     //     <p><strong>Tipo de caso:</strong> ${data.tipo_caso}</p>
     //     <p><strong>Provincia:</strong> ${data.provincia}</p>
-    //     <p><strong>Mensaje:</strong> ${data.mensaje ?? "—"}</p>
+    //     <p><strong>Descripción:</strong> ${data.descripcion}</p>
+    //     <p><strong>Documentos adjuntos:</strong> ${docs.length}</p>
     //   `,
+    //   attachments,
     // });
-    // ─────────────────────────────────────────────────────────────────────────
+    // ───────────────────────────────────────────────────────────────────────────
 
-    // ─── Almacenamiento en Supabase ───────────────────────────────────────────
+    // ─── Almacenamiento en Supabase ────────────────────────────────────────────
     // Para activar: npm install @supabase/supabase-js
     // Añadir SUPABASE_URL y SUPABASE_SERVICE_ROLE_KEY a las variables de entorno
     //
@@ -72,20 +83,21 @@ export async function POST(req: NextRequest) {
     // await supabase.from("leads").insert({
     //   nombre: data.nombre,
     //   apellidos: data.apellidos,
-    //   telefono: data.telefono,
+    //   email: data.email,
     //   tipo_caso: data.tipo_caso,
     //   provincia: data.provincia,
-    //   mensaje: data.mensaje,
+    //   descripcion: data.descripcion,
+    //   num_documentos: docs.length,
     //   created_at: new Date().toISOString(),
     // });
-    // ─────────────────────────────────────────────────────────────────────────
+    // ───────────────────────────────────────────────────────────────────────────
 
-    // Log mientras no hay integración real
-    console.info("[Contacto] Nuevo lead:", {
+    console.info("[Contacto] Nuevo caso:", {
       nombre: `${data.nombre} ${data.apellidos}`,
-      telefono: data.telefono,
+      email: data.email,
       tipo_caso: data.tipo_caso,
       provincia: data.provincia,
+      documentos: docs.length,
     });
 
     return NextResponse.json({ ok: true }, { status: 200 });

@@ -81,7 +81,7 @@ export function ProblemaSolucion() {
             href="#contacto"
             className="inline-flex items-center gap-2 bg-[#1A9E6B] hover:bg-[#158A5C] text-white font-bold px-8 py-4 rounded-xl transition-all duration-200 text-base shadow-sm hover:shadow-md active:scale-[0.98]"
           >
-            Solicitar consulta sin compromiso
+            Enviar mi caso
             <ArrowRight size={17} />
           </a>
         </div>

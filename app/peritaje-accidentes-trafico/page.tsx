@@ -5,7 +5,7 @@ import { ServicePage, type ServicePageData } from "@/components/templates/Servic
 export const metadata: Metadata = {
   title: "Perito Médico Accidentes de Tráfico | Informe Pericial Independiente",
   description:
-    "Perito médico independiente para accidentes de tráfico en toda España. Valoración del daño corporal, lesiones y secuelas ajustadas al Baremo de Tráfico. Consulta gratuita.",
+    "Perito médico independiente para accidentes de tráfico en toda España. Valoración del daño corporal, lesiones y secuelas ajustadas al Baremo de Tráfico. Contacto por email o formulario.",
   alternates: { canonical: "https://[PENDIENTE DOMINIO]/peritaje-accidentes-trafico" },
   openGraph: {
     title: "Perito Médico Accidentes de Tráfico | Informe Independiente",
@@ -18,7 +18,7 @@ const data: ServicePageData = {
   slug: "peritaje-accidentes-trafico",
   title: "Perito Médico para Accidentes de Tráfico",
   metaTitle: "Perito Médico Accidentes de Tráfico | Informe Pericial Independiente",
-  metaDesc: "Perito médico independiente para accidentes de tráfico en toda España. Valoración del daño corporal ajustada al Baremo. Consulta gratuita.",
+  metaDesc: "Perito médico independiente para accidentes de tráfico en toda España. Valoración del daño corporal ajustada al Baremo. Contacto por email o formulario.",
   badge: "Accidentes de tráfico",
   icon: Car,
   heroSubtitle:
@@ -27,7 +27,7 @@ const data: ServicePageData = {
     "Valoración ajustada al Baremo de Tráfico vigente",
     "Informe válido para negociación y juicio",
     "Toda España, presencial o videoconsulta",
-    "Consulta inicial gratuita",
+    "Respuesta en menos de 24h",
   ],
   intro:
     "Después de un accidente de tráfico, la aseguradora ya tiene a su médico trabajando. Un perito independiente evalúa tus lesiones y secuelas sin ningún vínculo con las compañías de seguros.",
@@ -46,7 +46,7 @@ const data: ServicePageData = {
     },
     {
       heading: "El proceso: de la consulta al informe",
-      body: "Empieza con una consulta inicial gratuita para valorar tu caso. Si procede, realizamos la exploración clínica y revisamos la documentación médica disponible. Entregamos el informe en el plazo acordado. Si el proceso llega a juicio oral, ratificamos el informe ante el tribunal como perito de parte.",
+      body: "Envía tu caso por email o a través del formulario con la documentación médica disponible. Si procede, realizamos la exploración clínica. Entregamos el informe en el plazo acordado. Si el proceso llega a juicio oral, ratificamos el informe ante el tribunal como perito de parte.",
     },
   ],
   checklist: [

@@ -5,7 +5,7 @@ import { ServicePage, type ServicePageData } from "@/components/templates/Servic
 export const metadata: Metadata = {
   title: "Valoración de Secuelas | Perito Médico Independiente España",
   description:
-    "Valoración médica independiente de secuelas permanentes por accidente o enfermedad en toda España. Cuantificación según baremos oficiales para indemnización justa. Consulta gratuita.",
+    "Valoración médica independiente de secuelas permanentes por accidente o enfermedad en toda España. Cuantificación según baremos oficiales para indemnización justa. Contacto por email o formulario.",
   alternates: { canonical: "https://[PENDIENTE DOMINIO]/valoracion-secuelas" },
   openGraph: {
     title: "Valoración de Secuelas | Perito Médico Independiente",
@@ -18,7 +18,7 @@ const data: ServicePageData = {
   slug: "valoracion-secuelas",
   title: "Valoración de Secuelas Permanentes",
   metaTitle: "Valoración de Secuelas | Perito Médico Independiente España",
-  metaDesc: "Valoración médica independiente de secuelas permanentes en toda España. Cuantificación según baremos para indemnización justa. Consulta gratuita.",
+  metaDesc: "Valoración médica independiente de secuelas permanentes en toda España. Cuantificación según baremos para indemnización justa. Contacto por email o formulario.",
   badge: "Valoración de secuelas",
   icon: Activity,
   heroSubtitle:

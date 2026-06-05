@@ -8,7 +8,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 const faqs = [
   {
     q: "¿Cómo sé si lo que me ocurrió fue una negligencia médica?",
-    a: "Una negligencia médica ocurre cuando el profesional o centro sanitario no actuó conforme a lo que se espera de un médico en esa situación, según criterios técnicos y científicos aceptados (la lex artis). Para determinarlo, analizo la historia clínica, los informes de alta, las pruebas diagnósticas y comparo el tratamiento recibido con lo que debería haberse hecho. La consulta inicial es gratuita y sin compromiso.",
+    a: "Una negligencia médica ocurre cuando el profesional o centro sanitario no actuó conforme a lo que se espera de un médico en esa situación, según criterios técnicos y científicos aceptados (la lex artis). Para determinarlo, analizo la historia clínica, los informes de alta, las pruebas diagnósticas y comparo el tratamiento recibido con lo que debería haberse hecho. Puedes enviarme tu documentación a través del formulario para que pueda hacer una valoración inicial.",
   },
   {
     q: "¿Qué tipo de negligencias médicas puedo reclamar?",
@@ -36,7 +36,7 @@ const faqs = [
   },
   {
     q: "¿Atendéis casos de toda España?",
-    a: "Sí. Atiendo casos en toda España. Según la naturaleza del caso, la valoración puede realizarse de forma presencial o mediante videoconsulta. Consulta tu situación y te oriento sin compromiso.",
+    a: "Sí. Atiendo casos en toda España. Según la naturaleza del caso, la valoración puede realizarse de forma presencial o mediante videoconsulta. Escríbeme por email o a través del formulario con tu situación y te respondo en menos de 24 horas.",
   },
 ];
 

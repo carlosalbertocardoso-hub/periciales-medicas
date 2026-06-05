@@ -5,7 +5,7 @@ import { ServicePage, type ServicePageData } from "@/components/templates/Servic
 export const metadata: Metadata = {
   title: "Informes Periciales Médicos | Perito Médico Independiente España",
   description:
-    "Elaboración de informes periciales médicos con validez legal en toda España. Rigor científico, claridad expositiva y ratificación judicial. Consulta gratuita.",
+    "Elaboración de informes periciales médicos con validez legal en toda España. Rigor científico, claridad expositiva y ratificación judicial. Contacto por email o formulario.",
   alternates: { canonical: "https://[PENDIENTE DOMINIO]/informes-periciales" },
   openGraph: {
     title: "Informes Periciales Médicos | Perito Médico Independiente",
@@ -18,7 +18,7 @@ const data: ServicePageData = {
   slug: "informes-periciales",
   title: "Informes Periciales Médicos",
   metaTitle: "Informes Periciales Médicos | Perito Médico Independiente España",
-  metaDesc: "Elaboración de informes periciales médicos con validez legal en toda España. Rigor científico y ratificación judicial. Consulta gratuita.",
+  metaDesc: "Elaboración de informes periciales médicos con validez legal en toda España. Rigor científico y ratificación judicial. Contacto por email o formulario.",
   badge: "Informes periciales",
   icon: FileText,
   heroSubtitle:

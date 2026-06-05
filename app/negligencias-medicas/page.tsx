@@ -5,7 +5,7 @@ import { ServicePage, type ServicePageData } from "@/components/templates/Servic
 export const metadata: Metadata = {
   title: "Perito Médico Negligencias Médicas | Informe Pericial Independiente",
   description:
-    "Perito médico independiente para negligencias médicas en España. Análisis de la lex artis, errores de diagnóstico, tratamiento y seguimiento. Consulta gratuita.",
+    "Perito médico independiente para negligencias médicas en España. Análisis de la lex artis, errores de diagnóstico, tratamiento y seguimiento. Contacto por email o formulario.",
   alternates: { canonical: "https://[PENDIENTE DOMINIO]/negligencias-medicas" },
   openGraph: {
     title: "Perito Médico Negligencias Médicas | Informe Independiente",
@@ -18,7 +18,7 @@ const data: ServicePageData = {
   slug: "negligencias-medicas",
   title: "Perito Médico para Negligencias Médicas",
   metaTitle: "Perito Médico Negligencias Médicas | Informe Pericial Independiente",
-  metaDesc: "Perito médico independiente para negligencias médicas en España. Análisis de la lex artis y el daño derivado. Consulta gratuita.",
+  metaDesc: "Perito médico independiente para negligencias médicas en España. Análisis de la lex artis y el daño derivado. Contacto por email o formulario.",
   badge: "Negligencias médicas",
   icon: Stethoscope,
   heroSubtitle:
@@ -67,7 +67,7 @@ const data: ServicePageData = {
   faqs: [
     {
       q: "¿Cómo sé si lo que me ocurrió fue una negligencia médica?",
-      a: "No siempre es evidente. Un resultado adverso no implica necesariamente mala praxis. La forma de saberlo es mediante una valoración pericial que analice si la actuación médica fue la correcta. En la consulta inicial, sin compromiso, analizamos los hechos y te orientamos.",
+      a: "No siempre es evidente. Un resultado adverso no implica necesariamente mala praxis. La forma de saberlo es mediante una valoración pericial que analice si la actuación médica fue la correcta. Puedes enviarme la documentación disponible a través del formulario y te respondo en menos de 24 horas.",
     },
     {
       q: "¿Puedo reclamar aunque haya pasado mucho tiempo desde la intervención?",

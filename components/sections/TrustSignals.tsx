@@ -1,6 +1,6 @@
 "use client";
 
-import { ShieldCheck, MapPin, Clock, Users, FileCheck, Phone } from "lucide-react";
+import { ShieldCheck, MapPin, Clock, Users, FileCheck, MessageSquare } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const signals = [
@@ -30,9 +30,9 @@ const signals = [
     description: "Sin intermediarios. Contacto directo con el perito desde el primer momento.",
   },
   {
-    icon: Phone,
-    title: "Consulta inicial gratuita",
-    description: "Primera orientación sin coste para valorar si tiene sentido un informe pericial.",
+    icon: MessageSquare,
+    title: "Proceso claro y guiado",
+    description: "Te explicamos paso a paso qué documentación necesitas y cómo abrir tu caso.",
   },
 ];
 

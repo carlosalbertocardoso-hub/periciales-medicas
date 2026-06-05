@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
 
 const serviciosLinks = [
   { href: "/peritaje-accidentes-trafico", label: "Accidentes de tráfico" },
@@ -85,15 +85,6 @@ export function Footer() {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="tel:[PENDIENTE]"
-                  className="flex items-center gap-2 text-sm text-white/50 hover:text-white transition-colors"
-                >
-                  <Phone size={13} className="text-[#1A9E6B] shrink-0" />
-                  [PENDIENTE teléfono]
-                </a>
-              </li>
-              <li>
-                <a
                   href="mailto:[PENDIENTE]"
                   className="flex items-center gap-2 text-sm text-white/50 hover:text-white transition-colors"
                 >
@@ -111,7 +102,7 @@ export function Footer() {
               href="#contacto"
               className="mt-6 inline-flex items-center gap-2 bg-[#1A9E6B] hover:bg-[#158A5C] text-white text-sm font-bold px-5 py-2.5 rounded-lg transition-colors"
             >
-              Consulta gratuita
+              Enviar mi caso
             </a>
           </div>
         </div>

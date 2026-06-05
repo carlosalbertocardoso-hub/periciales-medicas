@@ -6,9 +6,9 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 const pasos = [
   {
     num: "01",
-    title: "Contacto inicial",
+    title: "Envía tu caso",
     description:
-      "Contacta por teléfono, WhatsApp o formulario. Sin compromiso. Cuéntame brevemente tu caso y te oriento de forma gratuita.",
+      "Rellena el formulario de contacto o escríbeme por email. Adjunta la documentación médica disponible para que pueda hacer una valoración inicial.",
   },
   {
     num: "02",
@@ -85,11 +85,11 @@ export function Proceso() {
             href="#contacto"
             className="inline-flex items-center gap-2 bg-[#1A9E6B] hover:bg-[#158A5C] text-white font-bold px-8 py-4 rounded-xl text-base shadow-lg hover:shadow-xl active:scale-[0.98] transition-all duration-200"
           >
-            Empezar ahora
+            Enviar mi caso
             <ArrowRight size={17} />
           </a>
           <p className="mt-4 text-white/45 text-sm">
-            Consulta inicial gratuita · Sin compromiso · Respuesta en menos de 24h
+            Solo por email o formulario · Respuesta en menos de 24h
           </p>
         </div>
       </div>

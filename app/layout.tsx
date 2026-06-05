@@ -21,7 +21,7 @@ const lato = Lato({
 export const metadata: Metadata = {
   title: "Perito Médico en España | Valoración del Daño Corporal – Pablo [PENDIENTE APELLIDO]",
   description:
-    "Informe pericial médico independiente en toda España. Valoración de lesiones, accidentes de tráfico, laborales y negligencias médicas. Consulta inicial gratuita.",
+    "Informe pericial médico independiente en toda España. Valoración de lesiones, accidentes de tráfico, laborales y negligencias médicas.",
   keywords: [
     "perito médico España",
     "peritaje médico independiente",

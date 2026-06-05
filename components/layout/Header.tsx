@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { Phone, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -55,18 +55,10 @@ export function Header() {
 
           <div className="flex items-center gap-3">
             <a
-              href="tel:[PENDIENTE]"
-              className="hidden sm:flex items-center gap-2 text-[#1B3A6B] text-sm font-semibold hover:text-[#2D5AA0] transition-colors"
-              aria-label="Llamar ahora"
-            >
-              <Phone size={15} />
-              <span>[PENDIENTE]</span>
-            </a>
-            <a
               href="#contacto"
               className="hidden sm:inline-flex items-center gap-2 bg-[#1A9E6B] hover:bg-[#158A5C] text-white px-4 py-2.5 rounded-lg text-sm font-bold transition-colors shadow-sm"
             >
-              Consulta gratuita
+              Enviar caso
             </a>
             <button
               className="md:hidden p-2 text-[#1B3A6B] hover:bg-[#EEF2F8] rounded-lg transition-colors cursor-pointer"
@@ -105,14 +97,7 @@ export function Header() {
             onClick={() => setMobileOpen(false)}
             className="mt-3 flex items-center justify-center gap-2 bg-[#1A9E6B] hover:bg-[#158A5C] text-white px-4 py-3 rounded-lg font-bold transition-colors cursor-pointer"
           >
-            Consulta inicial gratuita
-          </a>
-          <a
-            href="tel:[PENDIENTE]"
-            className="flex items-center justify-center gap-2 border border-[#1B3A6B] text-[#1B3A6B] px-4 py-3 rounded-lg font-semibold hover:bg-[#EEF2F8] transition-colors cursor-pointer"
-          >
-            <Phone size={16} />
-            Llamar ahora
+            Enviar mi caso
           </a>
         </nav>
       </div>

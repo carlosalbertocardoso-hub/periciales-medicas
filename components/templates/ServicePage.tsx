@@ -2,7 +2,7 @@ import { ArrowRight, CheckCircle2, ChevronRight } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
+import { ChatbotGuiado } from "@/components/ui/ChatbotGuiado";
 import { Formulario } from "@/components/sections/Formulario";
 import { ServiceJsonLd } from "@/components/seo/ServiceJsonLd";
 import { ServiceFAQ } from "@/components/templates/ServiceFAQ";
@@ -85,14 +85,8 @@ export function ServicePage({ data }: { data: ServicePageData }) {
                 href="#contacto"
                 className="inline-flex items-center justify-center gap-2 bg-[#1A9E6B] hover:bg-[#158A5C] text-white font-bold px-8 py-4 rounded-xl text-base shadow-lg hover:shadow-xl active:scale-[0.98] transition-all duration-200"
               >
-                Solicitar consulta gratuita
+                Enviar mi caso
                 <ArrowRight size={17} />
-              </a>
-              <a
-                href="tel:[PENDIENTE]"
-                className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-4 rounded-xl text-base border border-white/25 transition-all duration-200"
-              >
-                Llamar ahora
               </a>
             </div>
           </div>
@@ -142,15 +136,15 @@ export function ServicePage({ data }: { data: ServicePageData }) {
 
                 {/* CTA lateral */}
                 <div className="bg-[#1B3A6B] rounded-2xl p-6 text-white">
-                  <p className="font-bold text-lg mb-2">Consulta inicial gratuita</p>
+                  <p className="font-bold text-lg mb-2">¿Tienes documentación?</p>
                   <p className="text-white/65 text-sm mb-5 leading-relaxed">
-                    Sin compromiso. Te orientamos sobre si tiene sentido un informe pericial en tu caso.
+                    Envía tu caso por email o a través del formulario. Adjunta la documentación disponible para una valoración inicial.
                   </p>
                   <a
                     href="#contacto"
                     className="flex items-center justify-center gap-2 bg-[#1A9E6B] hover:bg-[#158A5C] text-white font-bold py-3 rounded-xl text-sm transition-colors"
                   >
-                    Solicitar ahora
+                    Enviar mi caso
                     <ArrowRight size={14} />
                   </a>
                   <p className="text-center text-white/40 text-xs mt-3">Respuesta en menos de 24h</p>
@@ -188,7 +182,7 @@ export function ServicePage({ data }: { data: ServicePageData }) {
       </main>
 
       <Footer />
-      <WhatsAppButton />
+      <ChatbotGuiado />
     </>
   );
 }

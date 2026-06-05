@@ -5,7 +5,7 @@ import { ServicePage, type ServicePageData } from "@/components/templates/Servic
 export const metadata: Metadata = {
   title: "Valoración del Daño Corporal | Perito Médico Independiente España",
   description:
-    "Valoración médico-legal del daño corporal en toda España. Evaluación objetiva de lesiones, incapacidades y secuelas para procedimientos judiciales y extrajudiciales. Consulta gratuita.",
+    "Valoración médico-legal del daño corporal en toda España. Evaluación objetiva de lesiones, incapacidades y secuelas para procedimientos judiciales y extrajudiciales. Contacto por email o formulario.",
   alternates: { canonical: "https://[PENDIENTE DOMINIO]/valoracion-dano-corporal" },
   openGraph: {
     title: "Valoración del Daño Corporal | Perito Médico Independiente",
@@ -18,7 +18,7 @@ const data: ServicePageData = {
   slug: "valoracion-dano-corporal",
   title: "Valoración del Daño Corporal",
   metaTitle: "Valoración del Daño Corporal | Perito Médico Independiente España",
-  metaDesc: "Valoración médico-legal del daño corporal en toda España. Evaluación objetiva de lesiones e incapacidades. Consulta gratuita.",
+  metaDesc: "Valoración médico-legal del daño corporal en toda España. Evaluación objetiva de lesiones e incapacidades. Contacto por email o formulario.",
   badge: "Daño corporal",
   icon: Scale,
   heroSubtitle:
