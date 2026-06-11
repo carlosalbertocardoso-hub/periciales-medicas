@@ -1,16 +1,16 @@
 export function JsonLd() {
-  const baseUrl = "https://[PENDIENTE DOMINIO]";
+  const baseUrl = "https://pericialmedica.com";
 
   const personSchema = {
     "@context": "https://schema.org",
     "@type": "Person",
-    name: "Pablo [PENDIENTE APELLIDO]",
+    name: "Pablo Rodriguez de Tembleque Relaño",
     jobTitle: "Perito Médico",
     description:
-      "Médico colegiado especializado en valoración del daño corporal y peritaje médico-legal en toda España.",
+      "Médico especialista en mala praxis médica asistencial. Informes periciales independientes con validez judicial en toda España.",
     url: baseUrl,
     telephone: "[PENDIENTE]",
-    email: "[PENDIENTE]",
+    email: "pablo.rdt@pericialmedica.com",
     areaServed: {
       "@type": "Country",
       name: "España",
@@ -18,22 +18,23 @@ export function JsonLd() {
     hasCredential: {
       "@type": "EducationalOccupationalCredential",
       credentialCategory: "degree",
-      description: "Médico colegiado nº [PENDIENTE]",
+      description: "Médico colegiado nº [PENDIENTE] – Colegio de Médicos de Córdoba",
     },
   };
 
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
-    name: "Pablo [PENDIENTE] – Perito Médico",
+    name: "Pablo Rodriguez de Tembleque – Perito Médico",
     description:
-      "Informes periciales médicos independientes para la valoración del daño corporal, accidentes de tráfico, accidentes laborales y negligencias médicas en toda España.",
+      "Especialista en mala praxis médica asistencial. Informes periciales independientes con validez judicial en toda España.",
     url: baseUrl,
     telephone: "[PENDIENTE]",
-    email: "[PENDIENTE]",
+    email: "pablo.rdt@pericialmedica.com",
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Sevilla",
+      streetAddress: "C/San Juan de la Cruz, 21",
+      addressLocality: "Córdoba",
       addressRegion: "Andalucía",
       addressCountry: "ES",
     },
@@ -45,8 +46,8 @@ export function JsonLd() {
     openingHoursSpecification: {
       "@type": "OpeningHoursSpecification",
       dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "[PENDIENTE]",
-      closes: "[PENDIENTE]",
+      opens: "09:00",
+      closes: "20:00",
     },
   };
 

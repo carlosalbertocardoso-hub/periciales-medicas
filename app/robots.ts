@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = "https://[PENDIENTE DOMINIO]";
+  const baseUrl = "https://pericialmedica.com";
 
   return {
     rules: [

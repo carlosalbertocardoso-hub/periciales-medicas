@@ -1,12 +1,10 @@
 import { Mail, MapPin } from "lucide-react";
 
 const serviciosLinks = [
-  { href: "/peritaje-accidentes-trafico", label: "Accidentes de tráfico" },
-  { href: "/valoracion-dano-corporal", label: "Daño corporal" },
-  { href: "/negligencias-medicas", label: "Negligencias médicas" },
-  { href: "/accidentes-laborales", label: "Accidentes laborales" },
-  { href: "/valoracion-secuelas", label: "Valoración de secuelas" },
-  { href: "/informes-periciales", label: "Informes periciales" },
+  { href: "/#servicios", label: "Mala praxis médica" },
+  { href: "/perfil", label: "Sobre el perito" },
+  { href: "/consulta", label: "Solicitar valoración gratuita" },
+  { href: "/#faq", label: "Preguntas frecuentes" },
 ];
 
 const legalLinks = [
@@ -26,16 +24,16 @@ export function Footer() {
           {/* ── Brand ── */}
           <div className="sm:col-span-2 lg:col-span-1">
             <h3 className="font-bold text-xl mb-1">
-              Pablo <span className="text-[#C8993A]">[PENDIENTE]</span>
+              Pablo <span className="text-[#C8993A]">Rodriguez de Tembleque</span>
             </h3>
             <p className="text-white/50 text-sm mb-4">Perito Médico · Toda España</p>
             <p className="text-white/50 text-sm leading-relaxed mb-5">
-              Informes periciales médicos independientes para la valoración del
-              daño corporal en toda España.
+              Especialista en mala praxis médica asistencial. Informes periciales
+              independientes con validez judicial en toda España.
             </p>
             <p className="text-white/35 text-xs leading-relaxed">
               Nº Colegiado: <span className="text-white/55">[PENDIENTE]</span><br />
-              Colegio de Médicos de [PENDIENTE]
+              Colegio de Médicos de Córdoba
             </p>
           </div>
 
@@ -85,11 +83,11 @@ export function Footer() {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="mailto:[PENDIENTE]"
+                  href="mailto:pablo.rdt@pericialmedica.com"
                   className="flex items-center gap-2 text-sm text-white/50 hover:text-white transition-colors"
                 >
                   <Mail size={13} className="text-[#1A9E6B] shrink-0" />
-                  [PENDIENTE email]
+                  pablo.rdt@pericialmedica.com
                 </a>
               </li>
               <li className="flex items-start gap-2 text-sm text-white/50">
@@ -99,17 +97,17 @@ export function Footer() {
             </ul>
 
             <a
-              href="#contacto"
+              href="/consulta"
               className="mt-6 inline-flex items-center gap-2 bg-[#1A9E6B] hover:bg-[#158A5C] text-white text-sm font-bold px-5 py-2.5 rounded-lg transition-colors"
             >
-              Enviar mi caso
+              Valoración gratuita
             </a>
           </div>
         </div>
 
         {/* ── Bottom bar ── */}
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/30">
-          <p>© {currentYear} Pablo [PENDIENTE] · Perito Médico Colegiado · Toda España</p>
+          <p>© {currentYear} Pablo Rodriguez de Tembleque Relaño · Perito Médico Colegiado · Toda España</p>
           <p>La información de esta web es de carácter general y no sustituye el asesoramiento profesional.</p>
         </div>
       </div>

@@ -15,10 +15,9 @@ export function Header() {
   }, []);
 
   const navLinks = [
-    { href: "#servicios", label: "Servicios" },
-    { href: "#proceso", label: "Cómo funciona" },
-    { href: "#sobre-pablo", label: "Sobre Pablo" },
-    { href: "#faq", label: "FAQ" },
+    { href: "/#servicios", label: "Negligencias médicas" },
+    { href: "/perfil", label: "Sobre el perito" },
+    { href: "/#faq", label: "FAQ" },
   ];
 
   return (
@@ -34,7 +33,7 @@ export function Header() {
         <div className="flex items-center justify-between h-16 sm:h-20">
           <a href="/" className="flex flex-col leading-tight group">
             <span className="font-bold text-[#1B3A6B] text-base sm:text-lg tracking-tight">
-              Pablo <span className="text-[#C8993A]">[PENDIENTE]</span>
+              Pablo <span className="text-[#C8993A]">Rodriguez de Tembleque</span>
             </span>
             <span className="text-xs text-[#6B7280] font-medium">
               Perito Médico · Toda España
@@ -55,10 +54,10 @@ export function Header() {
 
           <div className="flex items-center gap-3">
             <a
-              href="#contacto"
+              href="/consulta"
               className="hidden sm:inline-flex items-center gap-2 bg-[#1A9E6B] hover:bg-[#158A5C] text-white px-4 py-2.5 rounded-lg text-sm font-bold transition-colors shadow-sm"
             >
-              Enviar caso
+              Valoración gratuita
             </a>
             <button
               className="md:hidden p-2 text-[#1B3A6B] hover:bg-[#EEF2F8] rounded-lg transition-colors cursor-pointer"
@@ -93,11 +92,11 @@ export function Header() {
             </a>
           ))}
           <a
-            href="#contacto"
+            href="/consulta"
             onClick={() => setMobileOpen(false)}
             className="mt-3 flex items-center justify-center gap-2 bg-[#1A9E6B] hover:bg-[#158A5C] text-white px-4 py-3 rounded-lg font-bold transition-colors cursor-pointer"
           >
-            Enviar mi caso
+            Valoración gratuita
           </a>
         </nav>
       </div>

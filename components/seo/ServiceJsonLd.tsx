@@ -6,7 +6,7 @@ interface ServiceJsonLdProps {
 }
 
 export function ServiceJsonLd({ name, description, url, faqs }: ServiceJsonLdProps) {
-  const baseUrl = "https://[PENDIENTE DOMINIO]";
+  const baseUrl = "https://pericialmedica.com";
 
   const serviceSchema = {
     "@context": "https://schema.org",
@@ -17,7 +17,7 @@ export function ServiceJsonLd({ name, description, url, faqs }: ServiceJsonLdPro
     url: `${baseUrl}${url}`,
     provider: {
       "@type": "Person",
-      name: "Pablo [PENDIENTE APELLIDO]",
+      name: "Pablo Rodriguez de Tembleque Relaño",
       jobTitle: "Perito Médico",
       url: baseUrl,
     },

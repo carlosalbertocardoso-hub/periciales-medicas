@@ -102,14 +102,17 @@ export function Hero() {
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row items-center gap-4">
               <a
-                href="#contacto"
+                href="/consulta"
                 className="inline-flex items-center justify-center gap-2.5 bg-[#1A9E6B] hover:bg-[#158A5C] text-white font-bold px-8 py-4 rounded-xl text-base shadow-lg hover:shadow-xl active:scale-[0.98] transition-all duration-200"
               >
-                Enviar mi caso
+                Valoración gratuita
                 <ArrowRight size={17} />
               </a>
               <OpenChatbotLink />
             </div>
+            <p className="text-white/45 text-sm mt-2">
+              Respuesta en menos de 24 h laborables · Sin compromiso
+            </p>
 
             {/* Social proof strip */}
             <div className="mt-10 flex items-center gap-4">
@@ -185,10 +188,10 @@ export function Hero() {
 
                 <div className="pt-6 border-t border-white/10">
                   <a
-                    href="#contacto"
+                    href="/consulta"
                     className="inline-flex items-center gap-2 text-[#1A9E6B] hover:text-white text-sm font-semibold transition-colors duration-200 group"
                   >
-                    Envía tu documentación
+                    Solicitar valoración gratuita
                     <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-200" />
                   </a>
                   <p className="text-white/35 text-xs mt-2">Respuesta en menos de 24h</p>

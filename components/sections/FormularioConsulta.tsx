@@ -5,10 +5,10 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Send, Mail, MapPin, AlertCircle, Lock, Paperclip, X, FileText } from "lucide-react";
+import { Send, Mail, Phone, AlertCircle, Lock, Paperclip, X, FileText } from "lucide-react";
 import { Turnstile } from "@marsidev/react-turnstile";
 
-const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB por archivo
+const MAX_FILE_SIZE = 15 * 1024 * 1024; // 15 MB por archivo
 const MAX_FILES = 5;
 const ACCEPTED_TYPES = [
   "application/pdf",
@@ -20,26 +20,22 @@ const ACCEPTED_TYPES = [
 ];
 
 const schema = z.object({
-  nombre: z.string().min(2, "El nombre debe tener al menos 2 caracteres").max(80),
-  apellidos: z.string().min(2, "Los apellidos deben tener al menos 2 caracteres").max(100),
+  telefono: z
+    .string()
+    .min(9, "Introduce un teléfono móvil válido")
+    .max(20)
+    .regex(/^[+\d\s\-()]{9,20}$/, "Formato de teléfono no válido"),
   email: z.string().email("Introduce un email válido"),
-  tipo_caso: z.string().min(1, "Selecciona el tipo de caso"),
-  provincia: z.string().min(2, "Indica tu provincia o comunidad autónoma"),
-  descripcion: z.string().min(20, "Describe brevemente tu caso (mínimo 20 caracteres)").max(1000),
-  rgpd: z.boolean().refine((v) => v === true, "Debes aceptar la política de privacidad"),
+  descripcion: z
+    .string()
+    .min(20, "Describe tu caso (mínimo 20 caracteres)")
+    .max(2000),
+  rgpd: z
+    .boolean()
+    .refine((v) => v === true, "Debes aceptar la política de privacidad"),
 });
 
 type FormData = z.infer<typeof schema>;
-
-const casos = [
-  "Accidente de tráfico",
-  "Accidente laboral",
-  "Negligencia médica",
-  "Valoración de secuelas",
-  "Responsabilidad civil",
-  "Informe pericial para juicio",
-  "Otro",
-];
 
 const baseInput =
   "w-full border rounded-lg px-4 py-3 text-sm text-[#1A1A2E] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 transition bg-white";
@@ -64,7 +60,7 @@ function formatBytes(bytes: number) {
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
-export function Formulario() {
+export function FormularioConsulta() {
   const router = useRouter();
   const [sending, setSending] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
@@ -86,7 +82,7 @@ export function Formulario() {
       if (!ACCEPTED_TYPES.includes(file.type)) {
         error = "Formato no admitido";
       } else if (file.size > MAX_FILE_SIZE) {
-        error = "Supera el límite de 10 MB";
+        error = "Supera el límite de 15 MB";
       }
       return { file, id: `${file.name}-${Date.now()}-${Math.random()}`, error };
     });
@@ -134,7 +130,9 @@ export function Formulario() {
       router.push("/gracias");
     } catch (err) {
       setServerError(
-        err instanceof Error ? err.message : "Ha ocurrido un error. Por favor, inténtalo de nuevo."
+        err instanceof Error
+          ? err.message
+          : "Ha ocurrido un error. Por favor, inténtalo de nuevo."
       );
     } finally {
       setSending(false);
@@ -145,142 +143,147 @@ export function Formulario() {
 
   return (
     <section
-      id="contacto"
-      className="py-16 sm:py-24"
-      style={{ background: "linear-gradient(135deg, #0F2347 0%, #1B3A6B 100%)" }}
-      aria-label="Formulario de contacto"
+      className="py-16 sm:py-24 bg-[#F7F8FA]"
+      aria-label="Formulario de consulta"
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-12 sm:mb-16">
-          <span className="inline-block text-[#1A9E6B] font-semibold text-sm uppercase tracking-wider mb-3">
-            Contacto
-          </span>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
-            Envía tu caso
-          </h2>
-          <p className="text-white/65 text-lg max-w-2xl mx-auto">
-            Rellena el formulario y adjunta la documentación disponible. Te respondo por email en menos de{" "}
-            <strong className="text-white">24 horas</strong>.
-          </p>
-        </div>
-
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
-          {/* ── Info lateral ── */}
+          {/* Info lateral */}
           <div className="lg:col-span-2 flex flex-col gap-5">
-            <h3 className="font-bold text-white text-lg">Contacto directo</h3>
+            <h2 className="font-bold text-[#1A1A2E] text-lg">
+              También puedes contactar directamente
+            </h2>
 
             <a
               href="mailto:pablo.rdt@pericialmedica.com"
-              className="flex items-center gap-4 p-4 bg-white/8 hover:bg-white/14 border border-white/15 rounded-xl transition-colors group cursor-pointer"
+              className="flex items-center gap-4 p-4 bg-white hover:bg-[#F0F9F5] border border-[#E5E7EB] hover:border-[#1A9E6B]/30 rounded-xl transition-colors group"
             >
-              <div className="w-10 h-10 rounded-lg bg-[#1A9E6B]/20 flex items-center justify-center text-[#1A9E6B] shrink-0">
+              <div className="w-10 h-10 rounded-lg bg-[#1A9E6B]/10 flex items-center justify-center text-[#1A9E6B] shrink-0">
                 <Mail size={18} />
               </div>
               <div>
-                <p className="text-white/55 text-xs font-medium">Email directo</p>
-                <p className="font-semibold text-white text-sm">pablo.rdt@pericialmedica.com</p>
+                <p className="text-[#6B7280] text-xs font-medium">Email</p>
+                <p className="font-semibold text-[#1A1A2E] text-sm">pablo.rdt@pericialmedica.com</p>
               </div>
             </a>
 
-            <div className="flex items-center gap-4 p-4 bg-white/8 border border-white/15 rounded-xl">
-              <div className="w-10 h-10 rounded-lg bg-[#1A9E6B]/20 flex items-center justify-center text-[#1A9E6B] shrink-0">
-                <MapPin size={18} />
+            <a
+              href="tel:[PENDIENTE]"
+              className="flex items-center gap-4 p-4 bg-white hover:bg-[#F0F9F5] border border-[#E5E7EB] hover:border-[#1A9E6B]/30 rounded-xl transition-colors group"
+            >
+              <div className="w-10 h-10 rounded-lg bg-[#1A9E6B]/10 flex items-center justify-center text-[#1A9E6B] shrink-0">
+                <Phone size={18} />
               </div>
               <div>
-                <p className="text-white/55 text-xs font-medium">Ámbito</p>
-                <p className="font-semibold text-white text-sm">Toda España</p>
-                <p className="text-white/45 text-xs">Presencial o videoconsulta</p>
+                <p className="text-[#6B7280] text-xs font-medium">Teléfono / WhatsApp</p>
+                <p className="font-semibold text-[#1A1A2E] text-sm">[PENDIENTE teléfono]</p>
               </div>
-            </div>
+            </a>
 
-            {/* Documentación sugerida */}
-            <div className="p-5 bg-white/6 border border-white/12 rounded-xl">
-              <p className="text-white/80 text-sm font-semibold mb-3">Documentación útil para tu caso</p>
+            {/* Cita telemática */}
+            <a
+              href="[PENDIENTE URL CITA]"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-4 p-4 bg-white hover:bg-[#EEF2F8] border border-[#E5E7EB] hover:border-[#1B3A6B]/30 rounded-xl transition-colors group"
+            >
+              <div className="w-10 h-10 rounded-lg bg-[#1B3A6B]/8 flex items-center justify-center text-[#1B3A6B] shrink-0">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M15 10l4.553-2.069A1 1 0 0121 8.82v6.36a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z" />
+                </svg>
+              </div>
+              <div>
+                <p className="text-[#6B7280] text-xs font-medium">Videoconsulta</p>
+                <p className="font-semibold text-[#1A1A2E] text-sm">Pedir cita telemática</p>
+              </div>
+            </a>
+
+            {/* Documentación útil */}
+            <div className="p-5 bg-white border border-[#E5E7EB] rounded-xl">
+              <p className="text-[#1A1A2E] text-sm font-semibold mb-3">
+                Documentación a adjuntar
+              </p>
               <ul className="space-y-2">
                 {[
                   "Historia clínica / informes médicos",
-                  "Partes de accidente o atestados",
-                  "Resoluciones de mutua o aseguradora",
-                  "Sentencias o escritos judiciales",
+                  "Pruebas diagnósticas (análisis, TAC, RMN…)",
+                  "Partes de urgencias o altas hospitalarias",
+                  "Cualquier documento relacionado con el caso",
                 ].map((doc) => (
-                  <li key={doc} className="flex items-start gap-2 text-white/55 text-xs">
+                  <li key={doc} className="flex items-start gap-2 text-[#6B7280] text-xs">
                     <FileText size={12} className="text-[#1A9E6B] shrink-0 mt-0.5" />
                     {doc}
                   </li>
                 ))}
               </ul>
-              <p className="text-white/35 text-xs mt-3">
-                Formatos admitidos: PDF, JPG, PNG, Word · Máx. 10 MB por archivo
+              <p className="text-[#9CA3AF] text-xs mt-3">
+                PDF, JPG, PNG, Word · Máx. 15 MB por archivo · Hasta 30 folios
               </p>
             </div>
 
-            <div className="flex items-start gap-3 p-4 bg-white/6 border border-white/10 rounded-xl">
+            <div className="flex items-start gap-3 p-4 bg-white border border-[#E5E7EB] rounded-xl">
               <Lock size={15} className="text-[#1A9E6B] shrink-0 mt-0.5" />
-              <p className="text-white/55 text-xs leading-relaxed">
-                La información y documentación que compartas se usa exclusivamente para evaluar
-                y gestionar tu caso. No se cede a terceros.
+              <p className="text-[#6B7280] text-xs leading-relaxed">
+                Tu información y documentación se usan exclusivamente para
+                valorar tu caso. No se cede a terceros.
               </p>
             </div>
           </div>
 
-          {/* ── Form ── */}
+          {/* Formulario */}
           <div className="lg:col-span-3">
             <form
               onSubmit={handleSubmit(onSubmit)}
               noValidate
-              className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 space-y-5"
-              aria-label="Formulario de contacto"
+              className="bg-white rounded-2xl shadow-sm border border-[#E5E7EB] p-6 sm:p-8 space-y-5"
+              aria-label="Formulario de valoración gratuita"
             >
-              {/* Nombre + Apellidos */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <div>
-                  <label htmlFor="nombre" className="block text-sm font-semibold text-[#1A1A2E] mb-1.5">
-                    Nombre <span className="text-red-500" aria-hidden="true">*</span>
-                  </label>
-                  <input
-                    id="nombre"
-                    type="text"
-                    autoComplete="given-name"
-                    placeholder="Tu nombre"
-                    {...register("nombre")}
-                    className={fieldClass(!!errors.nombre)}
-                    aria-invalid={!!errors.nombre}
-                    aria-describedby={errors.nombre ? "nombre-error" : undefined}
-                  />
-                  {errors.nombre && (
-                    <p id="nombre-error" role="alert" className="mt-1 text-xs text-red-500">
-                      {errors.nombre.message}
-                    </p>
-                  )}
-                </div>
+              <div>
+                <h3 className="font-bold text-[#1A1A2E] text-lg mb-1"
+                  style={{ fontFamily: "var(--font-heading), Georgia, serif" }}>
+                  Solicitar valoración gratuita
+                </h3>
+                <p className="text-[#6B7280] text-sm">
+                  Rellena el formulario y adjunta la documentación disponible.
+                  Respondo en menos de{" "}
+                  <strong className="text-[#1A1A2E]">24 horas laborables</strong>.
+                </p>
+              </div>
 
-                <div>
-                  <label htmlFor="apellidos" className="block text-sm font-semibold text-[#1A1A2E] mb-1.5">
-                    Apellidos <span className="text-red-500" aria-hidden="true">*</span>
-                  </label>
-                  <input
-                    id="apellidos"
-                    type="text"
-                    autoComplete="family-name"
-                    placeholder="Tus apellidos"
-                    {...register("apellidos")}
-                    className={fieldClass(!!errors.apellidos)}
-                    aria-invalid={!!errors.apellidos}
-                    aria-describedby={errors.apellidos ? "apellidos-error" : undefined}
-                  />
-                  {errors.apellidos && (
-                    <p id="apellidos-error" role="alert" className="mt-1 text-xs text-red-500">
-                      {errors.apellidos.message}
-                    </p>
-                  )}
-                </div>
+              {/* Teléfono */}
+              <div>
+                <label
+                  htmlFor="telefono"
+                  className="block text-sm font-semibold text-[#1A1A2E] mb-1.5"
+                >
+                  Teléfono móvil{" "}
+                  <span className="text-red-500" aria-hidden="true">*</span>
+                </label>
+                <input
+                  id="telefono"
+                  type="tel"
+                  autoComplete="tel"
+                  placeholder="600 000 000"
+                  {...register("telefono")}
+                  className={fieldClass(!!errors.telefono)}
+                  aria-invalid={!!errors.telefono}
+                  aria-describedby={errors.telefono ? "tel-error" : undefined}
+                />
+                {errors.telefono && (
+                  <p id="tel-error" role="alert" className="mt-1 text-xs text-red-500">
+                    {errors.telefono.message}
+                  </p>
+                )}
               </div>
 
               {/* Email */}
               <div>
-                <label htmlFor="email" className="block text-sm font-semibold text-[#1A1A2E] mb-1.5">
-                  Email <span className="text-red-500" aria-hidden="true">*</span>
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-semibold text-[#1A1A2E] mb-1.5"
+                >
+                  Email{" "}
+                  <span className="text-red-500" aria-hidden="true">*</span>
                 </label>
                 <input
                   id="email"
@@ -299,61 +302,19 @@ export function Formulario() {
                 )}
               </div>
 
-              {/* Tipo de caso + Provincia */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <div>
-                  <label htmlFor="tipo_caso" className="block text-sm font-semibold text-[#1A1A2E] mb-1.5">
-                    Tipo de caso <span className="text-red-500" aria-hidden="true">*</span>
-                  </label>
-                  <select
-                    id="tipo_caso"
-                    {...register("tipo_caso")}
-                    className={`${fieldClass(!!errors.tipo_caso)} appearance-none`}
-                    aria-invalid={!!errors.tipo_caso}
-                    aria-describedby={errors.tipo_caso ? "tipo-error" : undefined}
-                  >
-                    <option value="">Selecciona...</option>
-                    {casos.map((c) => (
-                      <option key={c} value={c}>{c}</option>
-                    ))}
-                  </select>
-                  {errors.tipo_caso && (
-                    <p id="tipo-error" role="alert" className="mt-1 text-xs text-red-500">
-                      {errors.tipo_caso.message}
-                    </p>
-                  )}
-                </div>
-
-                <div>
-                  <label htmlFor="provincia" className="block text-sm font-semibold text-[#1A1A2E] mb-1.5">
-                    Provincia / CCAA <span className="text-red-500" aria-hidden="true">*</span>
-                  </label>
-                  <input
-                    id="provincia"
-                    type="text"
-                    placeholder="Ej. Sevilla, Madrid…"
-                    {...register("provincia")}
-                    className={fieldClass(!!errors.provincia)}
-                    aria-invalid={!!errors.provincia}
-                    aria-describedby={errors.provincia ? "provincia-error" : undefined}
-                  />
-                  {errors.provincia && (
-                    <p id="provincia-error" role="alert" className="mt-1 text-xs text-red-500">
-                      {errors.provincia.message}
-                    </p>
-                  )}
-                </div>
-              </div>
-
-              {/* Descripción del caso */}
+              {/* Descripción */}
               <div>
-                <label htmlFor="descripcion" className="block text-sm font-semibold text-[#1A1A2E] mb-1.5">
-                  Describe brevemente tu caso <span className="text-red-500" aria-hidden="true">*</span>
+                <label
+                  htmlFor="descripcion"
+                  className="block text-sm font-semibold text-[#1A1A2E] mb-1.5"
+                >
+                  Describe tu caso y expectativa{" "}
+                  <span className="text-red-500" aria-hidden="true">*</span>
                 </label>
                 <textarea
                   id="descripcion"
-                  rows={4}
-                  placeholder="¿Qué ocurrió? ¿Cuándo? ¿Qué documentación tienes disponible? Cualquier detalle relevante ayuda a valorar mejor tu situación."
+                  rows={5}
+                  placeholder="¿Qué ocurrió? ¿Cuándo? ¿Qué resultado esperas? Cuanta más información aportes, mejor podrás ser valorado."
                   {...register("descripcion")}
                   className={`${fieldClass(!!errors.descripcion)} resize-none`}
                   aria-invalid={!!errors.descripcion}
@@ -369,8 +330,10 @@ export function Formulario() {
               {/* Adjuntar documentación */}
               <div>
                 <p className="block text-sm font-semibold text-[#1A1A2E] mb-1.5">
-                  Adjuntar documentación{" "}
-                  <span className="text-[#9CA3AF] font-normal">(opcional, máx. {MAX_FILES} archivos)</span>
+                  Adjuntar documentación médica{" "}
+                  <span className="text-[#9CA3AF] font-normal">
+                    (opcional, hasta {MAX_FILES} archivos · máx. 30 folios)
+                  </span>
                 </p>
 
                 <button
@@ -391,7 +354,7 @@ export function Formulario() {
                   accept=".pdf,.jpg,.jpeg,.png,.webp,.doc,.docx"
                   onChange={handleFileChange}
                   className="hidden"
-                  aria-label="Adjuntar documentación"
+                  aria-label="Adjuntar documentación médica"
                 />
 
                 {attachedFiles.length > 0 && (
@@ -407,8 +370,12 @@ export function Formulario() {
                       >
                         <FileText size={13} className="shrink-0" />
                         <span className="flex-1 truncate font-medium">{af.file.name}</span>
-                        <span className="shrink-0 text-[#9CA3AF]">{formatBytes(af.file.size)}</span>
-                        {af.error && <span className="shrink-0 text-red-600">{af.error}</span>}
+                        <span className="shrink-0 text-[#9CA3AF]">
+                          {formatBytes(af.file.size)}
+                        </span>
+                        {af.error && (
+                          <span className="shrink-0 text-red-600">{af.error}</span>
+                        )}
                         <button
                           type="button"
                           onClick={() => removeFile(af.id)}
@@ -449,18 +416,22 @@ export function Formulario() {
                     >
                       Política de Privacidad
                     </a>
-                    . Consiento el tratamiento de mis datos y documentación para gestionar mi caso.{" "}
+                    . Consiento el tratamiento de mis datos para gestionar mi
+                    caso.{" "}
                     <span className="text-red-500" aria-hidden="true">*</span>
                   </span>
                 </label>
                 {errors.rgpd && (
-                  <p id="rgpd-error" role="alert" className="mt-1 text-xs text-red-500 pl-7">
+                  <p
+                    id="rgpd-error"
+                    role="alert"
+                    className="mt-1 text-xs text-red-500 pl-7"
+                  >
                     {errors.rgpd.message}
                   </p>
                 )}
               </div>
 
-              {/* Server error */}
               {serverError && (
                 <div
                   role="alert"
@@ -471,7 +442,6 @@ export function Formulario() {
                 </div>
               )}
 
-              {/* Turnstile */}
               {TURNSTILE_SITE_KEY && (
                 <Turnstile
                   siteKey={TURNSTILE_SITE_KEY}
@@ -488,20 +458,23 @@ export function Formulario() {
               >
                 {sending ? (
                   <>
-                    <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" aria-hidden="true" />
+                    <span
+                      className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"
+                      aria-hidden="true"
+                    />
                     <span>Enviando…</span>
                   </>
                 ) : (
                   <>
                     <Send size={17} aria-hidden="true" />
-                    <span>Enviar caso</span>
+                    <span>Solicitar valoración gratuita</span>
                   </>
                 )}
               </button>
 
               <p className="text-center text-xs text-[#9CA3AF] flex items-center justify-center gap-1.5">
                 <Lock size={11} />
-                Solo email o formulario · Respuesta en menos de 24h
+                Valoración gratuita · Respuesta en menos de 24 horas laborables
               </p>
             </form>
           </div>

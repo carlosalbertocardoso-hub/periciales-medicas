@@ -25,12 +25,12 @@ export default function AvisoLegal() {
               facilitan los datos del titular de este sitio web:
             </p>
             <ul className="mt-3 space-y-1 text-sm">
-              <li><strong>Nombre:</strong> Pablo [PENDIENTE APELLIDO]</li>
-              <li><strong>NIF:</strong> [PENDIENTE]</li>
-              <li><strong>Dirección:</strong> [PENDIENTE]</li>
-              <li><strong>Email:</strong> [PENDIENTE]</li>
+              <li><strong>Nombre:</strong> Pablo Rodriguez de Tembleque Relaño</li>
+              <li><strong>NIF:</strong> 44355640-W</li>
+              <li><strong>Dirección:</strong> C/San Juan de la Cruz, 21, Córdoba</li>
+              <li><strong>Email:</strong> pablo.rdt@pericialmedica.com</li>
               <li><strong>Teléfono:</strong> [PENDIENTE]</li>
-              <li><strong>Colegio de Médicos:</strong> [PENDIENTE] · Nº colegiado: [PENDIENTE]</li>
+              <li><strong>Colegio de Médicos:</strong> Córdoba · Nº colegiado: [PENDIENTE]</li>
             </ul>
           </section>
 
@@ -40,7 +40,7 @@ export default function AvisoLegal() {
             </h2>
             <p className="leading-relaxed text-sm">
               El presente Aviso Legal regula el acceso y uso del sitio web{" "}
-              <strong>[PENDIENTE DOMINIO]</strong> (en adelante, «el Sitio»). El
+              <strong>pericialmedica.com</strong> (en adelante, «el Sitio»). El
               acceso al Sitio implica la aceptación plena de las presentes
               condiciones. Si no está de acuerdo con ellas, deberá abstenerse de
               utilizarlo.
@@ -80,7 +80,7 @@ export default function AvisoLegal() {
             <p className="leading-relaxed text-sm">
               Este Aviso Legal se rige por la legislación española. Para la
               resolución de cualquier controversia, las partes se someten a los
-              juzgados y tribunales de [PENDIENTE localidad], con renuncia expresa
+              juzgados y tribunales de Córdoba, con renuncia expresa
               a cualquier otro fuero que pudiera corresponderles.
             </p>
           </section>

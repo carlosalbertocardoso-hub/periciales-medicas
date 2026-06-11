@@ -2,12 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
 const schema = z.object({
-  nombre: z.string().min(2).max(80),
-  apellidos: z.string().min(2).max(100),
+  telefono: z.string().min(9).max(20),
   email: z.string().email(),
-  tipo_caso: z.string().min(1),
-  provincia: z.string().min(2),
-  descripcion: z.string().min(20).max(1000),
+  descripcion: z.string().min(20).max(2000),
   rgpd: z.union([z.literal("true"), z.literal(true)]),
   turnstileToken: z.string().optional(),
 });
@@ -57,13 +54,11 @@ export async function POST(req: NextRequest) {
     // await resend.emails.send({
     //   from: "noreply@[DOMINIO]",
     //   to: process.env.CONTACT_EMAIL!,
-    //   subject: `Nuevo caso: ${data.tipo_caso} – ${data.nombre} ${data.apellidos}`,
+    //   subject: `Nueva valoración gratuita solicitada`,
     //   html: `
-    //     <h2>Nuevo caso recibido</h2>
-    //     <p><strong>Nombre:</strong> ${data.nombre} ${data.apellidos}</p>
+    //     <h2>Nueva valoración gratuita</h2>
+    //     <p><strong>Teléfono:</strong> ${data.telefono}</p>
     //     <p><strong>Email:</strong> ${data.email}</p>
-    //     <p><strong>Tipo de caso:</strong> ${data.tipo_caso}</p>
-    //     <p><strong>Provincia:</strong> ${data.provincia}</p>
     //     <p><strong>Descripción:</strong> ${data.descripcion}</p>
     //     <p><strong>Documentos adjuntos:</strong> ${docs.length}</p>
     //   `,
@@ -93,10 +88,8 @@ export async function POST(req: NextRequest) {
     // ───────────────────────────────────────────────────────────────────────────
 
     console.info("[Contacto] Nuevo caso:", {
-      nombre: `${data.nombre} ${data.apellidos}`,
+      telefono: data.telefono,
       email: data.email,
-      tipo_caso: data.tipo_caso,
-      provincia: data.provincia,
       documentos: docs.length,
     });
 

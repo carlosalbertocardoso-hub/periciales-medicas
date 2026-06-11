@@ -1,50 +1,38 @@
 "use client";
 
-import { Car, HardHat, Stethoscope, FileText, Scale, Activity, ArrowRight } from "lucide-react";
+import { Stethoscope, Search, FileText, Scale, AlertTriangle, ArrowRight } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
-const servicios = [
+const tiposMalaPraxis = [
+  {
+    icon: AlertTriangle,
+    title: "Error de diagnóstico",
+    description:
+      "Diagnóstico tardío, erróneo u omitido. Analizo si el médico siguió el protocolo correcto y si el error causó un daño real al paciente.",
+  },
   {
     icon: Stethoscope,
-    title: "Negligencias médicas",
+    title: "Mala praxis quirúrgica",
     description:
-      "Analizo si el médico o centro sanitario actuó conforme a la lex artis. Diagnostico mal, cirugía incorrecta, retraso diagnóstico, falta de consentimiento informado. Informe con validez judicial.",
-    href: "/negligencias-medicas",
+      "Cirugía incorrecta, complicaciones evitables, errores de técnica o indicación quirúrgica incorrecta. Evaluación independiente del caso.",
   },
   {
-    icon: Car,
-    title: "Accidentes de tráfico",
+    icon: Search,
+    title: "Retraso diagnóstico",
     description:
-      "Valoración de lesiones y secuelas derivadas de colisiones. Informe independiente ajustado al Baremo de Tráfico vigente.",
-    href: "/peritaje-accidentes-trafico",
-  },
-  {
-    icon: HardHat,
-    title: "Accidentes laborales",
-    description:
-      "Peritaje de lesiones ocurridas en el entorno de trabajo o in itinere, con análisis de la incapacidad y sus consecuencias.",
-    href: "/accidentes-laborales",
-  },
-  {
-    icon: Activity,
-    title: "Valoración de secuelas",
-    description:
-      "Cuantificación objetiva de secuelas permanentes mediante criterios médico-legales para su reconocimiento y compensación.",
-    href: "/valoracion-secuelas",
+      "Demoras injustificadas en el diagnóstico que agravan la evolución. Determino si el retraso fue evitable y qué consecuencias tuvo.",
   },
   {
     icon: FileText,
-    title: "Informes periciales",
+    title: "Falta de consentimiento informado",
     description:
-      "Informes médico-legales con rigor técnico y claridad expositiva, redactados para ser defendibles en juicio.",
-    href: "/informes-periciales",
+      "El paciente tiene derecho a ser informado de riesgos y alternativas. La ausencia de consentimiento válido es causa de responsabilidad médica.",
   },
   {
     icon: Scale,
-    title: "Ratificación judicial",
+    title: "Responsabilidad sanitaria",
     description:
-      "Comparecencia ante jueces y tribunales para defender el contenido del informe emitido.",
-    href: "#contacto",
+      "Analizo la responsabilidad del médico, del centro sanitario o de ambos, tanto en sanidad pública como privada.",
   },
 ];
 
@@ -55,42 +43,39 @@ export function Servicios() {
     <section
       id="servicios"
       className="py-16 sm:py-24 bg-white"
-      aria-label="Servicios"
+      aria-label="Tipos de mala praxis médica"
     >
       <div ref={ref} className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="fade-up mb-12 sm:mb-16 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
           <div>
             <div className="section-rule text-[#C8993A] text-xs font-semibold tracking-[0.18em] uppercase mb-4">
-              Áreas de actuación
+              Mala praxis médica
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1A1A2E] leading-tight" style={{ fontFamily: "var(--font-heading), Georgia, serif", letterSpacing: "-0.02em" }}>
-              ¿En qué puedo
-              <br className="hidden sm:block" /> ayudarte?
+              ¿Qué tipo de
+              <br className="hidden sm:block" /> negligencia valoro?
             </h2>
           </div>
           <p className="text-[#6B7280] text-base leading-relaxed max-w-xs sm:text-right">
-            Especializado en negligencias médicas. También atiendo accidentes de
-            tráfico, laborales y valoración de daño corporal.
+            Especializado exclusivamente en mala praxis médica asistencial.
+            Valoración inicial gratuita en menos de 24 horas.
           </p>
         </div>
 
-        {/* Grid asimétrico: 2 col grande + 4 col pequeñas */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {servicios.map((s, i) => {
+          {tiposMalaPraxis.map((s, i) => {
             const Icon = s.icon;
             const stagger = i < 6 ? `stagger-${i + 1}` : "";
             const isFeatured = i === 0;
             return (
-              <a
+              <div
                 key={s.title}
-                href={s.href}
-                className={`fade-up ${stagger} group relative flex flex-col cursor-pointer transition-all duration-300 ${
+                className={`fade-up ${stagger} group relative flex flex-col transition-all duration-300 ${
                   isFeatured
-                    ? "sm:col-span-2 lg:col-span-1 bg-[#0F2347] hover:bg-[#0A1A35] border border-[#1B3A6B] hover:border-[#C8993A]/40 rounded-2xl p-7 shadow-lg hover:shadow-xl"
+                    ? "sm:col-span-2 lg:col-span-1 bg-[#0F2347] border border-[#1B3A6B] hover:border-[#C8993A]/40 rounded-2xl p-7 shadow-lg hover:shadow-xl"
                     : "bg-white hover:bg-[#F7F8FA] border border-[#E5E7EB] hover:border-[#1B3A6B]/30 rounded-2xl p-6 shadow-sm hover:shadow-md"
                 }`}
               >
-                {/* Número ordinal decorativo */}
                 <span
                   className={`absolute top-5 right-6 font-bold tabular-nums select-none pointer-events-none transition-opacity duration-300 ${
                     isFeatured ? "text-white/10 text-5xl group-hover:text-white/15" : "text-[#1A1A2E]/5 text-5xl group-hover:text-[#1A1A2E]/8"
@@ -119,26 +104,20 @@ export function Servicios() {
                 }`}>
                   {s.description}
                 </p>
-                <div className={`mt-5 flex items-center gap-1.5 text-xs font-semibold tracking-wide uppercase transition-all duration-300 ${
-                  isFeatured
-                    ? "text-[#1A9E6B] group-hover:gap-2.5"
-                    : "text-[#1B3A6B]/50 group-hover:text-[#1A9E6B] group-hover:gap-2.5"
-                }`}>
-                  Ver más <ArrowRight size={12} />
-                </div>
-              </a>
+              </div>
             );
           })}
         </div>
 
         <div className="mt-12 text-center fade-up">
           <a
-            href="#contacto"
+            href="/consulta"
             className="inline-flex items-center gap-2.5 bg-[#1A9E6B] hover:bg-[#158A5C] text-white font-bold px-8 py-4 rounded-xl text-base shadow-md hover:shadow-lg active:scale-[0.98] transition-all duration-200"
           >
-            Consultar mi caso
+            Solicitar valoración gratuita
             <ArrowRight size={16} />
           </a>
+          <p className="mt-3 text-sm text-[#6B7280]">Respuesta en menos de 24 horas laborables</p>
         </div>
       </div>
     </section>

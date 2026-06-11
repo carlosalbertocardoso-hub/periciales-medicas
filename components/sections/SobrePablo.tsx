@@ -7,7 +7,7 @@ const credentials = [
   {
     icon: UserCheck,
     label: "Médico colegiado",
-    value: "Nº [PENDIENTE] – Colegio de Médicos de [PENDIENTE]",
+    value: "Nº [PENDIENTE] – Colegio de Médicos de Córdoba",
   },
   {
     icon: GraduationCap,
@@ -17,7 +17,7 @@ const credentials = [
   {
     icon: Briefcase,
     label: "Experiencia",
-    value: "[X] años en valoración del daño corporal",
+    value: "[X] años en peritaje médico-legal",
   },
   {
     icon: Award,
@@ -64,7 +64,7 @@ export function SobrePablo() {
                     <UserCheck size={44} className="text-white/80" />
                   </div>
                   <p className="text-sm font-medium text-white/60 leading-snug">
-                    [PENDIENTE]<br />Foto profesional<br />de Pablo
+                    Pablo Rodriguez<br />de Tembleque Relaño<br />[Foto profesional]
                   </p>
                 </div>
               </div>
@@ -82,18 +82,18 @@ export function SobrePablo() {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1A1A2E] mb-6 leading-tight" style={{ fontFamily: "var(--font-heading), Georgia, serif", letterSpacing: "-0.02em" }}>
               Soy Pablo
               <br />
-              <span className="text-[#1A1A2E]/40 font-light">[PENDIENTE Apellido]</span>
+              <span className="text-[#1A1A2E]/40 font-light">Rodriguez de Tembleque</span>
             </h2>
             <p className="text-[#374151] text-lg leading-relaxed mb-4">
-              Médico colegiado especializado en mala praxis médica y peritaje
+              Médico especialista en mala praxis médica asistencial y peritaje
               médico-legal. Analizo si la atención que recibiste se ajustó a lo que
               exige la lex artis y emito informes independientes con validez judicial.
             </p>
             <p className="text-[#6B7280] leading-relaxed mb-8">
-              [PENDIENTE: Añadir formación específica, trayectoria y motivación
-              personal]. No tengo ningún vínculo con hospitales, clínicas ni
-              aseguradoras. Trabajo únicamente para el paciente. Atiendo casos en
-              toda España de forma presencial o por videoconsulta.
+              Actividad desarrollada en el ámbito civil, social, contencioso
+              administrativo y penal. No tengo ningún vínculo con hospitales,
+              clínicas ni aseguradoras. Trabajo únicamente para el paciente.
+              Atiendo casos en toda España de forma presencial o por videoconsulta.
             </p>
 
             <ul className="space-y-3 mb-8">

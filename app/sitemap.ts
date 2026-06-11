@@ -1,15 +1,12 @@
 import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://[PENDIENTE DOMINIO]";
+  const baseUrl = "https://pericialmedica.com";
 
-  const servicios = [
-    "/peritaje-accidentes-trafico",
+  const paginas = [
+    "/perfil",
+    "/consulta",
     "/negligencias-medicas",
-    "/accidentes-laborales",
-    "/valoracion-secuelas",
-    "/valoracion-dano-corporal",
-    "/informes-periciales",
   ];
 
   return [
@@ -19,8 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 1,
     },
-    // Páginas de especialidad (Fase 3)
-    ...servicios.map((slug) => ({
+    ...paginas.map((slug) => ({
       url: `${baseUrl}${slug}`,
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
