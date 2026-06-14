@@ -16,7 +16,7 @@ export function Header() {
 
   const navLinks = [
     { href: "/#servicios", label: "Negligencias médicas" },
-    { href: "/perfil", label: "Sobre el perito" },
+    { href: "/perfil", label: "Acerca de mí" },
     { href: "/#faq", label: "FAQ" },
   ];
 
@@ -33,10 +33,10 @@ export function Header() {
         <div className="flex items-center justify-between h-16 sm:h-20">
           <a href="/" className="flex flex-col leading-tight group">
             <span className="font-bold text-[#1B3A6B] text-base sm:text-lg tracking-tight">
-              Pablo <span className="text-[#C8993A]">Rodriguez de Tembleque</span>
+              Dr. <span className="text-[#C8993A]">Rodríguez de Tembleque</span>
             </span>
             <span className="text-xs text-[#6B7280] font-medium">
-              Perito Médico · Toda España
+              Médico Perito · Toda España
             </span>
           </a>
 
@@ -57,7 +57,7 @@ export function Header() {
               href="/consulta"
               className="hidden sm:inline-flex items-center gap-2 bg-[#1A9E6B] hover:bg-[#158A5C] text-white px-4 py-2.5 rounded-lg text-sm font-bold transition-colors shadow-sm"
             >
-              Valoración gratuita
+              Viabilidad gratuita
             </a>
             <button
               className="md:hidden p-2 text-[#1B3A6B] hover:bg-[#EEF2F8] rounded-lg transition-colors cursor-pointer"
@@ -96,7 +96,7 @@ export function Header() {
             onClick={() => setMobileOpen(false)}
             className="mt-3 flex items-center justify-center gap-2 bg-[#1A9E6B] hover:bg-[#158A5C] text-white px-4 py-3 rounded-lg font-bold transition-colors cursor-pointer"
           >
-            Valoración gratuita
+            Viabilidad gratuita
           </a>
         </nav>
       </div>

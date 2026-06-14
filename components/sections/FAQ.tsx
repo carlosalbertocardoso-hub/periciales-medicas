@@ -32,11 +32,11 @@ const faqs = [
   },
   {
     q: "¿Cuánto tarda en elaborarse el informe?",
-    a: "El plazo habitual es de [X] días hábiles desde la valoración médica, dependiendo de la complejidad del caso y de la documentación disponible. Lo comunico con precisión al inicio del proceso.",
+    a: "El plazo depende de la complejidad del caso y de la documentación disponible. Te lo comunico con precisión al inicio del proceso, una vez revisada tu documentación, y respeto siempre el plazo acordado.",
   },
   {
-    q: "¿Atendéis casos de toda España?",
-    a: "Sí. Atiendo casos en toda España. Según la naturaleza del caso, la valoración puede realizarse de forma presencial o mediante videoconsulta. Escríbeme por email o a través del formulario con tu situación y te respondo en menos de 24 horas.",
+    q: "¿Atiendes casos de toda España?",
+    a: "Sí. Atiendo casos en toda España. La valoración se realiza íntegramente por videoconsulta, sin que tengas que desplazarte. Escríbeme por email o a través del formulario con tu situación y te respondo en menos de 24 horas laborables.",
   },
 ];
 
@@ -108,8 +108,8 @@ export function FAQ() {
         <div className="mt-12 text-center fade-up stagger-2">
           <p className="text-[#6B7280] mb-5">¿No encuentras respuesta a tu duda?</p>
           <a
-            href="#contacto"
-            className="inline-flex items-center gap-2 bg-[#1A9E6B] hover:bg-[#158A5C] text-white font-bold px-8 py-4 rounded-xl text-sm transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.98]"
+            href="/consulta"
+            className="inline-flex w-full sm:w-auto justify-center items-center gap-2 bg-transparent border-2 border-[#1A9E6B] text-[#1A9E6B] hover:bg-[#1A9E6B] hover:text-white font-bold px-8 py-4 rounded-xl text-sm transition-all duration-200 active:scale-[0.98]"
           >
             Escríbeme directamente
             <ArrowRight size={15} />

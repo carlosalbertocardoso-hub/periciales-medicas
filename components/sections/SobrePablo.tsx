@@ -12,12 +12,12 @@ const credentials = [
   {
     icon: GraduationCap,
     label: "Formación",
-    value: "[PENDIENTE formación y especialidades]",
+    value: "Especialista en Urgencias y Emergencias · Médico puericultor · Máster en Valoración del Daño Corporal (Universidad de Barcelona)",
   },
   {
     icon: Briefcase,
     label: "Experiencia",
-    value: "[X] años en peritaje médico-legal",
+    value: "Más de 10 años como perito judicial",
   },
   {
     icon: Award,
@@ -30,7 +30,7 @@ const checklist = [
   "Independencia total respecto a aseguradoras y abogados",
   "Informes con plena validez ante cualquier tribunal español",
   "Atención directa con el perito, sin intermediarios",
-  "Disponibilidad presencial o videoconsulta en toda España",
+  "Atención telemática en toda España",
 ];
 
 export function SobrePablo() {
@@ -64,25 +64,25 @@ export function SobrePablo() {
                     <UserCheck size={44} className="text-white/80" />
                   </div>
                   <p className="text-sm font-medium text-white/60 leading-snug">
-                    Pablo Rodriguez<br />de Tembleque Relaño<br />[Foto profesional]
+                    Pablo Rodríguez<br />de Tembleque Relaño<br />[Foto profesional]
                   </p>
                 </div>
               </div>
 
               <div className="absolute -bottom-4 -right-4 bg-[#1A9E6B] text-white px-4 py-2.5 rounded-xl text-sm font-bold shadow-lg">
-                +[X] años de experiencia
+                +10 años de experiencia
               </div>
             </div>
           </div>
 
           <div className="fade-up stagger-2 order-1 lg:order-2">
             <div className="section-rule text-[#C8993A] text-xs font-semibold tracking-[0.18em] uppercase mb-4">
-              Sobre el perito
+              Acerca de mí
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1A1A2E] mb-6 leading-tight" style={{ fontFamily: "var(--font-heading), Georgia, serif", letterSpacing: "-0.02em" }}>
-              Soy Pablo
+              Soy el Dr. Pablo
               <br />
-              <span className="text-[#1A1A2E]/40 font-light">Rodriguez de Tembleque</span>
+              <span className="text-[#1A1A2E]/40 font-light">Rodríguez de Tembleque</span>
             </h2>
             <p className="text-[#374151] text-lg leading-relaxed mb-4">
               Médico especialista en mala praxis médica asistencial y peritaje
@@ -90,10 +90,10 @@ export function SobrePablo() {
               exige la lex artis y emito informes independientes con validez judicial.
             </p>
             <p className="text-[#6B7280] leading-relaxed mb-8">
-              Actividad desarrollada en el ámbito civil, social, contencioso
-              administrativo y penal. No tengo ningún vínculo con hospitales,
-              clínicas ni aseguradoras. Trabajo únicamente para el paciente.
-              Atiendo casos en toda España de forma presencial o por videoconsulta.
+              Actividad desarrollada en el ámbito civil, social y
+              contencioso-administrativo. No tengo relación de dependencia con
+              hospitales, clínicas ni aseguradoras. Trabajo únicamente para el
+              paciente. Atiendo casos en toda España por videoconsulta.
             </p>
 
             <ul className="space-y-3 mb-8">

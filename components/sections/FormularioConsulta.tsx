@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Send, Mail, Phone, AlertCircle, Lock, Paperclip, X, FileText } from "lucide-react";
+import { Send, Mail, MessageCircle, AlertCircle, Lock, Paperclip, X, FileText, Clock, ShieldCheck } from "lucide-react";
 import { Turnstile } from "@marsidev/react-turnstile";
 
 const MAX_FILE_SIZE = 15 * 1024 * 1024; // 15 MB por archivo
@@ -155,7 +155,7 @@ export function FormularioConsulta() {
             </h2>
 
             <a
-              href="mailto:pablo.rdt@pericialmedica.com"
+              href="mailto:pablo.rdt.medico@gmail.com"
               className="flex items-center gap-4 p-4 bg-white hover:bg-[#F0F9F5] border border-[#E5E7EB] hover:border-[#1A9E6B]/30 rounded-xl transition-colors group"
             >
               <div className="w-10 h-10 rounded-lg bg-[#1A9E6B]/10 flex items-center justify-center text-[#1A9E6B] shrink-0">
@@ -163,40 +163,31 @@ export function FormularioConsulta() {
               </div>
               <div>
                 <p className="text-[#6B7280] text-xs font-medium">Email</p>
-                <p className="font-semibold text-[#1A1A2E] text-sm">pablo.rdt@pericialmedica.com</p>
+                <p className="font-semibold text-[#1A1A2E] text-sm">pablo.rdt.medico@gmail.com</p>
               </div>
             </a>
 
             <a
-              href="tel:[PENDIENTE]"
+              href="https://wa.me/34601539180"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-4 p-4 bg-white hover:bg-[#F0F9F5] border border-[#E5E7EB] hover:border-[#1A9E6B]/30 rounded-xl transition-colors group"
             >
               <div className="w-10 h-10 rounded-lg bg-[#1A9E6B]/10 flex items-center justify-center text-[#1A9E6B] shrink-0">
-                <Phone size={18} />
+                <MessageCircle size={18} />
               </div>
               <div>
-                <p className="text-[#6B7280] text-xs font-medium">Teléfono / WhatsApp</p>
-                <p className="font-semibold text-[#1A1A2E] text-sm">[PENDIENTE teléfono]</p>
+                <p className="text-[#6B7280] text-xs font-medium">WhatsApp (solo mensajes)</p>
+                <p className="font-semibold text-[#1A1A2E] text-sm">601 53 91 80</p>
               </div>
             </a>
 
-            {/* Cita telemática */}
-            <a
-              href="[PENDIENTE URL CITA]"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-4 p-4 bg-white hover:bg-[#EEF2F8] border border-[#E5E7EB] hover:border-[#1B3A6B]/30 rounded-xl transition-colors group"
-            >
-              <div className="w-10 h-10 rounded-lg bg-[#1B3A6B]/8 flex items-center justify-center text-[#1B3A6B] shrink-0">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M15 10l4.553-2.069A1 1 0 0121 8.82v6.36a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z" />
-                </svg>
-              </div>
-              <div>
-                <p className="text-[#6B7280] text-xs font-medium">Videoconsulta</p>
-                <p className="font-semibold text-[#1A1A2E] text-sm">Pedir cita telemática</p>
-              </div>
-            </a>
+            {/* Cita telemática — pendiente de URL de Doctoralia.
+                Restaurar este bloque cuando Pablo facilite el enlace:
+                <a href="URL_DOCTORALIA" target="_blank" rel="noopener noreferrer" ...>
+                  ... Pedir cita telemática ...
+                </a>
+            */}
 
             {/* Documentación útil */}
             <div className="p-5 bg-white border border-[#E5E7EB] rounded-xl">
@@ -205,9 +196,8 @@ export function FormularioConsulta() {
               </p>
               <ul className="space-y-2">
                 {[
-                  "Historia clínica / informes médicos",
-                  "Pruebas diagnósticas (análisis, TAC, RMN…)",
-                  "Partes de urgencias o altas hospitalarias",
+                  "Historia clínica e informes médicos",
+                  "Reclamaciones ya realizadas",
                   "Cualquier documento relacionado con el caso",
                 ].map((doc) => (
                   <li key={doc} className="flex items-start gap-2 text-[#6B7280] text-xs">
@@ -217,7 +207,7 @@ export function FormularioConsulta() {
                 ))}
               </ul>
               <p className="text-[#9CA3AF] text-xs mt-3">
-                PDF, JPG, PNG, Word · Máx. 15 MB por archivo · Hasta 30 folios
+                PDF, JPG, PNG, Word · Máx. 15 MB por archivo
               </p>
             </div>
 
@@ -241,7 +231,7 @@ export function FormularioConsulta() {
               <div>
                 <h3 className="font-bold text-[#1A1A2E] text-lg mb-1"
                   style={{ fontFamily: "var(--font-heading), Georgia, serif" }}>
-                  Solicitar valoración gratuita
+                  Solicitar viabilidad gratuita
                 </h3>
                 <p className="text-[#6B7280] text-sm">
                   Rellena el formulario y adjunta la documentación disponible.
@@ -332,7 +322,7 @@ export function FormularioConsulta() {
                 <p className="block text-sm font-semibold text-[#1A1A2E] mb-1.5">
                   Adjuntar documentación médica{" "}
                   <span className="text-[#9CA3AF] font-normal">
-                    (opcional, hasta {MAX_FILES} archivos · máx. 30 folios)
+                    (opcional, hasta {MAX_FILES} archivos)
                   </span>
                 </p>
 
@@ -450,6 +440,19 @@ export function FormularioConsulta() {
                 />
               )}
 
+              {/* Badges de confianza */}
+              <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs text-[#6B7280]">
+                <span className="inline-flex items-center gap-1.5">
+                  <ShieldCheck size={13} className="text-[#1A9E6B]" /> Datos protegidos (RGPD)
+                </span>
+                <span className="inline-flex items-center gap-1.5">
+                  <Clock size={13} className="text-[#1A9E6B]" /> Respuesta en 24 h laborables
+                </span>
+                <span className="inline-flex items-center gap-1.5">
+                  <Lock size={13} className="text-[#1A9E6B]" /> Sin compromiso
+                </span>
+              </div>
+
               <button
                 type="submit"
                 disabled={sending || (!!TURNSTILE_SITE_KEY && !turnstileToken)}
@@ -467,14 +470,13 @@ export function FormularioConsulta() {
                 ) : (
                   <>
                     <Send size={17} aria-hidden="true" />
-                    <span>Solicitar valoración gratuita</span>
+                    <span>Solicitar viabilidad gratuita</span>
                   </>
                 )}
               </button>
 
-              <p className="text-center text-xs text-[#9CA3AF] flex items-center justify-center gap-1.5">
-                <Lock size={11} />
-                Valoración gratuita · Respuesta en menos de 24 horas laborables
+              <p className="text-center text-xs text-[#9CA3AF]">
+                Tu caso lo revisa directamente el médico perito, sin intermediarios.
               </p>
             </form>
           </div>

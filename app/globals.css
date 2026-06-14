@@ -175,4 +175,9 @@ h1 {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
+  /* Sin animación de entrada: el contenido debe verse siempre */
+  .fade-up, .fade-in {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }

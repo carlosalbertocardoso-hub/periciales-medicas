@@ -8,7 +8,9 @@ import { Proceso } from "@/components/sections/Proceso";
 import { TrustSignals } from "@/components/sections/TrustSignals";
 import { FAQ } from "@/components/sections/FAQ";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { StickyCtaMobile } from "@/components/ui/StickyCtaMobile";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -25,30 +27,44 @@ export default function Home() {
         <FAQ />
 
         {/* CTA final hacia /consulta */}
-        <section className="py-16 sm:py-20 bg-[#0F2347]" aria-label="Llamada a la acción">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <section className="relative py-20 sm:py-28 overflow-hidden bg-[#0F2347]" aria-label="Llamada a la acción">
+          <Image
+            src="/img/medicina-derecho.webp"
+            alt=""
+            fill
+            aria-hidden="true"
+            sizes="100vw"
+            className="object-cover object-right"
+          />
+          <div
+            className="absolute inset-0 bg-linear-to-r from-[#0A1A35] via-[#0F2347]/95 to-[#0F2347]/65"
+            aria-hidden="true"
+          />
+          <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2
               className="text-2xl sm:text-3xl font-bold text-white mb-4"
               style={{ fontFamily: "var(--font-heading), Georgia, serif" }}
             >
-              Valoración inicial gratuita
+              Viabilidad inicial gratuita
             </h2>
             <p className="text-white/65 text-lg mb-8 max-w-xl mx-auto">
-              Adjunta tu documentación médica (menos de 30 folios) y recibirás
-              respuesta en menos de{" "}
+              Adjunta tu documentación médica y recibirás respuesta en menos de{" "}
               <strong className="text-white">24 horas laborables</strong>.
             </p>
             <a
               href="/consulta"
-              className="inline-flex items-center gap-2.5 bg-[#1A9E6B] hover:bg-[#158A5C] text-white font-bold px-10 py-4 rounded-xl text-base shadow-lg hover:shadow-xl active:scale-[0.98] transition-all duration-200"
+              className="inline-flex w-full sm:w-auto justify-center items-center gap-2.5 bg-[#1A9E6B] hover:bg-[#158A5C] text-white font-bold px-10 py-4 rounded-xl text-base shadow-lg hover:shadow-xl active:scale-[0.98] transition-all duration-200"
             >
-              Solicitar valoración gratuita
+              Solicitar viabilidad gratuita
               <ArrowRight size={17} />
             </a>
           </div>
         </section>
+        {/* Separador para que la barra fija no tape el footer en mobile */}
+        <div className="lg:hidden h-20" aria-hidden="true" />
       </main>
       <Footer />
+      <StickyCtaMobile />
     </>
   );
 }

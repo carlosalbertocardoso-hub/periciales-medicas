@@ -8,14 +8,14 @@ import { CheckCircle2 } from "lucide-react";
 export const metadata: Metadata = {
   title: "Valoración Gratuita de Negligencia Médica | Consulta Online",
   description:
-    "Solicita tu valoración inicial gratuita. Adjunta tu documentación médica (menos de 30 folios) y recibirás respuesta en menos de 24 horas laborables.",
+    "Solicita tu valoración inicial gratuita. Adjunta tu documentación médica y recibirás respuesta en menos de 24 horas laborables.",
   robots: { index: false, follow: false },
   alternates: { canonical: "https://[PENDIENTE DOMINIO]/consulta" },
 };
 
 const requisitos = [
   "Descripción del caso y expectativa / pretensión",
-  "Documentación médica (menos de 30 folios)",
+  "Documentación médica",
   "Teléfono móvil de contacto",
   "Dirección de correo electrónico",
 ];
@@ -33,7 +33,7 @@ export default function ConsultaPage() {
         >
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <span className="inline-block bg-[#1A9E6B]/20 text-[#1A9E6B] text-xs font-semibold tracking-[0.18em] uppercase px-4 py-1.5 rounded-full mb-5">
-              Valoración inicial gratuita
+              Viabilidad inicial gratuita
             </span>
             <h1
               className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-5 leading-tight"

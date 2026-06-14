@@ -57,8 +57,8 @@ export function Servicios() {
             </h2>
           </div>
           <p className="text-[#6B7280] text-base leading-relaxed max-w-xs sm:text-right">
-            Especializado exclusivamente en mala praxis médica asistencial.
-            Valoración inicial gratuita en menos de 24 horas.
+            Especializado en mala praxis médica asistencial.
+            Estudio preliminar gratuito en menos de 24 horas.
           </p>
         </div>
 
@@ -107,14 +107,35 @@ export function Servicios() {
               </div>
             );
           })}
+
+          {/* Tarjeta-CTA: rellena el grid y capta casos fuera de las categorías */}
+          <a
+            href="/consulta"
+            className="fade-up stagger-6 group flex flex-col justify-center rounded-2xl p-6 border-2 border-dashed border-[#1A9E6B]/40 hover:border-[#1A9E6B] bg-[#1A9E6B]/[0.03] hover:bg-[#1A9E6B]/[0.06] transition-all duration-300"
+          >
+            <div className="w-11 h-11 rounded-xl bg-[#1A9E6B]/15 text-[#1A9E6B] flex items-center justify-center mb-5 group-hover:bg-[#1A9E6B] group-hover:text-white transition-colors duration-300">
+              <ArrowRight size={22} />
+            </div>
+            <h3 className="font-bold text-base mb-2.5 text-[#1A1A2E]" style={{ fontFamily: "var(--font-heading), Georgia, serif", letterSpacing: "-0.01em" }}>
+              ¿Tu caso es diferente?
+            </h3>
+            <p className="text-sm leading-relaxed text-[#6B7280]">
+              Cuéntame qué ocurrió. Si hay indicios de mala praxis, te lo confirmo
+              en el estudio preliminar gratuito.
+            </p>
+            <span className="mt-4 inline-flex items-center gap-1.5 text-[#1A9E6B] font-semibold text-sm">
+              Solicitar viabilidad
+              <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-200" />
+            </span>
+          </a>
         </div>
 
         <div className="mt-12 text-center fade-up">
           <a
             href="/consulta"
-            className="inline-flex items-center gap-2.5 bg-[#1A9E6B] hover:bg-[#158A5C] text-white font-bold px-8 py-4 rounded-xl text-base shadow-md hover:shadow-lg active:scale-[0.98] transition-all duration-200"
+            className="inline-flex w-full sm:w-auto justify-center items-center gap-2.5 bg-[#1A9E6B] hover:bg-[#158A5C] text-white font-bold px-8 py-4 rounded-xl text-base shadow-md hover:shadow-lg active:scale-[0.98] transition-all duration-200"
           >
-            Solicitar valoración gratuita
+            Solicitar viabilidad gratuita
             <ArrowRight size={16} />
           </a>
           <p className="mt-3 text-sm text-[#6B7280]">Respuesta en menos de 24 horas laborables</p>

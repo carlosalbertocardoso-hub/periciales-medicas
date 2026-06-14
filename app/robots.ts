@@ -8,7 +8,16 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/aviso-legal", "/politica-privacidad", "/politica-cookies"],
+        disallow: [
+          "/api/",
+          "/aviso-legal",
+          "/politica-privacidad",
+          "/politica-cookies",
+          "/peritaje-accidentes-trafico",
+          "/accidentes-laborales",
+          "/valoracion-secuelas",
+          "/valoracion-dano-corporal",
+        ],
       },
     ],
     sitemap: `${baseUrl}/sitemap.xml`,

@@ -2,7 +2,7 @@
 
 import { MessageCircle } from "lucide-react";
 
-const WA_NUMBER = "[PENDIENTE]"; // e.g. "34600000000"
+const WA_NUMBER = "34601539180";
 const WA_MESSAGE = encodeURIComponent(
   "Hola, me gustaría solicitar información sobre una valoración médico-pericial."
 );

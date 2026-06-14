@@ -19,7 +19,8 @@ const lato = Lato({
 });
 
 export const metadata: Metadata = {
-  title: "Perito Médico en España | Negligencias Médicas – Pablo Rodriguez de Tembleque Relaño",
+  metadataBase: new URL("https://pericialmedica.com"),
+  title: "Médico Perito en España | Negligencias Médicas – Dr. Rodríguez de Tembleque",
   description:
     "Perito médico especialista en mala praxis médica asistencial. Informes periciales independientes con validez judicial en toda España. Valoración inicial gratuita.",
   keywords: [
@@ -34,22 +35,22 @@ export const metadata: Metadata = {
     "perito médico Córdoba",
     "perito médico Sevilla",
   ],
-  authors: [{ name: "Pablo Rodriguez de Tembleque Relaño" }],
-  creator: "Pablo Rodriguez de Tembleque Relaño",
+  authors: [{ name: "Pablo Rodríguez de Tembleque Relaño" }],
+  creator: "Pablo Rodríguez de Tembleque Relaño",
   openGraph: {
     type: "website",
     locale: "es_ES",
     url: "https://pericialmedica.com",
-    siteName: "Perito Médico España – Pablo Rodriguez de Tembleque",
-    title: "Perito Médico Especialista en Negligencias Médicas | Toda España",
+    siteName: "Médico Perito España – Dr. Rodríguez de Tembleque",
+    title: "Médico Perito Especialista en Negligencias Médicas | Toda España",
     description:
-      "Perito médico especialista en mala praxis médica asistencial. Informes periciales independientes con validez judicial en toda España.",
+      "Médico perito especialista en mala praxis médica asistencial. Informes periciales independientes con validez judicial en toda España.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/img/og-image.png",
         width: 1200,
-        height: 630,
-        alt: "Perito Médico España – Pablo Rodriguez de Tembleque Relaño",
+        height: 800,
+        alt: "Médico perito especialista en negligencias médicas – Dr. Rodríguez de Tembleque",
       },
     ],
   },
@@ -80,6 +81,9 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${ebGaramond.variable} ${lato.variable} h-full scroll-smooth`}>
       <body className="min-h-full flex flex-col antialiased">
+        <noscript>
+          <style>{`.fade-up,.fade-in{opacity:1 !important;transform:none !important}`}</style>
+        </noscript>
         <Analytics />
         {children}
         <CookieBanner />

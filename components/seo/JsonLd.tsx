@@ -4,13 +4,13 @@ export function JsonLd() {
   const personSchema = {
     "@context": "https://schema.org",
     "@type": "Person",
-    name: "Pablo Rodriguez de Tembleque Relaño",
-    jobTitle: "Perito Médico",
+    name: "Pablo Rodríguez de Tembleque Relaño",
+    jobTitle: "Médico Perito",
     description:
       "Médico especialista en mala praxis médica asistencial. Informes periciales independientes con validez judicial en toda España.",
     url: baseUrl,
-    telephone: "[PENDIENTE]",
-    email: "pablo.rdt@pericialmedica.com",
+    telephone: "+34601539180",
+    email: "pablo.rdt.medico@gmail.com",
     areaServed: {
       "@type": "Country",
       name: "España",
@@ -25,12 +25,12 @@ export function JsonLd() {
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
-    name: "Pablo Rodriguez de Tembleque – Perito Médico",
+    name: "Dr. Rodríguez de Tembleque – Médico Perito",
     description:
       "Especialista en mala praxis médica asistencial. Informes periciales independientes con validez judicial en toda España.",
     url: baseUrl,
-    telephone: "[PENDIENTE]",
-    email: "pablo.rdt@pericialmedica.com",
+    telephone: "+34601539180",
+    email: "pablo.rdt.medico@gmail.com",
     address: {
       "@type": "PostalAddress",
       streetAddress: "C/San Juan de la Cruz, 21",
@@ -76,7 +76,7 @@ export function JsonLd() {
         name: "¿Podéis atender casos de toda España?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Sí. Atendemos casos en toda España, con valoración presencial o por videoconsulta según la naturaleza del caso.",
+          text: "Sí. Atiendo casos en toda España por videoconsulta, sin necesidad de desplazamientos.",
         },
       },
       {

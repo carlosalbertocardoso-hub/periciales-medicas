@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { ShieldCheck, MapPin, Clock, Users, FileCheck, MessageSquare } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
@@ -17,12 +18,12 @@ const signals = [
   {
     icon: MapPin,
     title: "Toda España",
-    description: "Atención presencial o por videoconsulta en cualquier provincia.",
+    description: "Atención íntegramente por videoconsulta, en cualquier provincia.",
   },
   {
     icon: Clock,
     title: "Plazos razonables",
-    description: "Entrega del informe en [X] días hábiles desde la valoración.",
+    description: "Entrega del informe en los plazos acordados desde la valoración.",
   },
   {
     icon: Users,
@@ -46,20 +47,36 @@ export function TrustSignals() {
       aria-label="Por qué confiar"
     >
       <div ref={ref} className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="fade-up mb-14 sm:mb-20">
-          <div className="section-rule text-[#C8993A] text-xs font-semibold tracking-[0.18em] uppercase mb-4">
-            Por qué elegirme
-          </div>
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1A1A2E] leading-tight" style={{ fontFamily: "var(--font-heading), Georgia, serif", letterSpacing: "-0.02em" }}>
+        <div className="fade-up mb-14 sm:mb-20 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+          <div>
+            <div className="section-rule text-[#C8993A] text-xs font-semibold tracking-[0.18em] uppercase mb-4">
+              Por qué elegirme
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1A1A2E] leading-tight mb-5" style={{ fontFamily: "var(--font-heading), Georgia, serif", letterSpacing: "-0.02em" }}>
               Rigor, independencia
               <br className="hidden sm:block" />
               <span className="text-[#1B3A6B]/50"> y cercanía</span>
             </h2>
-            <p className="text-[#6B7280] text-sm leading-relaxed max-w-xs">
+            <p className="text-[#6B7280] text-base leading-relaxed max-w-md">
               Informe pericial objetivo, comprensible y útil para defender
               tus derechos ante cualquier tribunal.
             </p>
+          </div>
+
+          <div className="relative">
+            <div
+              className="absolute -bottom-4 -left-4 w-full h-full rounded-2xl border border-[#1A9E6B]/20"
+              aria-hidden="true"
+            />
+            <div className="relative aspect-3/2 rounded-2xl overflow-hidden shadow-xl ring-1 ring-[#1A1A2E]/5">
+              <Image
+                src="/img/confianza-informes.webp"
+                alt="Médico perito revisando un informe clínico en su despacho"
+                fill
+                sizes="(min-width: 1024px) 36rem, 100vw"
+                className="object-cover"
+              />
+            </div>
           </div>
         </div>
 

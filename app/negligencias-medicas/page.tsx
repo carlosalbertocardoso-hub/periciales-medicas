@@ -58,11 +58,7 @@ const data: ServicePageData = {
     "Ratificación ante tribunal si procede",
   ],
   relatedLinks: [
-    { href: "/valoracion-secuelas", label: "Valoración de secuelas" },
     { href: "/informes-periciales", label: "Informes periciales médicos" },
-    { href: "/valoracion-dano-corporal", label: "Valoración del daño corporal" },
-    { href: "/peritaje-accidentes-trafico", label: "Accidentes de tráfico" },
-    { href: "/accidentes-laborales", label: "Accidentes laborales" },
   ],
   faqs: [
     {

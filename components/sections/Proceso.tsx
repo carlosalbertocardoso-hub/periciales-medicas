@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
@@ -14,7 +15,7 @@ const pasos = [
     num: "02",
     title: "Análisis y valoración",
     description:
-      "Revisamos la documentación disponible y realizo la exploración clínica, presencial o por videoconsulta, para valorar tus lesiones y secuelas.",
+      "Reviso la documentación clínica con criterio médico-legal y, si el caso lo requiere, realizo la exploración por videoconsulta para valorar el daño.",
   },
   {
     num: "03",
@@ -35,7 +36,7 @@ export function Proceso() {
       aria-label="Cómo funciona"
     >
       <div ref={ref} className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="fade-up mb-14 sm:mb-20">
+        <div className="fade-up mb-10 sm:mb-12">
           <div className="flex items-center gap-3 mb-4">
             <span className="block w-6 h-px bg-[#C8993A]" />
             <span className="text-[#C8993A] text-xs font-semibold tracking-[0.18em] uppercase">
@@ -47,6 +48,23 @@ export function Proceso() {
             <br />
             <span className="text-white/50 font-light">al informe pericial</span>
           </h2>
+        </div>
+
+        {/* Imagen editorial */}
+        <div className="fade-up mb-12 sm:mb-16">
+          <div className="relative aspect-16/10 sm:aspect-21/9 rounded-2xl overflow-hidden ring-1 ring-white/10 shadow-2xl">
+            <Image
+              src="/img/proceso-informe.webp"
+              alt="Elaboración de un informe médico-pericial sobre documentación clínica"
+              fill
+              sizes="(min-width: 1024px) 72rem, 100vw"
+              className="object-cover"
+            />
+            <div
+              className="absolute inset-0 bg-linear-to-r from-[#0F2347]/70 via-[#0F2347]/15 to-transparent"
+              aria-hidden="true"
+            />
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-0 lg:gap-0 divide-y lg:divide-y-0 lg:divide-x divide-white/10">
@@ -82,8 +100,8 @@ export function Proceso() {
 
         <div className="mt-12 text-center fade-up stagger-4">
           <a
-            href="#contacto"
-            className="inline-flex items-center gap-2 bg-[#1A9E6B] hover:bg-[#158A5C] text-white font-bold px-8 py-4 rounded-xl text-base shadow-lg hover:shadow-xl active:scale-[0.98] transition-all duration-200"
+            href="/consulta"
+            className="inline-flex w-full sm:w-auto justify-center items-center gap-2 bg-[#1A9E6B] hover:bg-[#158A5C] text-white font-bold px-8 py-4 rounded-xl text-base shadow-lg hover:shadow-xl active:scale-[0.98] transition-all duration-200"
           >
             Enviar mi caso
             <ArrowRight size={17} />

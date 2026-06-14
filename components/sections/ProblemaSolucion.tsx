@@ -78,8 +78,8 @@ export function ProblemaSolucion() {
 
         <div className="mt-10 text-center fade-up stagger-3">
           <a
-            href="#contacto"
-            className="inline-flex items-center gap-2 bg-[#1A9E6B] hover:bg-[#158A5C] text-white font-bold px-8 py-4 rounded-xl transition-all duration-200 text-base shadow-sm hover:shadow-md active:scale-[0.98]"
+            href="/consulta"
+            className="inline-flex w-full sm:w-auto justify-center items-center gap-2 bg-transparent border-2 border-[#1A9E6B] text-[#1A9E6B] hover:bg-[#1A9E6B] hover:text-white font-bold px-8 py-4 rounded-xl transition-all duration-200 text-base active:scale-[0.98]"
           >
             Enviar mi caso
             <ArrowRight size={17} />

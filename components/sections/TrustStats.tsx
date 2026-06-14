@@ -3,10 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 
 const stats = [
-  { value: "[X]+", label: "Casos resueltos", sub: "en toda España" },
-  { value: "[X]", label: "Años de experiencia", sub: "en peritaje médico-legal" },
-  { value: "50+", label: "Provincias atendidas", sub: "presencial o videoconsulta" },
-  { value: "5★", label: "Valoración media", sub: "de clientes satisfechos" },
+  { value: "10+", label: "Años de experiencia", sub: "como perito judicial" },
+  { value: "50+", label: "Casos periciales", sub: "valorados" },
+  { value: "España", label: "Ámbito nacional", sub: "por videoconsulta" },
+  { value: "24 h", label: "Respuesta", sub: "en días laborables" },
 ];
 
 export function TrustStats() {
@@ -16,6 +16,10 @@ export function TrustStats() {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    if (typeof IntersectionObserver === "undefined") {
+      setVisible(true);
+      return;
+    }
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -23,9 +27,14 @@ export function TrustStats() {
           observer.unobserve(el);
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
     );
     observer.observe(el);
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      setVisible(true);
+      observer.unobserve(el);
+    }
     return () => observer.disconnect();
   }, []);
 

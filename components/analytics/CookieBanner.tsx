@@ -48,7 +48,7 @@ export function CookieBanner() {
       aria-modal="true"
       aria-label="Preferencias de cookies"
       className={cn(
-        "fixed bottom-4 left-4 right-4 sm:left-auto sm:right-6 sm:bottom-6 sm:max-w-md z-[100]",
+        "fixed bottom-24 left-4 right-4 sm:left-auto sm:right-6 sm:bottom-6 sm:max-w-md z-[100]",
         "bg-white rounded-2xl shadow-2xl border border-[#E5E7EB] p-5"
       )}
     >

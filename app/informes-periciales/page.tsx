@@ -58,11 +58,7 @@ const data: ServicePageData = {
     "Ratificación ante el tribunal si el proceso lo requiere",
   ],
   relatedLinks: [
-    { href: "/peritaje-accidentes-trafico", label: "Accidentes de tráfico" },
     { href: "/negligencias-medicas", label: "Negligencias médicas" },
-    { href: "/accidentes-laborales", label: "Accidentes laborales" },
-    { href: "/valoracion-secuelas", label: "Valoración de secuelas" },
-    { href: "/valoracion-dano-corporal", label: "Valoración del daño corporal" },
   ],
   faqs: [
     {
