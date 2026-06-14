@@ -32,7 +32,7 @@ export function Footer() {
               independientes con validez judicial en toda España.
             </p>
             <p className="text-white/35 text-xs leading-relaxed">
-              Nº Colegiado: <span className="text-white/55">[PENDIENTE]</span><br />
+              Nº Colegiado: <span className="text-white/55">14/07919</span><br />
               Colegio de Médicos de Córdoba
             </p>
           </div>

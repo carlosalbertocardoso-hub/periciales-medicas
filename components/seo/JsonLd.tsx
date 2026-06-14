@@ -18,7 +18,7 @@ export function JsonLd() {
     hasCredential: {
       "@type": "EducationalOccupationalCredential",
       credentialCategory: "degree",
-      description: "Médico colegiado nº [PENDIENTE] – Colegio de Médicos de Córdoba",
+      description: "Médico colegiado nº 14/07919 – Colegio de Médicos de Córdoba",
     },
   };
 

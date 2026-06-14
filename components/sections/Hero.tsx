@@ -80,6 +80,23 @@ export function Hero() {
               </span>
             </h1>
 
+            {/* Imagen — solo mobile/tablet, bajo el titular */}
+            <div className="lg:hidden mb-7 relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10">
+              <Image
+                src="/img/hero-perito.webp"
+                alt="Médico perito analizando una historia clínica junto a pruebas diagnósticas"
+                width={1448}
+                height={1086}
+                priority
+                sizes="(max-width: 1023px) 100vw, 0px"
+                className="w-full h-auto"
+              />
+              <div
+                className="absolute inset-0 bg-linear-to-t from-[#0A1A35]/55 via-transparent to-transparent"
+                aria-hidden="true"
+              />
+            </div>
+
             <p className="text-white/65 text-base sm:text-lg leading-relaxed mb-7 max-w-lg">
               Analizo tu historia clínica, evalúo si la atención que recibiste
               se ajustó a la lex artis y emito un informe pericial independiente
@@ -116,23 +133,6 @@ export function Hero() {
             <p className="text-white/45 text-sm mt-3 text-center sm:text-left">
               Respuesta en menos de 24 h laborables · Sin compromiso
             </p>
-
-            {/* Imagen — solo mobile/tablet */}
-            <div className="lg:hidden mt-9 relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10">
-              <Image
-                src="/img/hero-perito.webp"
-                alt="Médico perito analizando una historia clínica junto a pruebas diagnósticas"
-                width={1448}
-                height={1086}
-                priority
-                sizes="(max-width: 1023px) 100vw, 0px"
-                className="w-full h-auto"
-              />
-              <div
-                className="absolute inset-0 bg-linear-to-t from-[#0A1A35]/55 via-transparent to-transparent"
-                aria-hidden="true"
-              />
-            </div>
 
             {/* Prueba social — datos verificables */}
             <div className="mt-8 sm:mt-10 flex flex-wrap items-center gap-x-6 gap-y-3">

@@ -3,16 +3,19 @@
 import { GraduationCap, Award, Briefcase, UserCheck, CheckCircle2 } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
+const formacion = [
+  "Licenciado en Medicina y Cirugía — Universidad de Navarra",
+  "Especialista en Medicina Familiar y Comunitaria",
+  "Especialista en Urgencias y Emergencias",
+  "Médico Puericultor",
+  "Máster en Valoración del Daño Corporal — Universidad de Barcelona",
+];
+
 const credentials = [
   {
     icon: UserCheck,
     label: "Médico colegiado",
-    value: "Nº [PENDIENTE] – Colegio de Médicos de Córdoba",
-  },
-  {
-    icon: GraduationCap,
-    label: "Formación",
-    value: "Especialista en Urgencias y Emergencias · Médico puericultor · Máster en Valoración del Daño Corporal (Universidad de Barcelona)",
+    value: "Nº 14/07919 – Colegio de Médicos de Córdoba",
   },
   {
     icon: Briefcase,
@@ -105,7 +108,26 @@ export function SobrePablo() {
               ))}
             </ul>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {/* Formación */}
+            <div className="bg-white rounded-xl p-5 border border-[#E5E7EB] shadow-sm mb-3">
+              <div className="flex items-center gap-2.5 mb-3.5">
+                <span className="w-8 h-8 rounded-lg bg-[#1B3A6B]/8 flex items-center justify-center text-[#1B3A6B] shrink-0">
+                  <GraduationCap size={17} />
+                </span>
+                <p className="text-xs text-[#6B7280] font-medium uppercase tracking-wider">Formación</p>
+              </div>
+              <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2.5">
+                {formacion.map((f) => (
+                  <li key={f} className="flex items-start gap-2.5 text-sm text-[#374151] leading-snug">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#C8993A] shrink-0 mt-1.5" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Otras credenciales */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {credentials.map((c) => {
                 const Icon = c.icon;
                 return (
