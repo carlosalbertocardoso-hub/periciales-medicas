@@ -150,10 +150,10 @@ export default function PoliticaCookies() {
             <p className="text-sm leading-relaxed">
               Para cualquier consulta sobre el uso de cookies, contacta en{" "}
               <a
-                href="mailto:pablo.rdt@pericialmedica.com"
+                href="mailto:pablo.rdt.medico@gmail.com"
                 className="text-[#1e3a5f] underline"
               >
-                pablo.rdt@pericialmedica.com
+                pablo.rdt.medico@gmail.com
               </a>
               .
             </p>

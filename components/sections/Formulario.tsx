@@ -171,7 +171,7 @@ export function Formulario() {
             <h3 className="font-bold text-white text-lg">Contacto directo</h3>
 
             <a
-              href="mailto:pablo.rdt@pericialmedica.com"
+              href="mailto:pablo.rdt.medico@gmail.com"
               className="flex items-center gap-4 p-4 bg-white/8 hover:bg-white/14 border border-white/15 rounded-xl transition-colors group cursor-pointer"
             >
               <div className="w-10 h-10 rounded-lg bg-[#1A9E6B]/20 flex items-center justify-center text-[#1A9E6B] shrink-0">
@@ -179,7 +179,7 @@ export function Formulario() {
               </div>
               <div>
                 <p className="text-white/55 text-xs font-medium">Email directo</p>
-                <p className="font-semibold text-white text-sm">pablo.rdt@pericialmedica.com</p>
+                <p className="font-semibold text-white text-sm">pablo.rdt.medico@gmail.com</p>
               </div>
             </a>
 

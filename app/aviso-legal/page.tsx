@@ -28,7 +28,7 @@ export default function AvisoLegal() {
               <li><strong>Nombre:</strong> Pablo Rodriguez de Tembleque Relaño</li>
               <li><strong>NIF:</strong> 44355640-W</li>
               <li><strong>Dirección:</strong> C/San Juan de la Cruz, 21, Córdoba</li>
-              <li><strong>Email:</strong> pablo.rdt@pericialmedica.com</li>
+              <li><strong>Email:</strong> pablo.rdt.medico@gmail.com</li>
               <li><strong>Teléfono:</strong> [PENDIENTE]</li>
               <li><strong>Colegio de Médicos:</strong> Córdoba · Nº colegiado: [PENDIENTE]</li>
             </ul>
@@ -40,7 +40,7 @@ export default function AvisoLegal() {
             </h2>
             <p className="leading-relaxed text-sm">
               El presente Aviso Legal regula el acceso y uso del sitio web{" "}
-              <strong>pericialmedica.com</strong> (en adelante, «el Sitio»). El
+              <strong>pericialesmedicas.es</strong> (en adelante, «el Sitio»). El
               acceso al Sitio implica la aceptación plena de las presentes
               condiciones. Si no está de acuerdo con ellas, deberá abstenerse de
               utilizarlo.

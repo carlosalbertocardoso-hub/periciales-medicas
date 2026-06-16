@@ -24,7 +24,7 @@ export default function PoliticaPrivacidad() {
             <p>
               <strong>Identidad:</strong> Pablo Rodriguez de Tembleque Relaño<br />
               <strong>Dirección:</strong> C/San Juan de la Cruz, 21, Córdoba<br />
-              <strong>Email:</strong> pablo.rdt@pericialmedica.com<br />
+              <strong>Email:</strong> pablo.rdt.medico@gmail.com<br />
               <strong>Teléfono:</strong> [PENDIENTE]
             </p>
           </section>
@@ -78,8 +78,8 @@ export default function PoliticaPrivacidad() {
             <p>
               Puedes ejercer tus derechos de acceso, rectificación, supresión,
               limitación, portabilidad y oposición dirigiéndote a{" "}
-              <a href="mailto:pablo.rdt@pericialmedica.com" className="text-[#1e3a5f] underline">
-                pablo.rdt@pericialmedica.com
+              <a href="mailto:pablo.rdt.medico@gmail.com" className="text-[#1e3a5f] underline">
+                pablo.rdt.medico@gmail.com
               </a>
               . También tienes derecho a presentar una reclamación ante la Agencia
               Española de Protección de Datos (aepd.es).

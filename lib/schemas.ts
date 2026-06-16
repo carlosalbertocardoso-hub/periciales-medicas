@@ -1,4 +1,4 @@
-const baseUrl = "https://pericialmedica.com";
+const baseUrl = "https://pericialesmedicas.es";
 
 export function buildPersonSchema() {
   return {

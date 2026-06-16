@@ -21,7 +21,7 @@ const lato = Lato({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://pericialmedica.com"),
+  metadataBase: new URL("https://pericialesmedicas.es"),
   title: "Médico Perito en España | Negligencias Médicas – Dr. Rodríguez de Tembleque",
   description:
     "Perito médico especialista en mala praxis médica asistencial. Informes periciales independientes con validez judicial en toda España. Valoración inicial gratuita.",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "es_ES",
-    url: "https://pericialmedica.com",
+    url: "https://pericialesmedicas.es",
     siteName: "Médico Perito España – Dr. Rodríguez de Tembleque",
     title: "Médico Perito Especialista en Negligencias Médicas | Toda España",
     description:
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://pericialmedica.com",
+    canonical: "https://pericialesmedicas.es",
   },
   verification: {
     google: process.env.NEXT_PUBLIC_GSC_VERIFICATION,

@@ -1,7 +1,7 @@
 import { JsonLd } from "@/components/seo/JsonLd";
 import { buildServiceSchema, buildBreadcrumbSchema, buildFAQSchema } from "@/lib/schemas";
 
-const baseUrl = "https://pericialmedica.com";
+const baseUrl = "https://pericialesmedicas.es";
 
 interface ServiceJsonLdProps {
   name: string;
