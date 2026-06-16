@@ -1,9 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
+import nodemailer from "nodemailer";
 
+// Campos comunes a los dos formularios del sitio:
+// - FormularioConsulta (/consulta): telefono, email, descripcion, rgpd
+// - Formulario (páginas de servicio): nombre, apellidos, email, tipo_caso, provincia, descripcion, rgpd
+// email + descripcion + rgpd son obligatorios; el resto es opcional según el formulario de origen.
 const schema = z.object({
-  telefono: z.string().min(9).max(20),
+  nombre: z.string().max(80).optional(),
+  apellidos: z.string().max(100).optional(),
+  telefono: z.string().min(9).max(20).optional(),
   email: z.string().email(),
+  tipo_caso: z.string().max(120).optional(),
+  provincia: z.string().max(120).optional(),
   descripcion: z.string().min(20).max(2000),
   rgpd: z.union([z.literal("true"), z.literal(true)]),
   turnstileToken: z.string().optional(),
@@ -21,6 +30,13 @@ async function verifyTurnstile(token: string, ip: string): Promise<boolean> {
   const data = await res.json();
   return data.success === true;
 }
+
+const escapeHtml = (s: string) =>
+  s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
 
 export async function POST(req: NextRequest) {
   try {
@@ -41,57 +57,70 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // ─── Integración de email (Resend) ─────────────────────────────────────────
-    // Para activar: npm install resend
-    // Añadir RESEND_API_KEY y CONTACT_EMAIL a las variables de entorno de Vercel
-    //
-    // import { Resend } from "resend";
-    // const resend = new Resend(process.env.RESEND_API_KEY);
-    // const attachments = await Promise.all(docs.map(async (f) => ({
-    //   filename: f.name,
-    //   content: Buffer.from(await f.arrayBuffer()),
-    // })));
-    // await resend.emails.send({
-    //   from: "noreply@[DOMINIO]",
-    //   to: process.env.CONTACT_EMAIL!,
-    //   subject: `Nueva valoración gratuita solicitada`,
-    //   html: `
-    //     <h2>Nueva valoración gratuita</h2>
-    //     <p><strong>Teléfono:</strong> ${data.telefono}</p>
-    //     <p><strong>Email:</strong> ${data.email}</p>
-    //     <p><strong>Descripción:</strong> ${data.descripcion}</p>
-    //     <p><strong>Documentos adjuntos:</strong> ${docs.length}</p>
-    //   `,
-    //   attachments,
-    // });
-    // ───────────────────────────────────────────────────────────────────────────
+    // ─── Envío de email (Gmail SMTP vía nodemailer) ────────────────────────────
+    // Requiere en variables de entorno:
+    //   GMAIL_USER       → pablo.rdt.medico@gmail.com
+    //   GMAIL_APP_PASSWORD → contraseña de aplicación de Gmail (16 caracteres, sin espacios)
+    //   CONTACT_EMAIL    → destino de los leads (por defecto, el propio GMAIL_USER)
+    const user = process.env.GMAIL_USER;
+    const pass = process.env.GMAIL_APP_PASSWORD;
+    const to = process.env.CONTACT_EMAIL ?? user;
 
-    // ─── Almacenamiento en Supabase ────────────────────────────────────────────
-    // Para activar: npm install @supabase/supabase-js
-    // Añadir SUPABASE_URL y SUPABASE_SERVICE_ROLE_KEY a las variables de entorno
-    //
-    // import { createClient } from "@supabase/supabase-js";
-    // const supabase = createClient(
-    //   process.env.SUPABASE_URL!,
-    //   process.env.SUPABASE_SERVICE_ROLE_KEY!
-    // );
-    // await supabase.from("leads").insert({
-    //   nombre: data.nombre,
-    //   apellidos: data.apellidos,
-    //   email: data.email,
-    //   tipo_caso: data.tipo_caso,
-    //   provincia: data.provincia,
-    //   descripcion: data.descripcion,
-    //   num_documentos: docs.length,
-    //   created_at: new Date().toISOString(),
-    // });
-    // ───────────────────────────────────────────────────────────────────────────
+    if (user && pass && to) {
+      const transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: { user, pass },
+      });
 
-    console.info("[Contacto] Nuevo caso:", {
-      telefono: data.telefono,
-      email: data.email,
-      documentos: docs.length,
-    });
+      const nombreCompleto = [data.nombre, data.apellidos].filter(Boolean).join(" ");
+      const filas: [string, string | undefined][] = [
+        ["Nombre", nombreCompleto || undefined],
+        ["Teléfono", data.telefono],
+        ["Email", data.email],
+        ["Tipo de caso", data.tipo_caso],
+        ["Provincia", data.provincia],
+      ];
+
+      const filasHtml = filas
+        .filter(([, v]) => v)
+        .map(
+          ([k, v]) =>
+            `<p style="margin:4px 0"><strong>${k}:</strong> ${escapeHtml(String(v))}</p>`
+        )
+        .join("");
+
+      const attachments = await Promise.all(
+        docs
+          .filter((f) => f && f.size > 0)
+          .map(async (f) => ({
+            filename: f.name,
+            content: Buffer.from(await f.arrayBuffer()),
+          }))
+      );
+
+      await transporter.sendMail({
+        from: `"Web Periciales Médicas" <${user}>`,
+        to,
+        replyTo: data.email,
+        subject: `Nuevo caso pericial${nombreCompleto ? ` — ${nombreCompleto}` : ""}`,
+        html: `
+          <h2 style="font-family:Georgia,serif;color:#0F2347">Nuevo caso recibido desde la web</h2>
+          ${filasHtml}
+          <p style="margin:12px 0 4px"><strong>Descripción:</strong></p>
+          <p style="white-space:pre-wrap;background:#F7F8FA;padding:12px;border-radius:8px">${escapeHtml(
+            data.descripcion
+          )}</p>
+          <p style="margin-top:12px"><strong>Documentos adjuntos:</strong> ${attachments.length}</p>
+        `,
+        attachments,
+      });
+    } else {
+      // Sin credenciales (entorno local/dev): registrar para no perder el lead.
+      console.warn(
+        "[Contacto] GMAIL_USER/GMAIL_APP_PASSWORD no configurados — email NO enviado:",
+        { telefono: data.telefono, email: data.email, documentos: docs.length }
+      );
+    }
 
     return NextResponse.json({ ok: true }, { status: 200 });
   } catch (err) {
