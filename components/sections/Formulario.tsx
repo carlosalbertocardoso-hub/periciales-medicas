@@ -132,6 +132,10 @@ export function Formulario() {
 
       reset();
       setAttachedFiles([]);
+
+      // GA4: track form submission
+      try { window.gtag('event', 'form_submitted', { 'form_name': 'contacto', 'send_to': 'G-G249FLJM9M' }); } catch(e) {}
+
       router.push("/gracias");
     } catch (err) {
       setServerError(
