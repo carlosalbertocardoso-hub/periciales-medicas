@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
@@ -99,13 +100,13 @@ export function Proceso() {
         </div>
 
         <div className="mt-12 text-center fade-up stagger-4">
-          <a
+          <Link
             href="/consulta"
             className="inline-flex w-full sm:w-auto justify-center items-center gap-2 bg-[#1A9E6B] hover:bg-[#158A5C] text-white font-bold px-8 py-4 rounded-xl text-base shadow-lg hover:shadow-xl active:scale-[0.98] transition-all duration-200"
           >
             Enviar mi caso
             <ArrowRight size={17} />
-          </a>
+          </Link>
           <p className="mt-4 text-white/45 text-sm">
             Solo por email o formulario · Respuesta en menos de 24h
           </p>

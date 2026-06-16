@@ -3,6 +3,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { SobrePablo } from "@/components/sections/SobrePablo";
 import { StickyCtaMobile } from "@/components/ui/StickyCtaMobile";
+import Link from "next/link";
 import { Mail, MessageCircle, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -57,13 +58,13 @@ export default function PerfilPage() {
               </a>
             </div>
 
-            <a
+            <Link
               href="/consulta"
               className="inline-flex w-full sm:w-auto justify-center items-center gap-2.5 bg-[#1A9E6B] hover:bg-[#158A5C] text-white font-bold px-8 py-4 rounded-xl text-base shadow-md hover:shadow-lg active:scale-[0.98] transition-all duration-200"
             >
               Solicitar viabilidad gratuita
               <ArrowRight size={17} />
-            </a>
+            </Link>
             <p className="mt-3 text-sm text-[#6B7280]">
               Respuesta en menos de 24 horas laborables
             </p>

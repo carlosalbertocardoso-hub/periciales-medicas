@@ -189,19 +189,13 @@ interface Message {
 export function ChatbotGuiado() {
   const [open, setOpen] = useState(false);
   const [nodeId, setNodeId] = useState<NodeId>("start");
-  const [history, setHistory] = useState<Message[]>([]);
+  const [history, setHistory] = useState<Message[]>([
+    { role: "bot", text: FLOW.start.message },
+  ]);
   const [stack, setStack] = useState<NodeId[]>([]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const node = FLOW[nodeId];
-
-  useEffect(() => {
-    if (open && history.length === 0) {
-      setHistory([{ role: "bot", text: FLOW.start.message }]);
-      setNodeId("start");
-      setStack([]);
-    }
-  }, [open, history.length]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -398,14 +399,14 @@ export function FormularioConsulta() {
                   />
                   <span className="text-xs text-[#6B7280] leading-relaxed">
                     He leído y acepto la{" "}
-                    <a
+                    <Link
                       href="/politica-privacidad"
                       className="text-[#1B3A6B] font-semibold underline underline-offset-1 hover:text-[#2D5AA0]"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
                       Política de Privacidad
-                    </a>
+                    </Link>
                     . Consiento el tratamiento de mis datos para gestionar mi
                     caso.{" "}
                     <span className="text-red-500" aria-hidden="true">*</span>

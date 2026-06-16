@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowRight, CheckCircle2, ChevronRight } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Header } from "@/components/layout/Header";
@@ -52,9 +53,9 @@ export function ServicePage({ data }: { data: ServicePageData }) {
           <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Breadcrumb */}
             <nav aria-label="Ruta de navegación" className="flex items-center gap-1.5 text-white/40 text-xs mb-6">
-              <a href="/" className="hover:text-white/70 transition-colors">Inicio</a>
+              <Link href="/" className="hover:text-white/70 transition-colors">Inicio</Link>
               <ChevronRight size={12} />
-              <a href="/#servicios" className="hover:text-white/70 transition-colors">Servicios</a>
+              <Link href="/#servicios" className="hover:text-white/70 transition-colors">Servicios</Link>
               <ChevronRight size={12} />
               <span className="text-white/60">{data.badge}</span>
             </nav>
@@ -158,13 +159,13 @@ export function ServicePage({ data }: { data: ServicePageData }) {
                   <ul className="space-y-2">
                     {data.relatedLinks.map((l) => (
                       <li key={l.href}>
-                        <a
+                        <Link
                           href={l.href}
                           className="flex items-center gap-2 text-sm text-[#6B7280] hover:text-[#1B3A6B] transition-colors group"
                         >
                           <ChevronRight size={13} className="text-[#1A9E6B] shrink-0" />
                           {l.label}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>

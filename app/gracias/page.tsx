@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { CheckCircle2, Mail, ArrowRight, Clock } from "lucide-react";
@@ -74,13 +75,13 @@ export default function Gracias() {
 
           {/* CTA secundario */}
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <a
+            <Link
               href="/"
               className="inline-flex items-center justify-center gap-2 bg-[#1A9E6B] hover:bg-[#158A5C] text-white font-bold px-6 py-3 rounded-xl text-sm transition-all duration-200 shadow-sm hover:shadow-md"
             >
               Volver al inicio
               <ArrowRight size={15} />
-            </a>
+            </Link>
           </div>
         </div>
       </main>

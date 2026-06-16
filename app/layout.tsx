@@ -49,7 +49,7 @@ export const metadata: Metadata = {
       "Médico perito especialista en mala praxis médica asistencial. Informes periciales independientes con validez judicial en toda España.",
     images: [
       {
-        url: "/img/og-image.png",
+        url: "/img/og-image.jpg",
         width: 1200,
         height: 800,
         alt: "Médico perito especialista en negligencias médicas – Dr. Rodríguez de Tembleque",

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowRight, MessageCircle } from "lucide-react";
 
 /**
@@ -16,13 +17,13 @@ export function StickyCtaMobile() {
       >
         <MessageCircle size={22} />
       </a>
-      <a
+      <Link
         href="/consulta"
         className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-[#1A9E6B] hover:bg-[#158A5C] text-white font-bold py-3.5 text-[0.95rem] shadow-sm active:scale-[0.98] transition-all duration-200"
       >
         Viabilidad gratuita
         <ArrowRight size={17} />
-      </a>
+      </Link>
     </div>
   );
 }

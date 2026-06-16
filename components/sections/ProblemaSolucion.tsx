@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { ArrowRight, XCircle, CheckCircle2 } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
@@ -77,13 +78,13 @@ export function ProblemaSolucion() {
         </div>
 
         <div className="mt-10 text-center fade-up stagger-3">
-          <a
+          <Link
             href="/consulta"
             className="inline-flex w-full sm:w-auto justify-center items-center gap-2 bg-transparent border-2 border-[#1A9E6B] text-[#1A9E6B] hover:bg-[#1A9E6B] hover:text-white font-bold px-8 py-4 rounded-xl transition-all duration-200 text-base active:scale-[0.98]"
           >
             Enviar mi caso
             <ArrowRight size={17} />
-          </a>
+          </Link>
         </div>
       </div>
     </section>

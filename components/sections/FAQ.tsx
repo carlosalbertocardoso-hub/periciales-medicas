@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { ChevronDown, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
@@ -73,13 +74,13 @@ export function FAQ() {
 
         <div className="mt-12 text-center fade-up stagger-2">
           <p className="text-[#6B7280] mb-5">¿No encuentras respuesta a tu duda?</p>
-          <a
+          <Link
             href="/consulta"
             className="inline-flex w-full sm:w-auto justify-center items-center gap-2 bg-transparent border-2 border-[#1A9E6B] text-[#1A9E6B] hover:bg-[#1A9E6B] hover:text-white font-bold px-8 py-4 rounded-xl text-sm transition-all duration-200 active:scale-[0.98]"
           >
             Escríbeme directamente
             <ArrowRight size={15} />
-          </a>
+          </Link>
         </div>
       </div>
     </section>

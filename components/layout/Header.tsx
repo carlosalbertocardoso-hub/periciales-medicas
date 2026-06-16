@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 
@@ -31,34 +32,34 @@ export function Header() {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
-          <a href="/" className="flex flex-col leading-tight group">
+          <Link href="/" className="flex flex-col leading-tight group">
             <span className="font-bold text-[#1B3A6B] text-base sm:text-lg tracking-tight">
               Dr. <span className="text-[#C8993A]">Rodríguez de Tembleque</span>
             </span>
             <span className="text-xs text-[#6B7280] font-medium">
               Médico Perito · Toda España
             </span>
-          </a>
+          </Link>
 
           <nav className="hidden md:flex items-center gap-7" aria-label="Navegación principal">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 className="text-sm font-medium text-[#6B7280] hover:text-[#1B3A6B] transition-colors duration-150"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
           <div className="flex items-center gap-3">
-            <a
+            <Link
               href="/consulta"
               className="hidden sm:inline-flex items-center gap-2 bg-[#1A9E6B] hover:bg-[#158A5C] text-white px-4 py-2.5 rounded-lg text-sm font-bold transition-colors shadow-sm"
             >
               Viabilidad gratuita
-            </a>
+            </Link>
             <button
               className="md:hidden p-2 text-[#1B3A6B] hover:bg-[#EEF2F8] rounded-lg transition-colors cursor-pointer"
               onClick={() => setMobileOpen(!mobileOpen)}
@@ -82,22 +83,22 @@ export function Header() {
       >
         <nav className="max-w-6xl mx-auto px-4 py-4 flex flex-col gap-1" aria-label="Menú móvil">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               onClick={() => setMobileOpen(false)}
               className="py-3 px-2 text-[#1B3A6B] font-medium border-b border-[#F0F4F8] last:border-0 hover:text-[#2D5AA0] transition-colors"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
-          <a
+          <Link
             href="/consulta"
             onClick={() => setMobileOpen(false)}
             className="mt-3 flex items-center justify-center gap-2 bg-[#1A9E6B] hover:bg-[#158A5C] text-white px-4 py-3 rounded-lg font-bold transition-colors cursor-pointer"
           >
             Viabilidad gratuita
-          </a>
+          </Link>
         </nav>
       </div>
     </header>

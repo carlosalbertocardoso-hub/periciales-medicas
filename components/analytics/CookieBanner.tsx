@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { X, Cookie, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { getConsent, saveConsent, pushConsentToGTM, type ConsentState } from "@/lib/consent";
@@ -70,9 +71,9 @@ export function CookieBanner() {
       <p className="text-xs text-[#6B7280] leading-relaxed mb-4">
         Utilizamos cookies propias y de terceros para analizar el tráfico y mostrar
         publicidad personalizada. Puedes aceptar todas, rechazarlas o configurarlas.{" "}
-        <a href="/politica-cookies" className="text-[#1B3A6B] underline underline-offset-2 hover:text-[#2D5AA0]">
+        <Link href="/politica-cookies" className="text-[#1B3A6B] underline underline-offset-2 hover:text-[#2D5AA0]">
           Más información
-        </a>
+        </Link>
       </p>
 
       {/* Preferencias expandibles */}
