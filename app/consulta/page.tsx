@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { FormularioConsulta } from "@/components/sections/FormularioConsulta";
-import { JsonLd } from "@/components/seo/JsonLd";
 import { CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -10,7 +9,7 @@ export const metadata: Metadata = {
   description:
     "Solicita tu valoración inicial gratuita. Adjunta tu documentación médica y recibirás respuesta en menos de 24 horas laborables.",
   robots: { index: false, follow: false },
-  alternates: { canonical: "https://[PENDIENTE DOMINIO]/consulta" },
+  alternates: { canonical: "/consulta" },
 };
 
 const requisitos = [
@@ -23,7 +22,6 @@ const requisitos = [
 export default function ConsultaPage() {
   return (
     <>
-      <JsonLd />
       <Header />
       <main id="main-content" className="pt-16 sm:pt-20">
         {/* Cabecera de página */}

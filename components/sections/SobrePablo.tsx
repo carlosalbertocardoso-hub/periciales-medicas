@@ -2,6 +2,7 @@
 
 import { GraduationCap, Award, Briefcase, UserCheck, CheckCircle2 } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import Image from "next/image";
 
 const formacion = [
   "Licenciado en Medicina y Cirugía — Universidad de Navarra",
@@ -54,22 +55,15 @@ export function SobrePablo() {
                 className="absolute -top-3 -left-3 w-full h-full rounded-2xl border-2 border-[#1A9E6B]/25"
                 aria-hidden="true"
               />
-              <div className="relative w-64 h-80 sm:w-80 sm:h-104 bg-linear-to-br from-[#1B3A6B] to-[#2D5AA0] rounded-2xl flex items-center justify-center shadow-xl overflow-hidden">
-                <div
-                  className="absolute inset-0 opacity-10"
-                  style={{
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='1' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='1'/%3E%3C/g%3E%3C/svg%3E")`,
-                  }}
-                  aria-hidden="true"
+              <div className="relative w-64 h-80 sm:w-80 sm:h-104 rounded-2xl shadow-xl overflow-hidden">
+                <Image
+                  src="/img/pablo-rodriguez-de-tembleque.webp"
+                  alt="Dr. Pablo Rodríguez de Tembleque Relaño, médico perito especialista en negligencias médicas"
+                  fill
+                  sizes="(min-width: 640px) 320px, 256px"
+                  className="object-cover"
+                  priority
                 />
-                <div className="text-center text-white/60 p-8 relative z-10">
-                  <div className="w-24 h-24 rounded-full bg-white/15 mx-auto mb-5 flex items-center justify-center">
-                    <UserCheck size={44} className="text-white/80" />
-                  </div>
-                  <p className="text-sm font-medium text-white/60 leading-snug">
-                    Pablo Rodríguez<br />de Tembleque Relaño<br />[Foto profesional]
-                  </p>
-                </div>
               </div>
 
               <div className="absolute -bottom-4 -right-4 bg-[#1A9E6B] text-white px-4 py-2.5 rounded-xl text-sm font-bold shadow-lg">

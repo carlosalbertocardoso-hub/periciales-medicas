@@ -5,8 +5,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const paginas = [
     "/perfil",
-    "/consulta",
     "/negligencias-medicas",
+    "/informes-periciales",
   ];
 
   return [

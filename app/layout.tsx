@@ -3,6 +3,8 @@ import { EB_Garamond, Lato } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@/components/analytics/Analytics";
 import { CookieBanner } from "@/components/analytics/CookieBanner";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { buildPersonSchema, buildLocalBusinessSchema } from "@/lib/schemas";
 
 const ebGaramond = EB_Garamond({
   subsets: ["latin"],
@@ -71,6 +73,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://pericialmedica.com",
   },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GSC_VERIFICATION,
+  },
 };
 
 export default function RootLayout({
@@ -78,8 +83,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const personSchema = buildPersonSchema();
+  const localBusinessSchema = buildLocalBusinessSchema();
+
   return (
     <html lang="es" className={`${ebGaramond.variable} ${lato.variable} h-full scroll-smooth`}>
+      <head>
+        <JsonLd data={[personSchema, localBusinessSchema]} />
+      </head>
       <body className="min-h-full flex flex-col antialiased">
         <noscript>
           <style>{`.fade-up,.fade-in{opacity:1 !important;transform:none !important}`}</style>

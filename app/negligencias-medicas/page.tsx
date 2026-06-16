@@ -6,11 +6,11 @@ export const metadata: Metadata = {
   title: "Perito Médico Negligencias Médicas | Informe Pericial Independiente",
   description:
     "Perito médico independiente para negligencias médicas en España. Análisis de la lex artis, errores de diagnóstico, tratamiento y seguimiento. Contacto por email o formulario.",
-  alternates: { canonical: "https://[PENDIENTE DOMINIO]/negligencias-medicas" },
+  alternates: { canonical: "/negligencias-medicas" },
   openGraph: {
     title: "Perito Médico Negligencias Médicas | Informe Independiente",
     description: "Valoración médica independiente de posibles negligencias médicas. Análisis de la lex artis y el daño derivado. Informe pericial con validez legal.",
-    url: "https://[PENDIENTE DOMINIO]/negligencias-medicas",
+    url: "/negligencias-medicas",
   },
 };
 

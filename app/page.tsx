@@ -8,14 +8,18 @@ import { Proceso } from "@/components/sections/Proceso";
 import { TrustSignals } from "@/components/sections/TrustSignals";
 import { FAQ } from "@/components/sections/FAQ";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { buildFAQSchema } from "@/lib/schemas";
+import { faqs } from "@/lib/faq-data";
 import { StickyCtaMobile } from "@/components/ui/StickyCtaMobile";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 
 export default function Home() {
+  const faqSchema = buildFAQSchema(faqs);
+
   return (
     <>
-      <JsonLd />
+      <JsonLd data={faqSchema} />
       <Header />
       <main id="main-content">
         <Hero />

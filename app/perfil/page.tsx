@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { SobrePablo } from "@/components/sections/SobrePablo";
-import { JsonLd } from "@/components/seo/JsonLd";
 import { StickyCtaMobile } from "@/components/ui/StickyCtaMobile";
 import { Mail, MessageCircle, ArrowRight } from "lucide-react";
 
@@ -10,19 +9,18 @@ export const metadata: Metadata = {
   title: "Perito Médico Especialista en Negligencias | Perfil Profesional",
   description:
     "Médico especialista en valoración de mala praxis médica asistencial. Informes periciales independientes con validez judicial para toda España.",
-  alternates: { canonical: "https://[PENDIENTE DOMINIO]/perfil" },
+  alternates: { canonical: "/perfil" },
   openGraph: {
     title: "Perito Médico Especialista en Negligencias | Perfil Profesional",
     description:
       "Médico especialista en valoración de mala praxis médica asistencial. Informes periciales independientes con validez judicial para toda España.",
-    url: "https://[PENDIENTE DOMINIO]/perfil",
+    url: "/perfil",
   },
 };
 
 export default function PerfilPage() {
   return (
     <>
-      <JsonLd />
       <Header />
       <main id="main-content" className="pt-16 sm:pt-20">
         <SobrePablo />

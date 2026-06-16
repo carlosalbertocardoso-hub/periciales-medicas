@@ -6,11 +6,11 @@ export const metadata: Metadata = {
   title: "Informes Periciales Médicos | Perito Médico Independiente España",
   description:
     "Elaboración de informes periciales médicos con validez legal en toda España. Rigor científico, claridad expositiva y ratificación judicial. Contacto por email o formulario.",
-  alternates: { canonical: "https://[PENDIENTE DOMINIO]/informes-periciales" },
+  alternates: { canonical: "/informes-periciales" },
   openGraph: {
     title: "Informes Periciales Médicos | Perito Médico Independiente",
     description: "Informes periciales médicos con validez legal en toda España. Elaborados por perito médico colegiado con experiencia en ratificación judicial.",
-    url: "https://[PENDIENTE DOMINIO]/informes-periciales",
+    url: "/informes-periciales",
   },
 };
 
