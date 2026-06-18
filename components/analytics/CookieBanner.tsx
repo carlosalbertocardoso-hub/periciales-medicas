@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { X, Cookie, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { getConsent, saveConsent, pushConsentToGTM, type ConsentState } from "@/lib/consent";
+import { getConsent, saveConsent, pushConsentToGTM, loadAnalyticsForConsent, type ConsentState } from "@/lib/consent";
 
 export function CookieBanner() {
   const [visible, setVisible] = useState(false);
@@ -19,12 +19,14 @@ export function CookieBanner() {
       return () => clearTimeout(t);
     }
     pushConsentToGTM(stored);
+    loadAnalyticsForConsent(stored);
   }, []);
 
   function acceptAll() {
     const state = { analytics: true, marketing: true };
     saveConsent(state);
     pushConsentToGTM(state);
+    loadAnalyticsForConsent(state);
     setVisible(false);
   }
 
@@ -38,6 +40,7 @@ export function CookieBanner() {
   function saveCustom() {
     saveConsent(prefs);
     pushConsentToGTM(prefs);
+    loadAnalyticsForConsent(prefs);
     setVisible(false);
   }
 

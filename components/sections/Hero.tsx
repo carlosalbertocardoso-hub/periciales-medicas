@@ -89,7 +89,8 @@ export function Hero() {
                 width={1448}
                 height={1086}
                 priority
-                sizes="(max-width: 1023px) 100vw, 0px"
+                fetchPriority="high"
+                sizes="(max-width: 640px) calc(100vw - 32px), (max-width: 1023px) calc(100vw - 48px), 0px"
                 className="w-full h-auto"
               />
               <div
@@ -166,7 +167,7 @@ export function Hero() {
                   src="/img/hero-perito.webp"
                   alt="Médico perito analizando una historia clínica junto a pruebas diagnósticas"
                   fill
-                  priority
+                  fetchPriority="high"
                   sizes="(min-width: 1024px) 40vw, 100vw"
                   className="object-cover"
                 />
