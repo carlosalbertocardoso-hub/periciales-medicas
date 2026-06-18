@@ -1,7 +1,3 @@
-"use client";
-
-import { useScrollReveal } from "@/hooks/useScrollReveal";
-
 const stats = [
   { value: "10+", label: "Años de experiencia", sub: "como perito judicial" },
   { value: "50+", label: "Casos periciales", sub: "valorados" },
@@ -10,14 +6,12 @@ const stats = [
 ];
 
 export function TrustStats() {
-  const ref = useScrollReveal<HTMLDivElement>();
-
   return (
     <section
       aria-label="Estadísticas de confianza"
       className="bg-white border-b border-[#E5E7EB]"
     >
-      <div ref={ref} className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-4">
           {stats.map((s, i) => (
             <div key={s.label} className={`text-center fade-up stagger-${i + 1}`}>

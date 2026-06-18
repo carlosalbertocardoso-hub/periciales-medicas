@@ -13,7 +13,6 @@ import { faqs } from "@/lib/faq-data";
 import { StickyCtaMobile } from "@/components/ui/StickyCtaMobile";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 
 export default function Home() {
   const faqSchema = buildFAQSchema(faqs);
@@ -56,13 +55,13 @@ export default function Home() {
               Adjunta tu documentación médica y recibirás respuesta en menos de{" "}
               <strong className="text-white">24 horas laborables</strong>.
             </p>
-            <Link
+            <a
               href="/consulta"
               className="inline-flex w-full sm:w-auto justify-center items-center gap-2.5 bg-[#1A9E6B] hover:bg-[#158A5C] text-white font-bold px-10 py-4 rounded-xl text-base shadow-lg hover:shadow-xl active:scale-[0.98] transition-all duration-200"
             >
               Solicitar viabilidad gratuita
               <ArrowRight size={17} />
-            </Link>
+            </a>
           </div>
         </section>
         {/* Separador para que la barra fija no tape el footer en mobile */}

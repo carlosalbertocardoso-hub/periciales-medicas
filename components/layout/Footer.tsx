@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Mail, MapPin } from "lucide-react";
 
 const serviciosLinks = [
@@ -46,12 +45,12 @@ export function Footer() {
             <ul className="space-y-2.5">
               {serviciosLinks.map((l) => (
                 <li key={l.href}>
-                  <Link
+                  <a
                     href={l.href}
                     className="text-sm text-white/50 hover:text-white transition-colors"
                   >
                     {l.label}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -65,12 +64,12 @@ export function Footer() {
             <ul className="space-y-2.5">
               {legalLinks.map((l) => (
                 <li key={l.href}>
-                  <Link
+                  <a
                     href={l.href}
                     className="text-sm text-white/50 hover:text-white transition-colors"
                   >
                     {l.label}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -97,12 +96,12 @@ export function Footer() {
               </li>
             </ul>
 
-            <Link
+            <a
               href="/consulta"
               className="mt-6 inline-flex items-center gap-2 bg-[#1A9E6B] hover:bg-[#158A5C] text-white text-sm font-bold px-5 py-2.5 rounded-lg transition-colors"
             >
               Viabilidad gratuita
-            </Link>
+            </a>
           </div>
         </div>
 

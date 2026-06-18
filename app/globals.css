@@ -130,11 +130,10 @@ h1 {
   background: currentColor;
 }
 
-/* Animaciones scroll-triggered */
+/* Entrada visible por defecto: evita hidratar secciones estáticas solo para revelar contenido */
 .fade-up {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.55s ease-out, transform 0.55s ease-out;
+  opacity: 1;
+  transform: none;
 }
 .fade-up.visible {
   opacity: 1;
@@ -142,8 +141,7 @@ h1 {
 }
 
 .fade-in {
-  opacity: 0;
-  transition: opacity 0.5s ease-out;
+  opacity: 1;
 }
 .fade-in.visible {
   opacity: 1;

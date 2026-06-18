@@ -1,7 +1,4 @@
-"use client";
-
 import { Star, CheckCircle2 } from "lucide-react";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const testimonios = [
   {
@@ -38,15 +35,13 @@ function Stars({ count }: { count: number }) {
 }
 
 export function Testimonios() {
-  const ref = useScrollReveal<HTMLDivElement>();
-
   return (
     <section
       id="testimonios"
       className="py-16 sm:py-24 bg-[#F7F8FA]"
       aria-label="Testimonios"
     >
-      <div ref={ref} className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="fade-up text-center mb-12 sm:mb-16">
           <span className="inline-block text-[#1A9E6B] font-semibold text-sm uppercase tracking-wider mb-3">
             Testimonios

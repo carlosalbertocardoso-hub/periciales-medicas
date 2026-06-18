@@ -1,8 +1,5 @@
-"use client";
-
 import Image from "next/image";
 import { ShieldCheck, MapPin, Clock, Users, FileCheck, MessageSquare } from "lucide-react";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const signals = [
   {
@@ -38,15 +35,13 @@ const signals = [
 ];
 
 export function TrustSignals() {
-  const ref = useScrollReveal<HTMLDivElement>();
-
   return (
     <section
       id="confianza"
       className="py-16 sm:py-24 bg-white"
       aria-label="Por qué confiar"
     >
-      <div ref={ref} className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="fade-up mb-14 sm:mb-20 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           <div>
             <div className="section-rule text-[#C8993A] text-xs font-semibold tracking-[0.18em] uppercase mb-4">

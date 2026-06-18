@@ -1,8 +1,4 @@
-"use client";
-
-import Link from "next/link";
 import { ArrowRight, XCircle, CheckCircle2 } from "lucide-react";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const problems = [
   "El hospital o médico que te atendió maneja su propia documentación. Tú llegas sin herramientas para cuestionarla.",
@@ -19,15 +15,13 @@ const solutions = [
 ];
 
 export function ProblemaSolucion() {
-  const ref = useScrollReveal<HTMLDivElement>();
-
   return (
     <section
       id="problema-solucion"
       className="py-16 sm:py-24 bg-[#F7F8FA]"
       aria-label="Problema y solución"
     >
-      <div ref={ref} className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="fade-up text-center mb-12 sm:mb-16">
           <span className="inline-block text-[#1A9E6B] font-semibold text-sm uppercase tracking-wider mb-3">
             Por qué te ayudo
@@ -78,13 +72,13 @@ export function ProblemaSolucion() {
         </div>
 
         <div className="mt-10 text-center fade-up stagger-3">
-          <Link
+          <a
             href="/consulta"
             className="inline-flex w-full sm:w-auto justify-center items-center gap-2 bg-transparent border-2 border-[#1A9E6B] text-[#1A9E6B] hover:bg-[#1A9E6B] hover:text-white font-bold px-8 py-4 rounded-xl transition-all duration-200 text-base active:scale-[0.98]"
           >
             Enviar mi caso
             <ArrowRight size={17} />
-          </Link>
+          </a>
         </div>
       </div>
     </section>

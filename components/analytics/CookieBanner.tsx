@@ -1,167 +1,196 @@
-"use client";
-
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import { X, Cookie, ChevronDown } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { getConsent, saveConsent, pushConsentToGTM, loadAnalyticsForConsent, type ConsentState } from "@/lib/consent";
+const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID?.trim() ?? "";
+const GA4_ID = process.env.NEXT_PUBLIC_GA4_ID?.trim() ?? "";
 
 export function CookieBanner() {
-  const [visible, setVisible] = useState(false);
-  const [expanded, setExpanded] = useState(false);
-  const [prefs, setPrefs] = useState<ConsentState>({ analytics: false, marketing: false });
+  const script = `
+    (() => {
+      const STORAGE_KEY = "cookie_consent";
+      const GTM_ID = ${JSON.stringify(GTM_ID)};
+      const GA4_ID = ${JSON.stringify(GA4_ID)};
+      const banner = document.getElementById("cookie-banner");
+      if (!banner) return;
 
-  useEffect(() => {
-    const stored = getConsent();
-    if (!stored) {
-      // Pequeño delay para no bloquear LCP
-      const t = setTimeout(() => setVisible(true), 800);
-      return () => clearTimeout(t);
-    }
-    pushConsentToGTM(stored);
-    loadAnalyticsForConsent(stored);
-  }, []);
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function(){ window.dataLayer.push(arguments); };
 
-  function acceptAll() {
-    const state = { analytics: true, marketing: true };
-    saveConsent(state);
-    pushConsentToGTM(state);
-    loadAnalyticsForConsent(state);
-    setVisible(false);
-  }
+      function readConsent() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : null;
+        } catch {
+          return null;
+        }
+      }
 
-  function rejectAll() {
-    const state = { analytics: false, marketing: false };
-    saveConsent(state);
-    pushConsentToGTM(state);
-    setVisible(false);
-  }
+      function updateConsent(state) {
+        window.gtag("consent", "update", {
+          analytics_storage: state.analytics ? "granted" : "denied",
+          ad_storage: state.marketing ? "granted" : "denied",
+          ad_user_data: state.marketing ? "granted" : "denied",
+          ad_personalization: state.marketing ? "granted" : "denied",
+        });
+      }
 
-  function saveCustom() {
-    saveConsent(prefs);
-    pushConsentToGTM(prefs);
-    loadAnalyticsForConsent(prefs);
-    setVisible(false);
-  }
+      function loadGTM(id) {
+        if (!id || document.getElementById("gtm-script")) return;
+        window.dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js" });
+        const firstScript = document.getElementsByTagName("script")[0];
+        const script = document.createElement("script");
+        script.id = "gtm-script";
+        script.async = true;
+        script.src = "https://www.googletagmanager.com/gtm.js?id=" + encodeURIComponent(id);
+        firstScript.parentNode.insertBefore(script, firstScript);
+      }
 
-  if (!visible) return null;
+      function loadGA4(id) {
+        if (!id || document.getElementById("ga4-script")) return;
+        const script = document.createElement("script");
+        script.id = "ga4-script";
+        script.async = true;
+        script.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(id);
+        script.onload = () => {
+          window.gtag("js", new Date());
+          window.gtag("config", id);
+        };
+        document.head.appendChild(script);
+      }
+
+      function loadAnalytics(state) {
+        if (!state.analytics && !state.marketing) return;
+        if (GTM_ID) {
+          loadGTM(GTM_ID);
+        } else if (state.analytics) {
+          loadGA4(GA4_ID);
+        }
+      }
+
+      function save(state) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        updateConsent(state);
+        loadAnalytics(state);
+        banner.hidden = true;
+      }
+
+      const stored = readConsent();
+      if (stored) {
+        updateConsent(stored);
+        loadAnalytics(stored);
+      } else {
+        window.setTimeout(() => {
+          banner.hidden = false;
+        }, 3500);
+      }
+
+      document.getElementById("cookie-accept")?.addEventListener("click", () => {
+        save({ analytics: true, marketing: true });
+      });
+      document.getElementById("cookie-reject")?.addEventListener("click", () => {
+        save({ analytics: false, marketing: false });
+      });
+      document.getElementById("cookie-close")?.addEventListener("click", () => {
+        save({ analytics: false, marketing: false });
+      });
+      document.getElementById("cookie-save")?.addEventListener("click", () => {
+        save({
+          analytics: document.getElementById("cookie-analytics")?.checked === true,
+          marketing: document.getElementById("cookie-marketing")?.checked === true,
+        });
+      });
+    })();
+  `;
 
   return (
-    <div
-      role="dialog"
-      aria-modal="true"
-      aria-label="Preferencias de cookies"
-      className={cn(
-        "fixed bottom-24 left-4 right-4 sm:left-auto sm:right-6 sm:bottom-6 sm:max-w-md z-[100]",
-        "bg-white rounded-2xl shadow-2xl border border-[#E5E7EB] p-5"
-      )}
-    >
-      {/* Header */}
-      <div className="flex items-start justify-between gap-3 mb-3">
-        <div className="flex items-center gap-2">
-          <Cookie size={18} className="text-[#1A9E6B] shrink-0" />
-          <h2 className="font-bold text-[#1A1A2E] text-sm">Usamos cookies</h2>
+    <>
+      <div
+        id="cookie-banner"
+        hidden
+        role="dialog"
+        aria-modal="true"
+        aria-label="Preferencias de cookies"
+        className="fixed bottom-24 left-4 right-4 z-[100] rounded-2xl border border-[#E5E7EB] bg-white p-5 shadow-2xl sm:bottom-6 sm:left-auto sm:right-6 sm:max-w-md"
+      >
+        <div className="mb-3 flex items-start justify-between gap-3">
+          <div className="flex items-center gap-2">
+            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#1A9E6B]/10 text-xs font-bold text-[#1A9E6B]">
+              C
+            </span>
+            <h2 className="text-sm font-bold text-[#1A1A2E]">Usamos cookies</h2>
+          </div>
+          <button
+            id="cookie-close"
+            type="button"
+            className="cursor-pointer text-sm font-bold text-[#94A3B8] transition-colors hover:text-[#64748B]"
+            aria-label="Rechazar y cerrar"
+          >
+            X
+          </button>
         </div>
-        <button
-          onClick={rejectAll}
-          className="text-[#94A3B8] hover:text-[#64748B] transition-colors cursor-pointer"
-          aria-label="Rechazar y cerrar"
-        >
-          <X size={16} />
-        </button>
-      </div>
 
-      <p className="text-xs text-[#6B7280] leading-relaxed mb-4">
-        Utilizamos cookies propias y de terceros para analizar el tráfico y mostrar
-        publicidad personalizada. Puedes aceptar todas, rechazarlas o configurarlas.{" "}
-        <Link href="/politica-cookies" className="text-[#1B3A6B] underline underline-offset-2 hover:text-[#2D5AA0]">
-          Más información
-        </Link>
-      </p>
+        <p className="mb-4 text-xs leading-relaxed text-[#6B7280]">
+          Utilizamos cookies propias y de terceros para analizar el tráfico y mostrar
+          publicidad personalizada. Puedes aceptar todas, rechazarlas o configurarlas.{" "}
+          <a href="/politica-cookies" className="text-[#1B3A6B] underline underline-offset-2 hover:text-[#2D5AA0]">
+            Más información
+          </a>
+        </p>
 
-      {/* Preferencias expandibles */}
-      <div className="mb-4">
-        <button
-          type="button"
-          onClick={() => setExpanded(!expanded)}
-          className="flex items-center gap-1.5 text-xs text-[#1B3A6B] font-semibold hover:text-[#2D5AA0] transition-colors cursor-pointer"
-          aria-expanded={expanded}
-        >
-          <ChevronDown
-            size={14}
-            className={cn("transition-transform duration-200", expanded && "rotate-180")}
-            aria-hidden="true"
-          />
-          Personalizar
-        </button>
-
-        <div className={cn(
-          "overflow-hidden transition-all duration-300 ease-out",
-          expanded ? "max-h-40 mt-3" : "max-h-0"
-        )}>
-          <div className="space-y-2.5">
-            {/* Técnicas — siempre activas */}
+        <details className="mb-4">
+          <summary className="cursor-pointer list-none text-xs font-semibold text-[#1B3A6B] transition-colors hover:text-[#2D5AA0] [&::-webkit-details-marker]:hidden">
+            Personalizar
+          </summary>
+          <div className="mt-3 space-y-2.5">
             <label className="flex items-center justify-between gap-3 text-xs text-[#374151]">
-              <div>
+              <span>
                 <span className="font-semibold">Cookies técnicas</span>
-                <span className="text-[#9CA3AF] ml-1">(necesarias)</span>
-              </div>
-              <input type="checkbox" checked disabled className="accent-[#1A9E6B] cursor-not-allowed" />
+                <span className="ml-1 text-[#9CA3AF]">(necesarias)</span>
+              </span>
+              <input type="checkbox" checked disabled className="cursor-not-allowed accent-[#1A9E6B]" />
             </label>
 
-            {/* Analítica */}
-            <label className="flex items-center justify-between gap-3 text-xs text-[#374151] cursor-pointer">
-              <div>
+            <label className="flex cursor-pointer items-center justify-between gap-3 text-xs text-[#374151]">
+              <span>
                 <span className="font-semibold">Analítica</span>
-                <span className="text-[#9CA3AF] ml-1">(Google Analytics)</span>
-              </div>
-              <input
-                type="checkbox"
-                checked={prefs.analytics}
-                onChange={(e) => setPrefs((p) => ({ ...p, analytics: e.target.checked }))}
-                className="accent-[#1A9E6B] cursor-pointer"
-              />
+                <span className="ml-1 text-[#9CA3AF]">(Google Analytics)</span>
+              </span>
+              <input id="cookie-analytics" type="checkbox" className="cursor-pointer accent-[#1A9E6B]" />
             </label>
 
-            {/* Marketing */}
-            <label className="flex items-center justify-between gap-3 text-xs text-[#374151] cursor-pointer">
-              <div>
+            <label className="flex cursor-pointer items-center justify-between gap-3 text-xs text-[#374151]">
+              <span>
                 <span className="font-semibold">Marketing</span>
-                <span className="text-[#9CA3AF] ml-1">(Google Ads, Meta)</span>
-              </div>
-              <input
-                type="checkbox"
-                checked={prefs.marketing}
-                onChange={(e) => setPrefs((p) => ({ ...p, marketing: e.target.checked }))}
-                className="accent-[#1A9E6B] cursor-pointer"
-              />
+                <span className="ml-1 text-[#9CA3AF]">(Google Ads, Meta)</span>
+              </span>
+              <input id="cookie-marketing" type="checkbox" className="cursor-pointer accent-[#1A9E6B]" />
             </label>
 
             <button
-              onClick={saveCustom}
-              className="w-full mt-1 py-2 rounded-lg border border-[#1B3A6B] text-[#1B3A6B] text-xs font-semibold hover:bg-[#EEF2F8] transition-colors cursor-pointer"
+              id="cookie-save"
+              type="button"
+              className="mt-1 w-full cursor-pointer rounded-lg border border-[#1B3A6B] py-2 text-xs font-semibold text-[#1B3A6B] transition-colors hover:bg-[#EEF2F8]"
             >
               Guardar preferencias
             </button>
           </div>
+        </details>
+
+        <div className="flex gap-2">
+          <button
+            id="cookie-reject"
+            type="button"
+            className="flex-1 cursor-pointer rounded-xl border border-[#E5E7EB] py-2.5 text-xs font-semibold text-[#6B7280] transition-colors hover:bg-[#F7F8FA]"
+          >
+            Rechazar
+          </button>
+          <button
+            id="cookie-accept"
+            type="button"
+            className="flex-1 cursor-pointer rounded-xl bg-[#1A9E6B] py-2.5 text-xs font-bold text-white transition-colors hover:bg-[#158A5C]"
+          >
+            Aceptar todas
+          </button>
         </div>
       </div>
-
-      {/* Botones principales */}
-      <div className="flex gap-2">
-        <button
-          onClick={rejectAll}
-          className="flex-1 py-2.5 rounded-xl border border-[#E5E7EB] text-[#6B7280] text-xs font-semibold hover:bg-[#F7F8FA] transition-colors cursor-pointer"
-        >
-          Rechazar
-        </button>
-        <button
-          onClick={acceptAll}
-          className="flex-1 py-2.5 rounded-xl bg-[#1A9E6B] hover:bg-[#158A5C] text-white text-xs font-bold transition-colors cursor-pointer"
-        >
-          Aceptar todas
-        </button>
-      </div>
-    </div>
+      <script id="cookie-consent-runtime" dangerouslySetInnerHTML={{ __html: script }} />
+    </>
   );
 }

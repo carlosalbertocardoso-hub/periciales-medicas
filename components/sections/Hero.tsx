@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { ArrowRight, ShieldCheck, FileCheck, Scale } from "lucide-react";
 import { OpenChatbotLink } from "@/components/ui/OpenChatbotLink";
 
@@ -121,13 +120,13 @@ export function Hero() {
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-              <Link
+              <a
                 href="/consulta"
                 className="inline-flex w-full sm:w-auto items-center justify-center gap-2.5 bg-[#1A9E6B] hover:bg-[#158A5C] text-white font-bold px-8 py-4 rounded-xl text-base shadow-lg hover:shadow-xl active:scale-[0.98] transition-all duration-200"
               >
                 Viabilidad gratuita
                 <ArrowRight size={17} />
-              </Link>
+              </a>
               <div className="text-center sm:text-left">
                 <OpenChatbotLink />
               </div>

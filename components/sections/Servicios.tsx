@@ -1,8 +1,4 @@
-"use client";
-
-import Link from "next/link";
 import { Stethoscope, Search, FileText, Scale, AlertTriangle, ArrowRight } from "lucide-react";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const tiposMalaPraxis = [
   {
@@ -38,15 +34,13 @@ const tiposMalaPraxis = [
 ];
 
 export function Servicios() {
-  const ref = useScrollReveal<HTMLDivElement>();
-
   return (
     <section
       id="servicios"
       className="py-16 sm:py-24 bg-white"
       aria-label="Tipos de mala praxis médica"
     >
-      <div ref={ref} className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="fade-up mb-12 sm:mb-16 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
           <div>
             <div className="section-rule text-[#C8993A] text-xs font-semibold tracking-[0.18em] uppercase mb-4">
@@ -110,7 +104,7 @@ export function Servicios() {
           })}
 
           {/* Tarjeta-CTA: rellena el grid y capta casos fuera de las categorías */}
-          <Link
+          <a
             href="/consulta"
             className="fade-up stagger-6 group flex flex-col justify-center rounded-2xl p-6 border-2 border-dashed border-[#1A9E6B]/40 hover:border-[#1A9E6B] bg-[#1A9E6B]/[0.03] hover:bg-[#1A9E6B]/[0.06] transition-all duration-300"
           >
@@ -128,17 +122,17 @@ export function Servicios() {
               Solicitar viabilidad
               <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-200" />
             </span>
-          </Link>
+          </a>
         </div>
 
         <div className="mt-12 text-center fade-up">
-          <Link
+          <a
             href="/consulta"
             className="inline-flex w-full sm:w-auto justify-center items-center gap-2.5 bg-[#1A9E6B] hover:bg-[#158A5C] text-white font-bold px-8 py-4 rounded-xl text-base shadow-md hover:shadow-lg active:scale-[0.98] transition-all duration-200"
           >
             Solicitar viabilidad gratuita
             <ArrowRight size={16} />
-          </Link>
+          </a>
           <p className="mt-3 text-sm text-[#6B7280]">Respuesta en menos de 24 horas laborables</p>
         </div>
       </div>

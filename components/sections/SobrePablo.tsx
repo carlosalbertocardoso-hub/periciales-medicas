@@ -1,7 +1,4 @@
-"use client";
-
 import { GraduationCap, Award, Briefcase, UserCheck, CheckCircle2 } from "lucide-react";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
 import Image from "next/image";
 
 const formacion = [
@@ -38,15 +35,13 @@ const checklist = [
 ];
 
 export function SobrePablo() {
-  const ref = useScrollReveal<HTMLDivElement>();
-
   return (
     <section
       id="sobre-pablo"
       className="py-16 sm:py-24 bg-[#F7F8FA]"
       aria-label="Sobre Pablo"
     >
-      <div ref={ref} className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
           <div className="fade-up stagger-1 flex justify-center lg:justify-start order-2 lg:order-1">

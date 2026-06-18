@@ -1,11 +1,9 @@
-import Script from "next/script";
-
 export function Analytics() {
   return (
-    <>
-      {/* Consent Mode v2 — denegado por defecto hasta que el usuario acepte */}
-      <Script id="consent-default" strategy="beforeInteractive">
-        {`
+    <script
+      id="consent-default"
+      dangerouslySetInnerHTML={{
+        __html: `
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('consent', 'default', {
@@ -15,8 +13,8 @@ export function Analytics() {
             ad_personalization: 'denied',
             wait_for_update: 500,
           });
-        `}
-      </Script>
-    </>
+        `,
+      }}
+    />
   );
 }
