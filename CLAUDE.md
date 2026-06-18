@@ -76,10 +76,25 @@ El schema en `route.ts` solo exige `email` + `descripcion` + `rgpd`; el resto es
   `lib/faq-data.ts` — misma fuente que el componente `FAQ.tsx`, para que el schema nunca se
   desincronice del contenido real). No dupliques Person/LocalBusiness por página.
 - Builders reutilizables en `lib/schemas.ts`.
-- Enlaces internos: usar siempre `next/link`, no `<a href="/...">` (excepto mailto, wa.me,
-  externos, o anclas de la misma página `#contacto`).
+- Enlaces internos en contenido estático de la landing/layout: se permite `<a href="/...">`
+  para evitar hidratar `next/link` y reducir TBT. Usar `next/link` solo cuando el componente
+  ya sea cliente o la navegación client-side aporte valor claro.
 - OG image: `public/img/og-image.jpg` (1200×800, ~60KB). Si se regenera, mantener esas
   dimensiones y formato JPG (la foto no tiene transparencia, PNG la infla 20x).
+
+## Rendimiento / hidratación
+
+- Server Components por defecto. No añadir `"use client"` a secciones estáticas solo por
+  animaciones, iconos, CTAs o enlaces.
+- `useScrollReveal` ya no se usa en la landing: `.fade-up` y `.fade-in` son visibles por
+  defecto para evitar `IntersectionObserver` + hidratación en contenido estático.
+- `FAQ.tsx` usa `<details>` nativo, sin estado React.
+- `Header.tsx` usa `<details>` nativo para el menú móvil; no reintroducir listener global de
+  scroll salvo necesidad clara.
+- `CookieBanner.tsx` es un Server Component con HTML + script mínimo inline. No convertirlo de
+  nuevo a React cliente salvo que se acepte el coste en TBT.
+- `OpenChatbotLink.tsx` sí debe seguir siendo cliente: dispara `open-chatbot` y forma parte del
+  flujo explicativo del chatbot. No sustituirlo por enlace normal.
 
 ## Variables de entorno necesarias
 

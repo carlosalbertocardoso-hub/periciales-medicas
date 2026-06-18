@@ -64,19 +64,30 @@ components/
   layout/         # Header, Footer
   sections/       # Hero, Servicios, TrustSignals, Proceso, SobrePablo, FAQ, Formulario, FormularioConsulta...
   templates/       # ServicePage, ServiceFAQ (páginas de servicio)
-  analytics/      # Analytics (GTM/GA4 + Consent Mode v2), CookieBanner
+  analytics/      # Analytics (Consent Mode v2), CookieBanner sin React cliente
   seo/            # JsonLd (renderer genérico), ServiceJsonLd
   ui/             # StickyCtaMobile, ChatbotGuiado, WhatsAppButton, etc.
 
 hooks/
-  useScrollReveal.ts   # Animaciones scroll-triggered con IntersectionObserver
+  useScrollReveal.ts   # Legacy/no usado en la landing: evitarlo en secciones estáticas
 
 lib/
-  consent.ts      # Utilidades Consent Mode v2
   schemas.ts       # Builders de JSON-LD (Person, LocalBusiness, FAQ, Breadcrumb, Service)
   faq-data.ts      # Fuente única de las FAQs (usada por FAQ.tsx y el schema FAQPage)
   utils.ts        # cn() y helpers
 ```
+
+## Rendimiento
+
+La landing está optimizada para minimizar hidratación:
+
+- Las secciones estáticas son Server Components.
+- El FAQ usa `<details>` nativo.
+- El menú móvil del header usa `<details>` nativo.
+- El banner de cookies se renderiza como HTML + script mínimo, no como componente React cliente.
+- En la landing/layout se usan `<a href="/...">` para navegación estática cuando evita cargar
+  `next/link`.
+- `OpenChatbotLink` se mantiene como componente cliente porque abre el chatbot explicativo.
 
 ## Pendientes
 
