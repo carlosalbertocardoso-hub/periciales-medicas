@@ -1,12 +1,7 @@
-const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID?.trim() ?? "";
-const GA4_ID = process.env.NEXT_PUBLIC_GA4_ID?.trim() ?? "";
-
 export function CookieBanner() {
   const script = `
     (() => {
       const STORAGE_KEY = "cookie_consent";
-      const GTM_ID = ${JSON.stringify(GTM_ID)};
-      const GA4_ID = ${JSON.stringify(GA4_ID)};
       const banner = document.getElementById("cookie-banner");
       if (!banner) return;
 
@@ -31,50 +26,15 @@ export function CookieBanner() {
         });
       }
 
-      function loadGTM(id) {
-        if (!id || document.getElementById("gtm-script")) return;
-        window.dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js" });
-        const firstScript = document.getElementsByTagName("script")[0];
-        const script = document.createElement("script");
-        script.id = "gtm-script";
-        script.async = true;
-        script.src = "https://www.googletagmanager.com/gtm.js?id=" + encodeURIComponent(id);
-        firstScript.parentNode.insertBefore(script, firstScript);
-      }
-
-      function loadGA4(id) {
-        if (!id || document.getElementById("ga4-script")) return;
-        const script = document.createElement("script");
-        script.id = "ga4-script";
-        script.async = true;
-        script.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(id);
-        script.onload = () => {
-          window.gtag("js", new Date());
-          window.gtag("config", id);
-        };
-        document.head.appendChild(script);
-      }
-
-      function loadAnalytics(state) {
-        if (!state.analytics && !state.marketing) return;
-        if (GTM_ID) {
-          loadGTM(GTM_ID);
-        } else if (state.analytics) {
-          loadGA4(GA4_ID);
-        }
-      }
-
       function save(state) {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
         updateConsent(state);
-        loadAnalytics(state);
         banner.hidden = true;
       }
 
       const stored = readConsent();
       if (stored) {
         updateConsent(stored);
-        loadAnalytics(stored);
       } else {
         window.setTimeout(() => {
           banner.hidden = false;
