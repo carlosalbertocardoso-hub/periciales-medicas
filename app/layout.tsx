@@ -92,25 +92,18 @@ export default function RootLayout({
         <script
           id="consent-default"
           dangerouslySetInnerHTML={{
-            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',wait_for_update:500});`,
+            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',wait_for_update:2000});`,
           }}
         />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-NPZ1DB8XCW" />
         <script
-          id="gtm-init"
+          id="ga4-init"
           dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-K76WCS48');`,
+            __html: `gtag('js',new Date());gtag('config','G-NPZ1DB8XCW');`,
           }}
         />
       </head>
       <body className="min-h-full flex flex-col antialiased">
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-K76WCS48"
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          />
-        </noscript>
         <noscript>
           <style>{`.fade-up,.fade-in{opacity:1 !important;transform:none !important}`}</style>
         </noscript>
