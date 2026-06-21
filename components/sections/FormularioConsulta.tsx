@@ -8,7 +8,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Send, Mail, MessageCircle, AlertCircle, Lock, Paperclip, X, FileText, Clock, ShieldCheck } from "lucide-react";
 import { Turnstile } from "@marsidev/react-turnstile";
-import { trackFormSubmission } from "@/lib/gtm-events";
 
 const MAX_FILE_SIZE = 15 * 1024 * 1024; // 15 MB por archivo
 const MAX_FILES = 5;
@@ -130,8 +129,8 @@ export function FormularioConsulta() {
       reset();
       setAttachedFiles([]);
 
-      // GTM/GA4: track form submission
-      trackFormSubmission('consulta', data.email, 'consulta');
+      // GA4: track form submission
+      try { window.gtag('event', 'form_submitted', { 'form_name': 'consulta', 'send_to': 'G-G249FLJM9M' }); } catch(e) {}
 
       router.push("/gracias");
     } catch (err) {

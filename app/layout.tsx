@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { EB_Garamond, Lato } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@/components/analytics/Analytics";
 import { CookieBanner } from "@/components/analytics/CookieBanner";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { buildPersonSchema, buildLocalBusinessSchema } from "@/lib/schemas";
@@ -89,24 +90,12 @@ export default function RootLayout({
     <html lang="es" className={`${ebGaramond.variable} ${lato.variable} h-full scroll-smooth`}>
       <head>
         <JsonLd data={[personSchema, localBusinessSchema]} />
-        <script
-          id="consent-default"
-          dangerouslySetInnerHTML={{
-            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',wait_for_update:2000});`,
-          }}
-        />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-NPZ1DB8XCW" />
-        <script
-          id="ga4-init"
-          dangerouslySetInnerHTML={{
-            __html: `gtag('js',new Date());gtag('config','G-NPZ1DB8XCW');`,
-          }}
-        />
       </head>
       <body className="min-h-full flex flex-col antialiased">
         <noscript>
           <style>{`.fade-up,.fade-in{opacity:1 !important;transform:none !important}`}</style>
         </noscript>
+        <Analytics />
         {children}
         <CookieBanner />
       </body>
