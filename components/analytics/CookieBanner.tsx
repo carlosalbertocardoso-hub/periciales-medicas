@@ -31,17 +31,6 @@ export function CookieBanner() {
         });
       }
 
-      function loadGTM(id) {
-        if (!id || document.getElementById("gtm-script")) return;
-        window.dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js" });
-        const firstScript = document.getElementsByTagName("script")[0];
-        const script = document.createElement("script");
-        script.id = "gtm-script";
-        script.async = true;
-        script.src = "https://www.googletagmanager.com/gtm.js?id=" + encodeURIComponent(id);
-        firstScript.parentNode.insertBefore(script, firstScript);
-      }
-
       function loadGA4(id) {
         if (!id || document.getElementById("ga4-script")) return;
         const script = document.createElement("script");
@@ -56,12 +45,7 @@ export function CookieBanner() {
       }
 
       function loadAnalytics(state) {
-        if (!state.analytics && !state.marketing) return;
-        if (GTM_ID) {
-          loadGTM(GTM_ID);
-        } else if (state.analytics) {
-          loadGA4(GA4_ID);
-        }
+        if (!GTM_ID && state.analytics) loadGA4(GA4_ID);
       }
 
       function save(state) {
