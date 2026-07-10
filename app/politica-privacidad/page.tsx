@@ -25,7 +25,7 @@ export default function PoliticaPrivacidad() {
               <strong>Identidad:</strong> Pablo Rodriguez de Tembleque Relaño<br />
               <strong>Dirección:</strong> C/San Juan de la Cruz, 21, Córdoba<br />
               <strong>Email:</strong> pablo.rdt.medico@gmail.com<br />
-              <strong>Teléfono:</strong> [PENDIENTE]
+              <strong>Teléfono:</strong> +34 601 53 91 80
             </p>
           </section>
 

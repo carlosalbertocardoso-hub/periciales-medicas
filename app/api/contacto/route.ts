@@ -31,6 +31,9 @@ async function verifyTurnstile(token: string, ip: string): Promise<boolean> {
   return data.success === true;
 }
 
+const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB por archivo, igual que el límite mostrado en el frontend
+const MAX_FILES = 5;
+
 const escapeHtml = (s: string) =>
   s
     .replace(/&/g, "&amp;")
@@ -47,7 +50,18 @@ export async function POST(req: NextRequest) {
     );
     const data = schema.parse(raw);
 
-    const docs = formData.getAll("docs") as File[];
+    const docs = (formData.getAll("docs") as File[]).filter((f) => f && f.size > 0);
+
+    if (docs.length > MAX_FILES) {
+      return NextResponse.json({ error: `Máximo ${MAX_FILES} documentos adjuntos` }, { status: 400 });
+    }
+    const oversized = docs.find((f) => f.size > MAX_FILE_SIZE);
+    if (oversized) {
+      return NextResponse.json(
+        { error: `El archivo "${oversized.name}" supera el límite de 10 MB` },
+        { status: 400 }
+      );
+    }
 
     if (process.env.TURNSTILE_SECRET_KEY) {
       const ip = req.headers.get("cf-connecting-ip") ?? req.headers.get("x-forwarded-for") ?? "";
@@ -90,12 +104,10 @@ export async function POST(req: NextRequest) {
         .join("");
 
       const attachments = await Promise.all(
-        docs
-          .filter((f) => f && f.size > 0)
-          .map(async (f) => ({
-            filename: f.name,
-            content: Buffer.from(await f.arrayBuffer()),
-          }))
+        docs.map(async (f) => ({
+          filename: f.name,
+          content: Buffer.from(await f.arrayBuffer()),
+        }))
       );
 
       await transporter.sendMail({

@@ -36,6 +36,8 @@ Copia `.env.example` a `.env.local` y rellena las variables necesarias antes de 
 | `GMAIL_USER` | Cuenta Gmail emisora (`pablo.rdt.medico@gmail.com`) |
 | `GMAIL_APP_PASSWORD` | Contraseña de aplicación de Gmail (16 chars, requiere 2FA) |
 | `CONTACT_EMAIL` | Email donde llegan los leads (por defecto, `GMAIL_USER`) |
+| `NEXT_PUBLIC_GSC_VERIFICATION` | Código de verificación de Google Search Console (usado en `app/layout.tsx`) |
+| `SUPABASE_URL` / `SUPABASE_SERVICE_ROLE_KEY` | Reservadas para guardar leads en BD — no usadas todavía en el código |
 
 ## Estructura del proyecto
 

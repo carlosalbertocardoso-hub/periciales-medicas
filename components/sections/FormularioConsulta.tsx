@@ -9,7 +9,7 @@ import { z } from "zod";
 import { Send, Mail, MessageCircle, AlertCircle, Lock, Paperclip, X, FileText, Clock, ShieldCheck } from "lucide-react";
 import { Turnstile } from "@marsidev/react-turnstile";
 
-const MAX_FILE_SIZE = 15 * 1024 * 1024; // 15 MB por archivo
+const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB por archivo — igual límite que el endpoint y que Formulario.tsx
 const MAX_FILES = 5;
 const ACCEPTED_TYPES = [
   "application/pdf",
@@ -83,7 +83,7 @@ export function FormularioConsulta() {
       if (!ACCEPTED_TYPES.includes(file.type)) {
         error = "Formato no admitido";
       } else if (file.size > MAX_FILE_SIZE) {
-        error = "Supera el límite de 15 MB";
+        error = "Supera el límite de 10 MB";
       }
       return { file, id: `${file.name}-${Date.now()}-${Math.random()}`, error };
     });
@@ -130,7 +130,7 @@ export function FormularioConsulta() {
       setAttachedFiles([]);
 
       // GA4: track form submission
-      try { window.gtag('event', 'form_submitted', { 'form_name': 'consulta', 'send_to': 'G-G249FLJM9M' }); } catch(e) {}
+      try { window.gtag('event', 'form_submitted', { 'form_name': 'consulta', 'send_to': 'G-08L95BZJEP' }); } catch(e) {}
 
       router.push("/gracias");
     } catch (err) {
@@ -212,7 +212,7 @@ export function FormularioConsulta() {
                 ))}
               </ul>
               <p className="text-[#9CA3AF] text-xs mt-3">
-                PDF, JPG, PNG, Word · Máx. 15 MB por archivo
+                PDF, JPG, PNG, Word · Máx. 10 MB por archivo
               </p>
             </div>
 
