@@ -8,9 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Send, Mail, MessageCircle, AlertCircle, Lock, Paperclip, X, FileText, Clock, ShieldCheck } from "lucide-react";
 import { Turnstile } from "@marsidev/react-turnstile";
-
-const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB por archivo — igual límite que el endpoint y que Formulario.tsx
-const MAX_FILES = 5;
+import { MAX_FILE_SIZE, MAX_FILES } from "@/lib/upload-limits";
 const ACCEPTED_TYPES = [
   "application/pdf",
   "image/jpeg",

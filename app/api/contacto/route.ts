@@ -1,22 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import nodemailer from "nodemailer";
-
-// Campos comunes a los dos formularios del sitio:
-// - FormularioConsulta (/consulta): telefono, email, descripcion, rgpd
-// - Formulario (páginas de servicio): nombre, apellidos, email, tipo_caso, provincia, descripcion, rgpd
-// email + descripcion + rgpd son obligatorios; el resto es opcional según el formulario de origen.
-const schema = z.object({
-  nombre: z.string().max(80).optional(),
-  apellidos: z.string().max(100).optional(),
-  telefono: z.string().min(9).max(20).optional(),
-  email: z.string().email(),
-  tipo_caso: z.string().max(120).optional(),
-  provincia: z.string().max(120).optional(),
-  descripcion: z.string().min(20).max(2000),
-  rgpd: z.union([z.literal("true"), z.literal(true)]),
-  turnstileToken: z.string().optional(),
-});
+import { contactoSchema as schema, MAX_FILE_SIZE, MAX_FILES, escapeHtml } from "@/lib/contacto-schema";
 
 async function verifyTurnstile(token: string, ip: string): Promise<boolean> {
   const secret = process.env.TURNSTILE_SECRET_KEY;
@@ -30,16 +15,6 @@ async function verifyTurnstile(token: string, ip: string): Promise<boolean> {
   const data = await res.json();
   return data.success === true;
 }
-
-const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB por archivo, igual que el límite mostrado en el frontend
-const MAX_FILES = 5;
-
-const escapeHtml = (s: string) =>
-  s
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
 
 export async function POST(req: NextRequest) {
   try {
