@@ -89,7 +89,11 @@ export function CookieBanner() {
         <p className="mb-4 text-xs leading-relaxed text-[#6B7280]">
           Utilizamos cookies propias y de terceros para analizar el tráfico y mostrar
           publicidad personalizada. Puedes aceptar todas, rechazarlas o configurarlas.{" "}
-          <a href="/politica-cookies" className="text-[#1B3A6B] underline underline-offset-2 hover:text-[#2D5AA0]">
+          <a
+            href="/politica-cookies"
+            className="text-[#1B3A6B] underline underline-offset-2 hover:text-[#2D5AA0]"
+            aria-label="Más información sobre la política de cookies"
+          >
             Más información
           </a>
         </p>
