@@ -3,25 +3,36 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { SobrePablo } from "@/components/sections/SobrePablo";
 import { StickyCtaMobile } from "@/components/ui/StickyCtaMobile";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { buildBreadcrumbSchema } from "@/lib/schemas";
 import Link from "next/link";
 import { Mail, MessageCircle, ArrowRight } from "lucide-react";
 
+const baseUrl = "https://pericialesmedicas.es";
+
+const PERFIL_DESCRIPTION =
+  "Dr. Pablo Rodríguez de Tembleque, médico colegiado nº 14/07919 (Colegio de Médicos de Córdoba), más de 10 años como perito judicial. Formación en la Universidad de Navarra y Máster en Valoración del Daño Corporal.";
+
 export const metadata: Metadata = {
   title: "Perito Médico Especialista en Negligencias | Perfil Profesional",
-  description:
-    "Médico especialista en valoración de mala praxis médica asistencial. Informes periciales independientes con validez judicial para toda España.",
+  description: PERFIL_DESCRIPTION,
   alternates: { canonical: "/perfil" },
   openGraph: {
     title: "Perito Médico Especialista en Negligencias | Perfil Profesional",
-    description:
-      "Médico especialista en valoración de mala praxis médica asistencial. Informes periciales independientes con validez judicial para toda España.",
+    description: PERFIL_DESCRIPTION,
     url: "/perfil",
   },
 };
 
 export default function PerfilPage() {
+  const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: "Inicio", url: baseUrl },
+    { name: "Perfil profesional", url: `${baseUrl}/perfil` },
+  ]);
+
   return (
     <>
+      <JsonLd data={breadcrumbSchema} />
       <Header />
       <main id="main-content" className="pt-16 sm:pt-20">
         <SobrePablo />

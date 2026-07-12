@@ -29,8 +29,8 @@ export default function AvisoLegal() {
               <li><strong>NIF:</strong> 44355640-W</li>
               <li><strong>Dirección:</strong> C/San Juan de la Cruz, 21, Córdoba</li>
               <li><strong>Email:</strong> pablo.rdt.medico@gmail.com</li>
-              <li><strong>Teléfono:</strong> [PENDIENTE]</li>
-              <li><strong>Colegio de Médicos:</strong> Córdoba · Nº colegiado: [PENDIENTE]</li>
+              <li><strong>Teléfono:</strong> +34 601 53 91 80</li>
+              <li><strong>Colegio de Médicos:</strong> Córdoba · Nº colegiado: 14/07919</li>
             </ul>
           </section>
 

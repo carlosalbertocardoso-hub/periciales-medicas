@@ -8,9 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Send, Mail, MapPin, AlertCircle, Lock, Paperclip, X, FileText } from "lucide-react";
 import { Turnstile } from "@marsidev/react-turnstile";
-
-const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB por archivo
-const MAX_FILES = 5;
+import { MAX_FILE_SIZE, MAX_FILES } from "@/lib/upload-limits";
 const ACCEPTED_TYPES = [
   "application/pdf",
   "image/jpeg",
@@ -23,6 +21,12 @@ const ACCEPTED_TYPES = [
 const schema = z.object({
   nombre: z.string().min(2, "El nombre debe tener al menos 2 caracteres").max(80),
   apellidos: z.string().min(2, "Los apellidos deben tener al menos 2 caracteres").max(100),
+  telefono: z
+    .string()
+    .max(20)
+    .regex(/^[+\d\s\-()]{9,20}$/, "Formato de teléfono no válido")
+    .optional()
+    .or(z.literal("")),
   email: z.string().email("Introduce un email válido"),
   tipo_caso: z.string().min(1, "Selecciona el tipo de caso"),
   provincia: z.string().min(2, "Indica tu provincia o comunidad autónoma"),
@@ -116,7 +120,10 @@ export function Formulario() {
 
     try {
       const formData = new FormData();
-      Object.entries(data).forEach(([k, v]) => formData.append(k, String(v)));
+      Object.entries(data).forEach(([k, v]) => {
+        if (v === undefined || v === "") return;
+        formData.append(k, String(v));
+      });
       if (turnstileToken) formData.append("turnstileToken", turnstileToken);
       validFiles.forEach((af) => formData.append("docs", af.file));
 
@@ -134,7 +141,7 @@ export function Formulario() {
       setAttachedFiles([]);
 
       // GA4: track form submission
-      try { window.gtag('event', 'form_submitted', { 'form_name': 'contacto', 'send_to': 'G-G249FLJM9M' }); } catch(e) {}
+      try { window.gtag('event', 'form_submitted', { 'form_name': 'contacto', 'send_to': 'G-08L95BZJEP' }); } catch(e) {}
 
       router.push("/gracias");
     } catch (err) {
@@ -300,6 +307,28 @@ export function Formulario() {
                 {errors.email && (
                   <p id="email-error" role="alert" className="mt-1 text-xs text-red-500">
                     {errors.email.message}
+                  </p>
+                )}
+              </div>
+
+              {/* Teléfono (opcional) */}
+              <div>
+                <label htmlFor="telefono" className="block text-sm font-semibold text-[#1A1A2E] mb-1.5">
+                  Teléfono <span className="text-[#9CA3AF] font-normal">(opcional)</span>
+                </label>
+                <input
+                  id="telefono"
+                  type="tel"
+                  autoComplete="tel"
+                  placeholder="600 000 000"
+                  {...register("telefono")}
+                  className={fieldClass(!!errors.telefono)}
+                  aria-invalid={!!errors.telefono}
+                  aria-describedby={errors.telefono ? "telefono-error" : undefined}
+                />
+                {errors.telefono && (
+                  <p id="telefono-error" role="alert" className="mt-1 text-xs text-red-500">
+                    {errors.telefono.message}
                   </p>
                 )}
               </div>

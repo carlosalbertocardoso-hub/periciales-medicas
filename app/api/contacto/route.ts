@@ -1,22 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import nodemailer from "nodemailer";
-
-// Campos comunes a los dos formularios del sitio:
-// - FormularioConsulta (/consulta): telefono, email, descripcion, rgpd
-// - Formulario (páginas de servicio): nombre, apellidos, email, tipo_caso, provincia, descripcion, rgpd
-// email + descripcion + rgpd son obligatorios; el resto es opcional según el formulario de origen.
-const schema = z.object({
-  nombre: z.string().max(80).optional(),
-  apellidos: z.string().max(100).optional(),
-  telefono: z.string().min(9).max(20).optional(),
-  email: z.string().email(),
-  tipo_caso: z.string().max(120).optional(),
-  provincia: z.string().max(120).optional(),
-  descripcion: z.string().min(20).max(2000),
-  rgpd: z.union([z.literal("true"), z.literal(true)]),
-  turnstileToken: z.string().optional(),
-});
+import { contactoSchema as schema, MAX_FILE_SIZE, MAX_FILES, escapeHtml } from "@/lib/contacto-schema";
 
 async function verifyTurnstile(token: string, ip: string): Promise<boolean> {
   const secret = process.env.TURNSTILE_SECRET_KEY;
@@ -31,13 +16,6 @@ async function verifyTurnstile(token: string, ip: string): Promise<boolean> {
   return data.success === true;
 }
 
-const escapeHtml = (s: string) =>
-  s
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
-
 export async function POST(req: NextRequest) {
   try {
     const formData = await req.formData();
@@ -47,7 +25,18 @@ export async function POST(req: NextRequest) {
     );
     const data = schema.parse(raw);
 
-    const docs = formData.getAll("docs") as File[];
+    const docs = (formData.getAll("docs") as File[]).filter((f) => f && f.size > 0);
+
+    if (docs.length > MAX_FILES) {
+      return NextResponse.json({ error: `Máximo ${MAX_FILES} documentos adjuntos` }, { status: 400 });
+    }
+    const oversized = docs.find((f) => f.size > MAX_FILE_SIZE);
+    if (oversized) {
+      return NextResponse.json(
+        { error: `El archivo "${oversized.name}" supera el límite de 10 MB` },
+        { status: 400 }
+      );
+    }
 
     if (process.env.TURNSTILE_SECRET_KEY) {
       const ip = req.headers.get("cf-connecting-ip") ?? req.headers.get("x-forwarded-for") ?? "";
@@ -90,12 +79,10 @@ export async function POST(req: NextRequest) {
         .join("");
 
       const attachments = await Promise.all(
-        docs
-          .filter((f) => f && f.size > 0)
-          .map(async (f) => ({
-            filename: f.name,
-            content: Buffer.from(await f.arrayBuffer()),
-          }))
+        docs.map(async (f) => ({
+          filename: f.name,
+          content: Buffer.from(await f.arrayBuffer()),
+        }))
       );
 
       await transporter.sendMail({

@@ -36,6 +36,8 @@ Copia `.env.example` a `.env.local` y rellena las variables necesarias antes de 
 | `GMAIL_USER` | Cuenta Gmail emisora (`pablo.rdt.medico@gmail.com`) |
 | `GMAIL_APP_PASSWORD` | Contraseña de aplicación de Gmail (16 chars, requiere 2FA) |
 | `CONTACT_EMAIL` | Email donde llegan los leads (por defecto, `GMAIL_USER`) |
+| `NEXT_PUBLIC_GSC_VERIFICATION` | Código de verificación de Google Search Console (usado en `app/layout.tsx`) |
+| `SUPABASE_URL` / `SUPABASE_SERVICE_ROLE_KEY` | Reservadas para guardar leads en BD — no usadas todavía en el código |
 
 ## Estructura del proyecto
 
@@ -89,12 +91,22 @@ La landing está optimizada para minimizar hidratación:
   `next/link`.
 - `OpenChatbotLink` se mantiene como componente cliente porque abre el chatbot explicativo.
 
+## Tests
+
+```bash
+npm test
+```
+
+Vitest, 22 tests (`lib/contacto-schema.test.ts`, `lib/schemas.test.ts`) — validación de
+formularios, escape XSS, límites de archivo y builders JSON-LD.
+
 ## Pendientes
 
 - [ ] URL de cita telemática Doctoralia (bloque comentado en `FormularioConsulta.tsx`)
 - [ ] Testimonios reales autorizados (`Testimonios.tsx` con placeholder, sin montar)
 - [ ] Fase 4: páginas locales (`/perito-medico-madrid`, `/perito-medico-barcelona`...) — evaluar si tiene sentido siendo servicio 100% telemático
 - [ ] Fase 5: estructura de blog
+- [ ] Contraste de color del CTA verde (`#1A9E6B`) — decisión de marca pendiente
 
 ## Deploy
 
