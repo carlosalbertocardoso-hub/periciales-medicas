@@ -91,12 +91,22 @@ La landing está optimizada para minimizar hidratación:
   `next/link`.
 - `OpenChatbotLink` se mantiene como componente cliente porque abre el chatbot explicativo.
 
+## Tests
+
+```bash
+npm test
+```
+
+Vitest, 22 tests (`lib/contacto-schema.test.ts`, `lib/schemas.test.ts`) — validación de
+formularios, escape XSS, límites de archivo y builders JSON-LD.
+
 ## Pendientes
 
 - [ ] URL de cita telemática Doctoralia (bloque comentado en `FormularioConsulta.tsx`)
 - [ ] Testimonios reales autorizados (`Testimonios.tsx` con placeholder, sin montar)
 - [ ] Fase 4: páginas locales (`/perito-medico-madrid`, `/perito-medico-barcelona`...) — evaluar si tiene sentido siendo servicio 100% telemático
 - [ ] Fase 5: estructura de blog
+- [ ] Contraste de color del CTA verde (`#1A9E6B`) — decisión de marca pendiente
 
 ## Deploy
 
