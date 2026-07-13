@@ -12,7 +12,9 @@ const ebGaramond = EB_Garamond({
   display: "swap",
 });
 
-const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || "GTM-KMJ6W8VF";
+// El contenedor de producción se fija aquí para impedir que una variable de
+// entorno antigua vuelva a inyectar otro GTM distinto al auditado.
+const GTM_ID = "GTM-KMJ6W8VF";
 
 const lato = Lato({
   subsets: ["latin"],
