@@ -127,8 +127,11 @@ export function FormularioConsulta() {
       reset();
       setAttachedFiles([]);
 
-      // GA4: track form submission
-      try { window.gtag('event', 'form_submitted', { 'form_name': 'consulta', 'send_to': 'G-08L95BZJEP' }); } catch(e) {}
+      // GA4: track form submission (dataLayer push directo, sin depender del puente gtag/GTM)
+      try {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'generate_lead', lead_type: 'consulta', form_name: 'consulta' });
+      } catch {}
 
       router.push("/gracias");
     } catch (err) {
@@ -174,6 +177,12 @@ export function FormularioConsulta() {
               href="https://wa.me/34601539180"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => {
+                try {
+                  window.dataLayer = window.dataLayer || [];
+                  window.dataLayer.push({ event: 'whatsapp_click' });
+                } catch {}
+              }}
               className="flex items-center gap-4 p-4 bg-white hover:bg-[#F0F9F5] border border-[#E5E7EB] hover:border-[#1A9E6B]/30 rounded-xl transition-colors group"
             >
               <div className="w-10 h-10 rounded-lg bg-[#1A9E6B]/10 flex items-center justify-center text-[#1A9E6B] shrink-0">

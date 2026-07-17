@@ -8,12 +8,20 @@ const WA_MESSAGE = encodeURIComponent(
 );
 
 export function WhatsAppButton() {
+  function handleClick() {
+    try {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'whatsapp_click' });
+    } catch {}
+  }
+
   return (
     <a
       href={`https://wa.me/${WA_NUMBER}?text=${WA_MESSAGE}`}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Contactar por WhatsApp"
+      onClick={handleClick}
       className="fixed bottom-5 right-5 z-50 flex items-center gap-2 bg-[#25D366] text-white px-4 py-3 rounded-full shadow-lg hover:bg-[#1ebe57] active:scale-95 transition-all duration-200 group"
     >
       <MessageCircle size={22} className="shrink-0" />

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/next-script-for-ga -- GTM usa un loader propio para preservar Consent Mode y diferir la descarga hasta interacción/4s; GoogleTagManager carga tras hidratación inmediatamente. */
 import type { Metadata } from "next";
 import { EB_Garamond, Lato } from "next/font/google";
 import "./globals.css";

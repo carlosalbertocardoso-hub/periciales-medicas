@@ -140,8 +140,11 @@ export function Formulario() {
       reset();
       setAttachedFiles([]);
 
-      // GA4: track form submission
-      try { window.gtag('event', 'form_submitted', { 'form_name': 'contacto', 'send_to': 'G-08L95BZJEP' }); } catch(e) {}
+      // GA4: track form submission (dataLayer push directo, sin depender del puente gtag/GTM)
+      try {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'generate_lead', lead_type: 'contacto', form_name: 'contacto' });
+      } catch {}
 
       router.push("/gracias");
     } catch (err) {
