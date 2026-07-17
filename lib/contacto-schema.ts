@@ -10,7 +10,7 @@ export const contactoSchema = z.object({
   nombre: z.string().max(80).optional(),
   apellidos: z.string().max(100).optional(),
   telefono: z.string().min(9).max(20).optional(),
-  email: z.string().email(),
+  email: z.string().trim().email(),
   tipo_caso: z.string().max(120).optional(),
   provincia: z.string().max(120).optional(),
   descripcion: z.string().min(20).max(2000),

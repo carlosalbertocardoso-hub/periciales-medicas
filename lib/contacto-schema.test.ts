@@ -38,6 +38,36 @@ describe("contactoSchema", () => {
     expect(() => contactoSchema.parse({ ...basePayload, descripcion: "muy corta" })).toThrow();
   });
 
+  it("rechaza descripción que excede el máximo (> 2000 caracteres)", () => {
+    expect(() =>
+      contactoSchema.parse({ ...basePayload, descripcion: "x".repeat(2001) })
+    ).toThrow();
+  });
+
+  it("rechaza nombre que excede el máximo (> 80 caracteres)", () => {
+    expect(() =>
+      contactoSchema.parse({ ...basePayload, nombre: "x".repeat(81) })
+    ).toThrow();
+  });
+
+  it("rechaza apellidos que exceden el máximo (> 100 caracteres)", () => {
+    expect(() =>
+      contactoSchema.parse({ ...basePayload, apellidos: "x".repeat(101) })
+    ).toThrow();
+  });
+
+  it("rechaza tipo_caso que excede el máximo (> 120 caracteres)", () => {
+    expect(() =>
+      contactoSchema.parse({ ...basePayload, tipo_caso: "x".repeat(121) })
+    ).toThrow();
+  });
+
+  it("rechaza provincia que excede el máximo (> 120 caracteres)", () => {
+    expect(() =>
+      contactoSchema.parse({ ...basePayload, provincia: "x".repeat(121) })
+    ).toThrow();
+  });
+
   it("rechaza rgpd ausente o false — el usuario debe aceptar explícitamente", () => {
     expect(() => contactoSchema.parse({ ...basePayload, rgpd: undefined })).toThrow();
     expect(() => contactoSchema.parse({ ...basePayload, rgpd: false })).toThrow();
@@ -53,6 +83,25 @@ describe("contactoSchema", () => {
 
   it("teléfono es opcional — no lo exige si no viene", () => {
     expect(() => contactoSchema.parse(basePayload)).not.toThrow();
+  });
+
+  it("email con espacios exteriores se trimea pero se valida correctamente", () => {
+    const result = contactoSchema.parse({ ...basePayload, email: "  a@b.com  " });
+    expect(result.email).toBe("a@b.com");
+  });
+
+  it("email válido sin espacios no se ve afectado por trim", () => {
+    const result = contactoSchema.parse({ ...basePayload, email: "paciente@example.com" });
+    expect(result.email).toBe("paciente@example.com");
+  });
+
+  it("email con espacios internos sigue siendo rechazado", () => {
+    expect(() => contactoSchema.parse({ ...basePayload, email: "a @b.com" })).toThrow();
+    expect(() => contactoSchema.parse({ ...basePayload, email: "a@ b.com" })).toThrow();
+  });
+
+  it("entrada formada solo por espacios es rechazada", () => {
+    expect(() => contactoSchema.parse({ ...basePayload, email: "   " })).toThrow();
   });
 });
 

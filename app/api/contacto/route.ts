@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import nodemailer from "nodemailer";
 import { contactoSchema as schema, MAX_FILE_SIZE, MAX_FILES, escapeHtml } from "@/lib/contacto-schema";
+import { isTotalUploadWithinLimit } from "@/lib/upload-limits";
 
 async function verifyTurnstile(token: string, ip: string): Promise<boolean> {
   const secret = process.env.TURNSTILE_SECRET_KEY;
@@ -34,6 +35,13 @@ export async function POST(req: NextRequest) {
     if (oversized) {
       return NextResponse.json(
         { error: `El archivo "${oversized.name}" supera el límite de 10 MB` },
+        { status: 400 }
+      );
+    }
+
+    if (!isTotalUploadWithinLimit(docs.map((f) => f.size))) {
+      return NextResponse.json(
+        { error: "Los documentos adjuntos superan el tamaño máximo permitido" },
         { status: 400 }
       );
     }
